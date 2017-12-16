@@ -21,14 +21,21 @@ class App
     }
 
     //singleton
-    public static function getInstance() {
+
+    /**
+     * @return App
+     */
+    public static function getInstance() : App {
         if(self::$_instance === null) {
             self::$_instance = new App();
         }
         return self::$_instance;
     }
 
-    public function getDb() {
+    /**
+     * @return MysqlDatabase
+     */
+    public function getDb() : MysqlDatabase {
         $config = Config::getInstance(ROOT . '/config/config.php');
 
         if($this->_dbInstance === null) {
@@ -44,8 +51,14 @@ class App
     }
 
     //Factory
-    public function getTable($modelName) {
-        $className = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
-        return new $className($this->getDb());
+
+    //TODO question ça me retourn un objet ou une instance?
+    /**
+     * @param string $modelName
+     * @return object(MysqlDatabase)
+     */
+    public function getTable(string $modelName):object {
+        $tableName = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
+        return new $tableName($this->getDb());
     }
 }

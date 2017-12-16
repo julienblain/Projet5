@@ -10,7 +10,7 @@ class Table
     protected $db;
 
     //call by App->getTable();
-    public function __construct($db)
+    public function __construct(Table $db)
     {
         $this->db = $db;
     }
@@ -27,7 +27,7 @@ class Table
         return $this->db->delete($statement);
     }
 
-    public function update($statement, $array) {
+    public function update($statement, Array $array) {
         return $this->db->update($statement, $array);
     }
 
@@ -35,7 +35,7 @@ class Table
         return $this->db->updateOne($statement);
     }
 
-    public function insertInto($statement, $array) {
+    public function insertInto($statement, Array $array) {
         return $this->db->insertInto($statement, $array);
     }
 }

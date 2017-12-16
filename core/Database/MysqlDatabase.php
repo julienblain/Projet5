@@ -17,6 +17,7 @@ class MysqlDatabase {
         $this->_dbHost = $dbHost;
     }
 
+    //TODO QUestion faudrait il pas mieux faire un setPdo et construire un getter?
     public function getPdo() {
         if ($this->_pdo === null) {
             try {
