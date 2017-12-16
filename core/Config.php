@@ -13,10 +13,10 @@ class Config {
     }
 
     /**
-     * @param mixed $key
-     * @return mixed
+     * @param string $key
+     * @return string
      */
-    public function getSettings($key):mixed
+    public function getSettings($key)
     {
         return $this->_settings[$key];
     }

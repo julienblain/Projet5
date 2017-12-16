@@ -42,4 +42,10 @@ class App
 
         return $this->_dbInstance;
     }
+
+    //Factory
+    public function getTable($modelName) {
+        $className = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
+        return new $className($this->getDb());
+    }
 }

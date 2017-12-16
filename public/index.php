@@ -13,3 +13,6 @@ if (!isset($_SESSION)) {
 }
 
 App::getInstance()->router();
+
+$test = new \App\Controller\DreamsController();
+$test->dreamsAll();
