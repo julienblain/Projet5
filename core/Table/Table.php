@@ -4,13 +4,15 @@
 namespace Core\Table;
 
 
+use Core\Database\MysqlDatabase;
+
 class Table
 {
     protected $table;
     protected $db;
 
     //call by App->getTable();
-    public function __construct(Table $db)
+    public function __construct(MysqlDatabase $db)
     {
         $this->db = $db;
     }
@@ -20,7 +22,7 @@ class Table
     }
 
     public function prepare($statement, $one=false) {
-        return $this->db->prepare($statement, $one=false);
+        return $this->db->prepare($statement, $one);
     }
 
     public function delete($statement) {

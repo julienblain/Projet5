@@ -10,7 +10,11 @@ class App
     private $_dbInstance;
 
     public function router() {
-        new Router();
+        $route = new Router();
+        $getController = $route->getController();
+        $action = $route->getAction();
+        $controller = new $getController();
+        return $controller->$action();
     }
 
     public function load() {
@@ -52,12 +56,12 @@ class App
 
     //Factory
 
-    //TODO question ça me retourn un objet ou une instance?
+    //TODO question ça me return  une methode?
     /**
      * @param string $modelName
-     * @return object(MysqlDatabase)
+     * @return
      */
-    public function getTable(string $modelName):object {
+    public function getTable(string $modelName) {
         $tableName = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
         return new $tableName($this->getDb());
     }

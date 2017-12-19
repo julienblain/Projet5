@@ -3,7 +3,7 @@ define('ROOT', dirname(__DIR__));
 require ROOT.'/app/App.php';
 
 
-//TODO question
+//TODO question le mieux ?
 //App::load()
 App::getInstance()->load();
 
@@ -14,5 +14,3 @@ if (!isset($_SESSION)) {
 
 App::getInstance()->router();
 
-$test = new \App\Controller\DreamsController();
-$test->dreamsAll();
