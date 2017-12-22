@@ -34,7 +34,7 @@ class Router {
             $this->_page = $page;
             return $this->_page;
         }
-        $page = "logged.connection";
+        $page = "user.connection";
         $page = \explode('.', $page);
         $this->_page = $page;
         return $this->_page;

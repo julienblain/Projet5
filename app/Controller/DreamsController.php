@@ -10,7 +10,7 @@ class DreamsController extends AppController
         //parent gives viewPath and loadModel
 
         //TODO a faire la vue
-       // parent::__construct();
+       parent::__construct();
         $this->loadModel('Dreams');
     }
 

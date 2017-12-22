@@ -2,25 +2,31 @@
 namespace App\Controller;
 
 use \App;
-use Core\Auth\DBAuth;
+use Core\Table\Table;
 
-class LoggedController extends AppController {
+class UserController extends AppController {
 
+
+    public function __construct() {
+        //parent gives viewPath and loadModel
+
+        //TODO a faire la vue
+         parent::__construct();
+        $this->loadModel('User');
+    }
 
     public function control() {
-        $app = App::getInstance();
-        $auth = new DBAuth($app->getDb());
 
         if(isset($_POST['login']) && isset($_POST['password'])) {
             $login = htmlspecialchars($_POST['login']);
             $password = htmlspecialchars($_POST['password']);
 
-            $user = $auth->login($login, $password);
+            $user = $this->User->login($login, $password);
 
             //if error login or password
             if($user === false) {
                // login or password error
-                include_once($this->viewPath."errors/loginError.php");
+                include_once($this->viewPath .'errors/loginError.php');
                 return $this->connection();
             } else {
                 $_SESSION['user'] = $login;

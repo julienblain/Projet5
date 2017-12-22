@@ -1,7 +1,7 @@
 <section id="home">
     <div id="home-login">
         <h2>Bonjour, veuillez vous identifier.</h2>
-        <form action="?p=logged.control" id="home-login-form" method="post">
+        <form action="?p=user.control" id="home-login-form" method="post">
             <label for="home-login-form-login">
                 Login :
                 <input id="home-login-form-login" type="text" name="login" required>
