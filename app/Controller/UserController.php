@@ -2,16 +2,12 @@
 namespace App\Controller;
 
 use \App;
-use Core\Table\Table;
+//use Core\Table\Table;
 
 class UserController extends AppController {
 
-
     public function __construct() {
         //parent gives viewPath and loadModel
-
-        //TODO a faire la vue
-         parent::__construct();
         $this->loadModel('User');
     }
 
@@ -21,6 +17,7 @@ class UserController extends AppController {
             $login = htmlspecialchars($_POST['login']);
             $password = htmlspecialchars($_POST['password']);
 
+            //TODO question comprend pas que c'est defini dans le parent ??
             $user = $this->User->login($login, $password);
 
             //if error login or password
@@ -40,7 +37,5 @@ class UserController extends AppController {
         }
     }
 
-    public function connection() {
-        $this->render('home.home');
-    }
+
 }

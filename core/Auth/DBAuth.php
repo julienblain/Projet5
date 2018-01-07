@@ -4,7 +4,9 @@
 namespace Core\Auth;
 
 
-class DBAuth
+use Core\Table\Table;
+
+class DBAuth extends Table
 {
     private $_db;
 
@@ -14,21 +16,17 @@ class DBAuth
 
     }
 
-    public function login($login, $password) {
+    public function login(string $login, string $password) {
 
     }
 
-    /**
-     *
-     */
+
     public function getDb()
     {
         return $this->_db;
     }
 
-    /**
-     *
-     */
+
     public function setDb($db)
     {
         $this->_db = $db;

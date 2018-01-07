@@ -30,7 +30,7 @@ class MysqlDatabase {
                 );
             }
             catch (\Exception $e){
-                die('Erreur de connexion à la base de donnée');
+                die('Erreur de connexion à la base de donnée.');
             }
 
             $this->_pdo = $pdo;

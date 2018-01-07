@@ -1,49 +1,54 @@
 <?php
 namespace App;
-use Core\Database\MysqlDatabase;
-class Router {
+
+final class Router {
 
     private $_page;
     private $_action;
     private $_controller;
 
+
     public function __construct()
     {
-       $this->setPage();
-       $this->setAction();
-       $this->setController();
-       var_dump($this->_page) . 'page<br>';
-       echo $this->_action . 'action<br>';
-       echo $this->_controller . 'controller<br>';
+        $this->setPage();
+        $this->setAction();
+        $this->setController();
+        echo 'page <br>';
+        var_dump($this->_page) ;
+        echo $this->_action . ' action<br>';
+        echo $this->_controller . ' controller<br>';
+
+       $controller = $this->getController();
+       $controller = new $controller;
+       $action = $this->getAction();
+
+       return $controller->$action() ;
+
 
     }
 
-    /**
-     * @return string
-     */
-    public function getPage()
+    public function getPage() : array
     {
         return $this->_page;
     }
 
     public function setPage()
     {
+        //TODO settings list
         if(isset($_GET['p'])) {
             $page = $_GET['p'];
             $page = \explode('.', $page);
             $this->_page = $page;
-            return $this->_page;
+
         }
-        $page = "user.connection";
-        $page = \explode('.', $page);
-        $this->_page = $page;
-        return $this->_page;
+        else {
+            $page = "app.home";
+            $page = \explode('.', $page);
+            $this->_page = $page;
+        }
     }
 
-    /**
-     * @return string
-     */
-    public function getAction()
+    public function getAction() : string
     {
         return $this->_action;
     }
@@ -57,7 +62,7 @@ class Router {
     /**
      * @return string
      */
-    public function getController()
+    public function getController() : string
     {
         return $this->_controller;
     }

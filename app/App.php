@@ -1,68 +1,43 @@
 <?php
-use Core\Config;
-use Core\Database\MysqlDatabase;
+
 use App\Router;
 
-
-class App
+//TODO question class Final ?
+final class App
 {
-    private static $_instance;
-    private $_dbInstance;
+    private static $_instance;  // (App) content App
 
-    public function router() {
-        $route = new Router();
-        $getController = $route->getController();
-        $action = $route->getAction();
-        $controller = new $getController();
-        return $controller->$action();
+    //singleton
+    public static function getInstance(): App
+    {
+
+        if (self::$_instance === null) {
+            self::$_instance = new App();
+
+            //start the session if it is not started automatically by the server
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+
+            self::$_instance->_autoload();
+            self::$_instance->_router();
+        }
+        return self::$_instance;
     }
 
-    public function load() {
+
+    private function _autoload(): void
+    {
         require ROOT . '/app/Autoloader.php';
         App\Autoloader::register();
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
     }
 
-    //singleton
 
-    /**
-     * @return App
-     */
-    public static function getInstance() : App {
-        if(self::$_instance === null) {
-            self::$_instance = new App();
-        }
-        return self::$_instance;
+    private function _router()
+    {
+         new Router();
     }
 
-    /**
-     * @return MysqlDatabase
-     */
-    public function getDb() : MysqlDatabase {
-        $config = Config::getInstance(ROOT . '/config/config.php');
-
-        if($this->_dbInstance === null) {
-            $this->_dbInstance = new MysqlDatabase(
-                $config->getSettings('db_name'),
-                $config->getSettings('db_user'),
-                $config->getSettings('db_pass'),
-                $config->getSettings('db_host')
-            );
-        }
-
-        return $this->_dbInstance;
-    }
-
-    //Factory
-
-    //TODO question ça me return  une methode?
-    /**
-     * @param string $modelName
-     * @return
-     */
-    public function getTable(string $modelName) {
-        $tableName = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
-        return new $tableName($this->getDb());
-    }
 }

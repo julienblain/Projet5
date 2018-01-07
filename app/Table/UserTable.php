@@ -6,11 +6,12 @@ namespace App\Table;
 
 use Core\Auth\DBAuth;
 
+//TODO quesiton heritage multiple pour Table
 class UserTable extends DBAuth
 {
     protected $table = 'user';
 
-    public function login($login, $password) {
+    public function login(string $login, string $password) {
 
         $user = $this->getDb()->prepare(
             "SELECT idUsers, passwordUsers FROM users
