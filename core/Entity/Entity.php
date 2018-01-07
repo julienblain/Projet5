@@ -1,20 +1,19 @@
 <?php
 
 
-namespace Core\Table;
+namespace Core\Entity;
 
 
 use Core\Database\MysqlDatabase;
 
-class Table
+class Entity
 {
     protected $table;
     protected $db;
 
-    //call by App->getTable();
-    public function __construct(MysqlDatabase $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = new MysqlDatabase();
     }
 
     public function query($statement, $one=false) {

@@ -34,18 +34,50 @@ final class Router {
 
     public function setPage()
     {
-        //TODO settings list
-        if(isset($_GET['p'])) {
-            $page = $_GET['p'];
-            $page = \explode('.', $page);
-            $this->_page = $page;
+        try {
+            //TODO settings list
+            if(isset($_GET['p'])) {
+                $get = $_GET['p'];
+                try {
+                    switch ($get) {
+                        case "user.control":
+                            $this->_routingValid();
+                            break;
+                        default :
+                            $this->_routingHome();
+                            throw new AppException();
+                    }
+                }
+                catch (AppException $e) {
+                    echo $e->router();
+                }
 
+            }
+            elseif (count($_GET) === 0) {
+                $this->_routingHome();
+            }
+            else {
+                //TODO a voir
+                $this->_routingHome();
+               throw new AppException();
+            }
         }
-        else {
-            $page = "app.home";
-            $page = \explode('.', $page);
-            $this->_page = $page;
+        catch (AppException $e) {
+            //TODO creation de la class error write in log
+            echo $e->router();
         }
+    }
+
+    private function _routingValid() {
+        $page = $_GET['p'];
+        $page = \explode('.', $page);
+        $this->_page = $page;
+    }
+
+    private function _routingHome() {
+        $page = "app.home";
+        $page = \explode('.', $page);
+        $this->_page = $page;
     }
 
     public function getAction() : string

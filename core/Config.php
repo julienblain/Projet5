@@ -4,12 +4,11 @@ namespace Core;
 
 class Config {
     private $_settings;
-    private static $_instance; //bdd instance
 
-    public function __construct(string $fileConfig)
+    public function __construct()
     {
         //TODO verifier si c ok
-        $this->setSettings(require($fileConfig));
+        $this->setSettings(require(ROOT . '/config/config.php'));
     }
 
     /**
@@ -30,25 +29,6 @@ class Config {
         $this->_settings = $settings;
     }
 
-    /**
-     * call in App.php
-     * @param string $fileConfig
-     * @return object
-     */
-    public static function getInstance($fileConfig)
-    {
-        if(is_null(self::$_instance)) {
-            self::setInstance(new Config($fileConfig));
-        }
-        return self::$_instance;
-    }
 
-    /**
-     * @param Config $instance
-     */
-    public static function setInstance(Config $instance): void
-    {
-        self::$_instance = $instance;
-    }
 
 }

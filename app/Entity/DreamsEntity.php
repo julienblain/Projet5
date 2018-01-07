@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Table;
-use Core\Table\Table;
+namespace App\Entity;
+use Core\Entity\Entity;
 
 
-class DreamsTable extends Table
+class DreamsEntity extends Entity
 {
     protected $table = 'dreams';
 

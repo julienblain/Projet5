@@ -2,6 +2,8 @@
 
 namespace Core\Database;
 
+use Core\Config;
+
 class MysqlDatabase {
 
     private $_dbName;
@@ -10,16 +12,15 @@ class MysqlDatabase {
     private $_dbHost;
     private $_pdo;
 
-    public function __construct($dbName, $dbUser, $dbPassword, $dbHost) {
-        $this->_dbName = $dbName;
-        $this->_dbUser = $dbUser;
-        $this->_dbPassword = $dbPassword;
-        $this->_dbHost = $dbHost;
-    }
+    public function __construct() {
 
-    //TODO QUestion faudrait il pas mieux faire un setPdo et construire un getter?
-    public function getPdo() {
-        if ($this->_pdo === null) {
+        if($this->_pdo === null) {
+            $config = new Config();
+            $this->_dbName = $config->getSettings('db_name');
+            $this->_dbUser = $config->getSettings('db_user');
+            $this->_dbPassword = $config->getSettings('db_pass');
+            $this->_dbHost = $config->getSettings('db_host');
+
             try {
                 $pdo = new \PDO('mysql:host=' . $this->_dbHost . ';
                     dbname=' . $this->_dbName . ';
@@ -29,13 +30,18 @@ class MysqlDatabase {
                     array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION)
                 );
             }
-            catch (\Exception $e){
+            catch (\PDOException $e){
                 die('Erreur de connexion à la base de donnée.');
             }
 
             $this->_pdo = $pdo;
-        }
+            }
 
+       $this->getPdo();
+        var_dump($this->getPdo());
+    }
+
+    public function getPdo() {
         return $this->_pdo;
     }
 
@@ -56,6 +62,7 @@ class MysqlDatabase {
 
 
     public function prepare($statement, $one = false) {
+        echo 'MYsqqqqll';
         $req = $this->getPdo()->prepare($statement);
         $req->execute();
         $req->setFetchMode(\PDO::FETCH_OBJ); //retrun object

@@ -20,7 +20,7 @@ class AppController extends Controller
 
     //give the model to load
     protected function loadModel(string $modelName) {
-        $className = '\\App\\Table\\' . ucfirst($modelName) . 'Table';
+        $className = '\\App\\Entity\\' . $modelName . 'Entity';
         return new $className();
     }
 

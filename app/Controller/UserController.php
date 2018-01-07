@@ -2,13 +2,14 @@
 namespace App\Controller;
 
 use \App;
-//use Core\Table\Table;
+
 
 class UserController extends AppController {
+    private $_table;
 
     public function __construct() {
         //parent gives viewPath and loadModel
-        $this->loadModel('User');
+        $this->_table = $this->loadModel('User');
     }
 
     public function control() {
@@ -17,25 +18,18 @@ class UserController extends AppController {
             $login = htmlspecialchars($_POST['login']);
             $password = htmlspecialchars($_POST['password']);
 
-            //TODO question comprend pas que c'est defini dans le parent ??
-            $user = $this->User->login($login, $password);
+            // User is the loaded UserTable, created by loadModel in the constructor
+            $user = $this->_table->login($login, $password);
 
-            //if error login or password
-            if($user === false) {
-               // login or password error
-                include_once($this->viewPath .'errors/loginError.php');
-                return $this->connection();
-            } else {
+            if (($user) && ($user[0]->passwordUsers === sha1($password))) {
                 $_SESSION['user'] = $login;
                 $_SESSION['idUser'] = $user[0]->idUsers;
-                return $this->render('dreams.homeLogged');
+                $this->render('dreams.homeLogged');
+            } else {
+                // login or password error
+                include_once($this->viewPath . 'errors/loginError.php');
+                $this->home();
             }
         }
-        else {
-            include_once($this->viewPath."errors/loginError.php");
-            return $this->connection();
-        }
     }
-
-
 }
