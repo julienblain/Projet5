@@ -33,4 +33,3 @@
         </form>
     </div>
 </section>
-<?= phpinfo() ?>

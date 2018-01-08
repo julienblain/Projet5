@@ -37,13 +37,19 @@ final class Router {
         try {
             //TODO settings list
             if(isset($_GET['p'])) {
-                $get = $_GET['p'];
+                //netoyage de l'url
+                $get = \explode('.', $_GET['p']);
+                $get = $get[0].'.'.$get[1];
+
                 try {
                     switch ($get) {
                         case "user.control":
                             $this->_routingValid();
                             break;
                         case "user.createAccount":
+                            $this->_routingValid();
+                            break;
+                        case "user.createdAccount":
                             $this->_routingValid();
                             break;
                             default :

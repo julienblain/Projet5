@@ -38,4 +38,17 @@ class UserEntity extends Entity
             ))
         );
     }
+
+    public function alreadyExistingAccount($mail) {
+        $table = $this->_table;
+        return $this->prepare("SELECT COUNT(*) AS countMail FROM $table WHERE mailUsers =  '{$mail}'");
+    }
+
+    public function verifKey($key) {
+        $table = $this->_table;
+        $datas =  $this->prepare(
+            "SELECT idUsers, keyUsers, activeUsers FROM $table
+         WHERE users.mailUsers = '{$mail}' "
+        );
+    }
 }
