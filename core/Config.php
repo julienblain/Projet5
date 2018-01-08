@@ -7,8 +7,10 @@ class Config {
 
     public function __construct()
     {
-        //TODO verifier si c ok
-        $this->setSettings(require(ROOT . '/config/config.php'));
+        if($this->_settings === null) {
+            $this->setSettings(require(ROOT . '/config/config.php'));
+        }
+
     }
 
     /**
@@ -23,8 +25,8 @@ class Config {
     /**
      * @param array $settings
      */
-    //TODO Question void ?
-    public function setSettings(Array $settings): void
+
+    private function setSettings(Array $settings)
     {
         $this->_settings = $settings;
     }

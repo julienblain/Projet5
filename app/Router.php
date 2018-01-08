@@ -43,7 +43,10 @@ final class Router {
                         case "user.control":
                             $this->_routingValid();
                             break;
-                        default :
+                        case "user.createAccount":
+                            $this->_routingValid();
+                            break;
+                            default :
                             $this->_routingHome();
                             throw new AppException();
                     }
