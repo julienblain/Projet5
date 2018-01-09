@@ -38,7 +38,6 @@ class MysqlDatabase {
             }
 
        $this->getPdo();
-        var_dump($this->getPdo());
     }
 
     public function getPdo() {
@@ -62,7 +61,6 @@ class MysqlDatabase {
 
 
     public function prepare($statement, $one = false) {
-        echo 'MYsqqqqll';
         $req = $this->getPdo()->prepare($statement);
         $req->execute();
         $req->setFetchMode(\PDO::FETCH_OBJ); //retrun object

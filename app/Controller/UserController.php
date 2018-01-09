@@ -26,7 +26,7 @@ class UserController extends AppController {
         if(isset($_POST['mail']) && isset($_POST['password'])) {
             $mail = htmlspecialchars($_POST['mail']);
             $password = htmlspecialchars($_POST['password']);
-
+            echo $_POST['password'];
             // User is the loaded UserTable, created by loadModel in the constructor
             $user = $this->_table->login($mail, $password);
             if (($user) && ($user[0]->passwordUsers === sha1($password)) && ($user[0]->activeUsers === '1')) {
@@ -59,43 +59,17 @@ class UserController extends AppController {
                 $this->home();
             }
             else {
-                $this->_table->createAccount($mailUser, $password, $validationKey);
-
-                //configuration phpMailer
-                if($this->_settingsMailer === null) {
-                    $this->_settingsMailer = require(ROOT . '/config/phpMailer.php');
-                }
-
-                //send mail
-                $mail = new PHPMailer;
-                try{
-                    $mail->isSMTP();
-                    $mail->SMTPSecure = 'tls';
-                    $mail->SMTPAuth = true;
-                    $mail->Host = $this->_settingsMailer['Host'];
-                    $mail->Port = $this->_settingsMailer['Port'];
-                    $mail->Username = $this->_settingsMailer['Username'];
-                    $mail->Password = $this->_settingsMailer['Password'];
-                    $mail->setFrom($this->_settingsMailer['setFrom']);
-                    $mail->addAddress($mailUser);
-                    $mail->Subject = 'Validation de votre inscription au journal des reves';
-                    $mail->Body =
+                    $body =
                         'Bienvenu !
                 
                 Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
                 
                 http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
 
-                    $mail->send();
+                    $this->_phpMailer($body, $mailUser);
+                    $this->_table->createAccount($mailUser, $password, $validationKey);
                     include_once($this->viewPath. 'home/mailSent.php');
                     $this->home();
-                }
-                catch (Exception $e){
-                    //not use AppException
-                    include_once($this->viewPath. 'errors/mailNotSent.php');
-                    //echo $mail->ErrorInfo;
-                    $this->home();
-                }
             }
         }
         else {
@@ -132,6 +106,87 @@ class UserController extends AppController {
         }
         else {
             include_once($this->viewPath. 'errors/accountAlreadyActif.php');
+            $this->home();
+        }
+    }
+
+    public function forgetPass() {
+        $mailUser = htmlspecialchars($_POST['mail']);
+        $user = $this->_table->accountExist($mailUser);
+
+        //if account not found
+        if(empty($user)) {
+            include_once($this->viewPath. 'errors/accountNotFound.php');
+            $this->home();
+        }
+        else {
+
+            // if account is not active, we send a mail with the key to activate the account
+            if($user[0]->activeUsers === '0') {
+                $validationKey = $user[0]->keyUsers;
+                    $body =
+                        'Bienvenu !
+                
+                Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
+                
+                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
+                    $this->_phpMailer($body, $mailUser);
+                    include_once($this->viewPath. 'home/mailSentNotActive.php');
+                    $this->home();
+            }
+            // the account exist and it is active, we send a mail with a new key and a new password
+            else {
+                $idUser = $user[0]->idUsers;
+                $password = random_int(0,10000);
+                $passwordSha1 = sha1($password);
+
+                // we change the password of the account
+                $this->_table->updateAccount($idUser, $mailUser, $passwordSha1);
+
+                //we send a mail with a new password
+                $body = '
+                    Bonjour, 
+                    
+                    Voici le nouveau mot de passe associé à votre compte. Il est vivement conseillé de le changer dès votre prochaine connexion dans votre espace utilisateur.
+                    Nouveau mot de pass : ' .$password.
+                    '
+                    Tcho ! :)' ;
+
+                $this->_phpMailer($body, $mailUser);
+                include_once($this->viewPath. 'home/mailSentPassword.php');
+                $this->home();
+            }
+        }
+    }
+
+    private function _phpMailer($body, $mailUser) {
+        //configuration phpMailer
+        if($this->_settingsMailer === null) {
+            $this->_settingsMailer = require(ROOT . '/config/phpMailer.php');
+        }
+
+        //send mail
+        $mail = new PHPMailer;
+        try{
+            $mail->isSMTP();
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Host = $this->_settingsMailer['Host'];
+            $mail->Port = $this->_settingsMailer['Port'];
+            $mail->Username = $this->_settingsMailer['Username'];
+            $mail->Password = $this->_settingsMailer['Password'];
+            $mail->setFrom($this->_settingsMailer['setFrom']);
+
+            $mail->addAddress($mailUser);
+            $mail->Subject = 'Votre compte Journal des reves';
+
+            $mail->Body = $body;
+            $mail->send();
+        }
+        catch (Exception $e){
+            //not use AppException
+            include_once($this->viewPath. 'errors/mailNotSent.php');
+            //echo $mail->ErrorInfo;
             $this->home();
         }
     }

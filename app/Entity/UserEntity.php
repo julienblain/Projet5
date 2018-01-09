@@ -54,8 +54,31 @@ class UserEntity extends Entity
     }
 
     public function accountActif($idUser) {
+        $table = $this->_table;
         return $this->updateOne(
-            "UPDATE users SET activeUsers = 1 WHERE idUsers = '{$idUser}'"
+            "UPDATE $table SET activeUsers = 1 WHERE idUsers = '{$idUser}'"
+        );
+    }
+
+    public function accountExist($mailUser) {
+        $table = $this->_table;
+        return $this->prepare(
+            "SELECT idUsers, keyUsers, activeUsers FROM $table 
+                        WHERE users.mailUsers = '{$mailUser}'"
+        );
+    }
+
+    public function updateAccount($idUser, $mailUser, $password) {
+        $table = $this->_table;
+        return $this->update(
+            ("UPDATE $table
+            SET mailUsers = :mailUser, passwordUsers = :password
+            WHERE idUsers = '{$idUser}'"),
+
+            (array(
+                'mailUser' => $mailUser,
+                'password' => $password
+            ))
         );
     }
 }

@@ -52,8 +52,15 @@ final class Router {
                         case "user.createdAccount":
                             $this->_routingValid();
                             break;
-                            default :
+                        case "app.logout":
+                            session_destroy();
                             $this->_routingHome();
+                            break;
+                        case "user.forgetPass":
+                            $this->_routingValid();
+                            break;
+                        default :
+                            $this->_routingValid();
                             throw new AppException();
                     }
                 }

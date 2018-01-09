@@ -14,6 +14,16 @@
 
             <button id="home-login-form-btn" type="submit" name="home-login-form-btn">Valider</button>
         </form>
+        <div>
+            <button id="home-login-forgetPass-h3">Mot de passe oublié ?</button>
+            <form action="?p=user.forgetPass" id="home-login-forgetPass-form" method="post">
+                <label for="home-login-forgetPass-mail">
+                    Mail :
+                    <input id="home-login-forgetPass-mail" type="email" name="mail" required>
+                    <button id="home-login-forgetPass-btn" type="submit" name="home-login-forgetPass-btn">Valider</button>
+                </label>
+            </form>
+        </div>
     </div>
     <div id="home-createAccount">
         <h2>S'inscrire :</h2>

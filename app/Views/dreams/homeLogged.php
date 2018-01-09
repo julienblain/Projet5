@@ -1,6 +1,6 @@
 <section id="homeLogged">
     <p>UTILISATEUR CONNECTÉ</p>
-
+    <button><a href="http://localhost/Projet5/public/index.php?p=app.logout">Déconnexion</a></button>
     <nav id="previousDreams">
         <ul>
             <li><a href="">Reve 1</a></li>
