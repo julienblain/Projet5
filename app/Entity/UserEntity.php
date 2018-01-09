@@ -44,11 +44,18 @@ class UserEntity extends Entity
         return $this->prepare("SELECT COUNT(*) AS countMail FROM $table WHERE mailUsers =  '{$mail}'");
     }
 
-    public function verifKey($key) {
+    public function verifCreatingAccount($mail) {
         $table = $this->_table;
         $datas =  $this->prepare(
             "SELECT idUsers, keyUsers, activeUsers FROM $table
          WHERE users.mailUsers = '{$mail}' "
+        );
+        return $datas;
+    }
+
+    public function accountActif($idUser) {
+        return $this->updateOne(
+            "UPDATE users SET activeUsers = 1 WHERE idUsers = '{$idUser}'"
         );
     }
 }

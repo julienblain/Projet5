@@ -84,10 +84,9 @@ class UserController extends AppController {
                 
                 Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
                 
-                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.';
+                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
 
                     $mail->send();
-
                     include_once($this->viewPath. 'home/mailSent.php');
                     $this->home();
                 }
@@ -109,6 +108,31 @@ class UserController extends AppController {
     public function createdAccount() {
         $get = \explode('.', $_GET['p']);
         $key = $get[2];
-        echo $key;
+
+        //cleaning $_Get
+        $mail = strpbrk($_GET['p'], '(');
+        $mail = str_replace('(', '', $mail);
+        $mail = str_replace(')', '', $mail);
+
+        $datasUser = $this->_table->verifCreatingAccount($mail);
+
+        if(($datasUser[0]->keyUsers === $key) && ($datasUser[0]->activeUsers === '0')) {
+            $idUser = $datasUser[0]->idUsers;
+
+            $_SESSION['idUser'] = $idUser;
+
+            $this->_table->accountActif($idUser);
+
+            include_once($this->viewPath . 'notification/createdAccount.php');
+            $this->render('dreams.homeLogged');
+        }
+        elseif ($datasUser[0]->keyUsers != $key) {
+            include_once($this->viewPath. 'errors/errorKey.php');
+            $this->home();
+        }
+        else {
+            include_once($this->viewPath. 'errors/accountAlreadyActif.php');
+            $this->home();
+        }
     }
 }

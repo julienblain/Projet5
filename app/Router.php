@@ -37,7 +37,7 @@ final class Router {
         try {
             //TODO settings list
             if(isset($_GET['p'])) {
-                //netoyage de l'url
+                //cleaning $_GET
                 $get = \explode('.', $_GET['p']);
                 $get = $get[0].'.'.$get[1];
 
