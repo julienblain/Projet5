@@ -1,13 +1,5 @@
+<?php include_once ($this->viewPath. 'dreams/nav.php');?>
 <section id="homeLogged">
-    <p>UTILISATEUR CONNECTÉ</p>
-    <button><a href="http://localhost/Projet5/public/index.php?p=app.logout">Déconnexion</a></button>
-    <nav id="previousDreams">
-        <ul>
-            <li><a href="">Reve 1</a></li>
-            <li><a href="">Reve 2</a></li>
-            <li><a href="">Reve 3</a></li>
-        </ul>
-    </nav>
     <form action="?p=dreams.submit" id="dreamForm" method="post">
         <article id="dream">
             <label for="dreamWrite"> Rêve :</label>

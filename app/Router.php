@@ -59,7 +59,20 @@ final class Router {
                         case "user.forgetPass":
                             $this->_routingValid();
                             break;
-                        default :
+                        case "user.updateAccount":
+                            $this->_routingValidLogged();
+                            break;
+                        case "user.updatedAccountMail":
+                            $this->_routingValidLogged();
+                            break;
+                        case "user.updatedAccountPassword":
+                            $this->_routingValidLogged();
+                            break;
+                        case "user.homeLogged":
+                            $this->_routingValidLogged();
+                            break;
+
+                            default :
                             $this->_routingValid();
                             throw new AppException();
                     }
@@ -89,6 +102,12 @@ final class Router {
         $page = \explode('.', $page);
         $this->_page = $page;
     }
+
+    private function _routingValidLogged() {
+        isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
+    }
+
+
 
     private function _routingHome() {
         $page = "app.home";

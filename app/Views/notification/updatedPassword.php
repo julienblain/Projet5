@@ -1,0 +1,1 @@
+<p class='notification'>Votre mot de passe a bien été changé. </p>
