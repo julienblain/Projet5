@@ -21,9 +21,7 @@ class UserController extends AppController {
         $this->_table = $this->loadModel('User');
     }
 
-    public function homeLogged() {
-        $this->render('dreams.homeLogged');
-    }
+
     public function control() {
 
         if(isset($_POST['mail']) && isset($_POST['password'])) {
@@ -104,7 +102,7 @@ class UserController extends AppController {
             $this->_table->accountActif($idUser);
 
             include_once($this->viewPath . 'notification/createdAccount.php');
-            $this->render('dreams.homeLogged');
+            $this->homeLogged();
         }
         elseif ($datasUser[0]->keyUsers != sha1($key)) {
             include_once($this->viewPath. 'errors/errorKey.php');
@@ -180,13 +178,13 @@ class UserController extends AppController {
         var_dump($_POST);
         var_dump($_SESSION);
         if($_SESSION['mailUser'] === htmlspecialchars($_POST['mail'])) {
-            $this->render('dreams.homeLogged');
+            $this->homeLogged();
         }
         else {
             // verification if a account with its mail already existing by a count req
             $alreadyExisting = $this->_table->alreadyExistingAccount(htmlspecialchars($_POST['mail']));
             if(($alreadyExisting[0]->countMail) != '0') {
-                $this->render('dreams.homeLogged');
+                $this->homeLogged();
             }
             else {
                 $idUser = $_SESSION['idUser'];
@@ -198,7 +196,7 @@ class UserController extends AppController {
                     $_SESSION['mailUser'] = htmlspecialchars($_POST['mail']);
                     $this->_table->updatedMail($idUser, htmlspecialchars($_POST['mail']));
                     include_once($this->viewPath. 'notification/updatedMail.php');
-                    $this->render('dreams.homeLogged');
+                    $this->homeLogged();
                 }
                 else {
                     include_once($this->viewPath. 'errors/badPassword.php');
@@ -220,7 +218,7 @@ class UserController extends AppController {
             $password = sha1(htmlspecialchars($_POST['newPassword']));
             $this->_table->updatePassword($idUser, $password);
             include_once($this->viewPath. 'notification/updatedPassword.php');
-            $this->render('dreams.homeLogged');
+            $this->homeLogged();
         }
         else {
             include_once($this->viewPath. 'errors/badPassword.php');

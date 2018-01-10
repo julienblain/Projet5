@@ -29,4 +29,8 @@ class AppController extends Controller
 
         $this->render('home.home');
     }
+
+    public function homeLogged() {
+        $this->render('dreams.homeLogged');
+    }
 }

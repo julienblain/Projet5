@@ -43,6 +43,11 @@ final class Router {
 
                 try {
                     switch ($get) {
+                        case "app.logout":
+                            session_destroy();
+                            $this->_routingHome();
+                            break;
+
                         case "user.control":
                             $this->_routingValid();
                             break;
@@ -51,10 +56,6 @@ final class Router {
                             break;
                         case "user.createdAccount":
                             $this->_routingValid();
-                            break;
-                        case "app.logout":
-                            session_destroy();
-                            $this->_routingHome();
                             break;
                         case "user.forgetPass":
                             $this->_routingValid();
@@ -69,6 +70,10 @@ final class Router {
                             $this->_routingValidLogged();
                             break;
                         case "user.homeLogged":
+                            $this->_routingValidLogged();
+                            break;
+
+                        case "dreams.created":
                             $this->_routingValidLogged();
                             break;
 

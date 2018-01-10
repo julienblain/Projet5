@@ -1,0 +1,1 @@
+<p class='notification'> Votre rêve a bien été enregistré.</p>
