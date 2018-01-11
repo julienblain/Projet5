@@ -17,7 +17,7 @@ final class Router {
         var_dump($this->_page) ;
         echo $this->_action . ' action<br>';
         echo $this->_controller . ' controller<br>';
-
+        var_dump($_SESSION);
        $controller = $this->getController();
        $controller = new $controller;
        $action = $this->getAction();
@@ -76,6 +76,12 @@ final class Router {
                         case "dreams.created":
                             $this->_routingValidLogged();
                             break;
+                        case "dreams.indexDreams":
+                            $this->_routingValidLogged();
+                            break;
+                        case "dreams.read":
+                            $this->_routingValidLogged();
+                            break;
 
                             default :
                             $this->_routingValid();
@@ -110,6 +116,7 @@ final class Router {
 
     private function _routingValidLogged() {
         isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
+
     }
 
 

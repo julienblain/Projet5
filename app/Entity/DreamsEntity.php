@@ -27,5 +27,23 @@ class DreamsEntity extends Entity
         );
     }
 
+    public function dreamsByIdUser($idUser) {
+        $table = $this->_table;
+
+        return $this->prepare(
+            "SELECT idDreams, dateDreams, hourDreams FROM $table
+            WHERE idUserDreams = '{$idUser}'
+            ORDER BY dreams.dateDreams DESC"
+        );
+    }
+
+    public function readDream($idDream) {
+        $idUser = $_SESSION['idUser'];
+        $table = $this->_table;
+        return $this->prepare(
+            "SELECT dateDreams, hourDreams, dreamDreams, previousEventsDreams, elaborationDreams FROM $table
+            WHERE idDreams = '{$idDream}'"
+        );
+    }
 
 }

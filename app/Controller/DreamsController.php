@@ -7,7 +7,7 @@ use Core\Controller\Controller;
 class DreamsController extends AppController
 {
     private $_table;
-    private $_idUser;
+
     private $_dream;
     private $_date;
     private $_hour;
@@ -17,7 +17,6 @@ class DreamsController extends AppController
     public function __construct() {
         //parent gives viewPath and loadModel
         $this->_table = $this->loadModel('Dreams');
-        $this->_idUser = $_SESSION['idUser'];
     }
 
     private function _getDream()
@@ -91,4 +90,84 @@ class DreamsController extends AppController
 
     }
 
+    public function indexDreams()
+    {
+
+        $dreams = $this->_table->dreamsByIdUser($_SESSION['idUser']);
+
+        // dreams datas treatment
+        $dreamsYears = [];
+        foreach ($dreams as $dream)
+        {
+            $dateTime = \DateTime::createFromFormat('Y-m-d', $dream->dateDreams);
+            $year = $dateTime->format('Y');
+            $month = $dateTime->format('m');
+
+            // we push the key year[] in the dreamsYears[], and after we push the key month[] in year[]
+            if (!array_key_exists($year, $dreamsYears))
+            {
+                $dreamsYears[$year] = [];
+                if (!array_key_exists($month, $dreamsYears[$year]))
+                {
+                    $dreamsYears[$year][$month] = [];
+                    $dreamsYears[$year][$month][] = $dream;
+                }
+                else {
+                    $dreamsYears[$year][$month][] = $dream;
+                }
+            }
+            else {
+                if (!array_key_exists($month, $dreamsYears[$year]))
+                {
+                    $dreamsYears[$year][$month] = [];
+                    $dreamsYears[$year][$month][] = $dream;
+                }
+                else {
+                    $dreamsYears[$year][$month][] = $dream;
+                }
+            }
+        }
+
+        $this->render('dreams.indexDreams', compact('dreamsYears'));
+    }
+
+    public function read() {
+        $idDream = explode('.', $_GET['p']);
+        $dream = $this->_table->readDream($idDream[2]);
+var_dump($dream);
+
+
+        $dateTime = $this->_dateTimeFr($dream);
+
+
+       $this->render('dreams.readDream', compact('dream', 'dateTime'));
+
+    }
+
+    private function _dateTimeFr($datas) {
+
+        $date = new \DateTime($datas[0]->dateDreams);
+        $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
+        $dateTime[] = $dateFr->format($date);
+
+        $time = $datas[0]->hourDreams;
+        $hour = $time[0] . $time[1];
+        $min = $time[3] . $time[4];
+
+        if(($hour === "00") || ($hour === '01')) {
+            $time = $time[0] . $time[1] . ' heure ' . $time[3] . $time[4] . ' minutes ';
+        }
+        else {
+            $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4]. ' minutes ';
+        }
+
+        if(($min === '00') || ($min === '01')) {
+            $time = str_replace('minutes', 'minute', $time);
+        }
+
+        $dateTime[] = $time;
+
+       return $dateTime;
+
+    }
 }

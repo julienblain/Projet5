@@ -31,6 +31,12 @@ class AppController extends Controller
     }
 
     public function homeLogged() {
-        $this->render('dreams.homeLogged');
+        //$navLogged = $this->navLogged();
+        $this->render('dreams.homeLogged'); //, compact('navLogged')
     }
+
+    /*protected function navLogged() {
+        return $this->loadModel('Dreams')->dreamsByIdUser($_SESSION['idUser']);
+
+    }*/
 }
