@@ -134,14 +134,16 @@ class DreamsController extends AppController
     public function read() {
         $idDream = explode('.', $_GET['p']);
         $dream = $this->_table->readDream($idDream[2]);
-var_dump($dream);
-
-
         $dateTime = $this->_dateTimeFr($dream);
-
-
        $this->render('dreams.readDream', compact('dream', 'dateTime'));
 
+    }
+
+    public function update() {
+        $idDream = explode('.', $_GET['p']);
+        $dream = $this->_table->readDream($idDream[2]);
+        $dateTime = $this->_dateTimeFr($dream);
+        $this->render('dreams.updateDream', compact('dream', 'dateTime'));
     }
 
     private function _dateTimeFr($datas) {
