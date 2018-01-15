@@ -41,7 +41,8 @@
     </form>
 
 
-
+    <button id="updateDream-update"><a href="?p=dreams.read.<?= $_GET['p'][-1] ?>">Lire</a></button>
+    <button id="updateDream-delete"><a href="?p=dreams.delete.<?= $_GET['p'][-1] ?>">Supprimer</a></button>
 
 
 </section>

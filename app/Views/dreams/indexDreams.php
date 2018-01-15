@@ -1,67 +1,99 @@
-<?php include_once ($this->viewPath. 'dreams/nav.php');?>
+<?php include_once($this->viewPath . 'dreams/nav.php'); ?>
 <section id="indexDreams">
-    <h2>Rêves précendents</h2>
 
-    <ol id="indexDreams-listYears">
     <?php
-        $yearArray = array_keys($dreamsYears);
-        $yearMax = $yearArray[0];
-        $yearOld = count($yearArray);
+    $listMonth = array(
+            '01' => 'Janvier',
+            '02' => 'Février',
+            '03' => 'Mars',
+            '04' => 'Avril',
+            '05' => 'Mai',
+            '06' => 'Juin',
+            '07' => 'Juillet',
+            '08' => 'Août',
+            '09' => 'Septembre',
+            '10' => 'Octobre',
+            '11' => 'Novembre',
+            '12' => 'Décembre'
+    );
 
-        for($i=0; $i < $yearOld; $i++) {
-            $year = $yearArray[$i];
-    ?>
-            <li class="indexDreams-year"><?= $year ?>
-                <ol class="indexDreams-listMonths">
-                    <?php
-                        $monthArray = array_keys($dreamsYears[$year]);
-                        $monthOld = count($monthArray);
-                        for($j=0; $j< $monthOld; $j++) {
-                            $month = $monthArray[$j];
-                    ?>
-                        <li class="indexDreams-mont"><?= $month ?>
-                            <ol class="indrexDreams-listDreams">
-                                <?php
-                                    $dreamArray = array_keys($dreamsYears[$year][$month]);
-                                    $dreamOld = count($dreamArray);
-                                    for($k=0; $k<$dreamOld; $k++) {
-                                    $dream = $dreamsYears[$year][$month][$k];
+    if (isset($dreams)) { ?>
+    <h2>Rêves précendents</h2>
+    <ol id="indexDreams-listYears">
 
-                                ?>
-                                    <li class="indexDreams-dream">
-                                        <a href="">
-                                            Le <?= $dream->dateDreams ?> à <?= $dream->hourDreams ?>
-                                        </a>
-                                        <ul class="indexDreams-rud">
-                                            <button class="indexDreams-read">
-                                                <a href="http://localhost/Projet5/public/index.php?p=dreams.read.<?= $dream->idDreams?>">Lire</a>
-                                            </button>
-                                            <button class="indexDreams-update">
-                                                <a href="http://localhost/Projet5/public/index.php?p=dreams.update.<?= $dream->idDreams?>">Modifier</a>
-                                            </button>
-                                            <button class="indexDreams-delete">
-                                                <a href="http://localhost/Projet5/public/index.php?p=dreams.delete.<?= $dream->idDreams?>">Supprimer</a>
-                                            </button>
-                                        </ul>
-                                    </li>
+        <?php $dateTime = new DateTime($dreams[0]->dateDreams);
+        $yearLastIteration = $dateTime->format('Y');
+        $monthLastIteration = $dateTime->format('m');
+        ?>
+        <li class="indexDreams-year">
+            <h3>Année <?= $yearLastIteration ?> </h3>
+            <ol>
+                <li class="indexDreams-month">
+                    <h4><?= $listMonth[$monthLastIteration] ?></h4>
+                    <ol>
+                        <?php
+                        foreach ($dreams as $dream) {
+                            $dateTime = new DateTime($dream->dateDreams);
+                            $yearFormat = $dateTime->format('Y');
 
-                                <?php } ?>
+                            if ($yearFormat != $yearLastIteration) {
+
+                                $yearLastIteration = $yearFormat;
+                                $monthFormat = $dateTime->format('m');
+
+                                $monthLastIteration = $monthFormat;
+                            ?>
+
+                    </ol>
+                </li>
+           </ol>
+        </li>
+
+        <li class="indexDreams-year">
+            <h3>Année <?= $yearLastIteration ?></h3>
+            <ol>
+                <li class="indexDreams-month">
+                    <h4><?=  $listMonth[$monthLastIteration]?></h4>
+                    <ol>
+                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr ?></a></li>
+
+                            <?php
+                            } else {
+                                $monthFormat = $dateTime->format('m');
+
+                                if ($monthFormat != $monthLastIteration) {
+
+                                    $monthLastIteration = $monthFormat;
+                            ?>
+                    </ol>
+                </li>
+
+                <li class="indexDreams-month">
+                    <h4><?=  $listMonth[$monthLastIteration] ?></h4>
+                    <ol>
+                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr?> </a></li>
+                            <?php
+                                } else {
+
+                                    echo "<li><a href='?p=dreams.read.$dream->idDreams'>$dream->dateDreamsFr </a></li>";
+                                }
 
 
-                            </ol>
+                        }
+        }?>
 
-                        </li>
-                    <?php } ?>
-                </ol>
-            </li>
-
-        <?php } ?>
-
-
-
-
-
-
-
+                    </ol>
+                </li>
+            </ol>
+        </li>
     </ol>
+
+    <?php
+    } else {
+        echo '<p>Vous n\'avez encore enregistré aucun rêve. </p>';
+    }
+
+    ?>
+
+
 </section>

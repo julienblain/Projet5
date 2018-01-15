@@ -94,47 +94,14 @@ class DreamsController extends AppController
     {
 
         $dreams = $this->_table->dreamsByIdUser($_SESSION['idUser']);
+        $this->_listDreams($dreams);
 
-        // dreams datas treatment
-        $dreamsYears = [];
-        foreach ($dreams as $dream)
-        {
-            $dateTime = \DateTime::createFromFormat('Y-m-d', $dream->dateDreams);
-            $year = $dateTime->format('Y');
-            $month = $dateTime->format('m');
-
-            // we push the key year[] in the dreamsYears[], and after we push the key month[] in year[]
-            if (!array_key_exists($year, $dreamsYears))
-            {
-                $dreamsYears[$year] = [];
-                if (!array_key_exists($month, $dreamsYears[$year]))
-                {
-                    $dreamsYears[$year][$month] = [];
-                    $dreamsYears[$year][$month][] = $dream;
-                }
-                else {
-                    $dreamsYears[$year][$month][] = $dream;
-                }
-            }
-            else {
-                if (!array_key_exists($month, $dreamsYears[$year]))
-                {
-                    $dreamsYears[$year][$month] = [];
-                    $dreamsYears[$year][$month][] = $dream;
-                }
-                else {
-                    $dreamsYears[$year][$month][] = $dream;
-                }
-            }
-        }
-
-        $this->render('dreams.indexDreams', compact('dreamsYears'));
+        $this->render('dreams.indexDreams', compact('dreams'));
     }
 
     public function read() {
         $idDream = explode('.', $_GET['p']);
         $dream = $this->_table->readDream($idDream[2]);
-        $dateTime = $this->_dateTimeFr($dream);
        $this->render('dreams.readDream', compact('dream', 'dateTime'));
 
     }
@@ -146,30 +113,36 @@ class DreamsController extends AppController
         $this->render('dreams.updateDream', compact('dream', 'dateTime'));
     }
 
-    private function _dateTimeFr($datas) {
+    public function updatedDream() {
 
-        $date = new \DateTime($datas[0]->dateDreams);
-        $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
-        $dateTime[] = $dateFr->format($date);
 
-        $time = $datas[0]->hourDreams;
-        $hour = $time[0] . $time[1];
-        $min = $time[3] . $time[4];
 
-        if(($hour === "00") || ($hour === '01')) {
-            $time = $time[0] . $time[1] . ' heure ' . $time[3] . $time[4] . ' minutes ';
-        }
-        else {
-            $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4]. ' minutes ';
-        }
 
-        if(($min === '00') || ($min === '01')) {
-            $time = str_replace('minutes', 'minute', $time);
-        }
 
-        $dateTime[] = $time;
-
-       return $dateTime;
 
     }
+
+    // check if the dream belongs to the user
+    private function _checkUser() {
+
+    }
+
+
+    private function _listDreams($datas) :void {
+
+        if(isset($_SESSION['listDreams'])) {
+            unset($_SESSION['listDreams']);
+        }
+
+        $_SESSION['listDreams'] = [];
+        //listIdDreams = []
+        for($i = 0 ; $i < count($datas); $i++) {
+            $_SESSION['listDreams'][$i] = $datas[$i]->idDreams;
+        }
+    }
+
+
+
+
+
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 use Core\Entity\Entity;
 
@@ -30,20 +29,64 @@ class DreamsEntity extends Entity
     public function dreamsByIdUser($idUser) {
         $table = $this->_table;
 
-        return $this->prepare(
+        $datas = $this->prepare(
             "SELECT idDreams, dateDreams, hourDreams FROM $table
             WHERE idUserDreams = '{$idUser}'
             ORDER BY dreams.dateDreams DESC"
         );
+
+        $datas = $this->_dateTimeFr($datas);
+        return $datas;
     }
 
     public function readDream($idDream) {
         $idUser = $_SESSION['idUser'];
         $table = $this->_table;
-        return $this->prepare(
-            "SELECT dateDreams, hourDreams, dreamDreams, previousEventsDreams, elaborationDreams FROM $table
+        $datas = $this->prepare(
+            "SELECT idUserDreams, dateDreams, hourDreams, dreamDreams, previousEventsDreams, elaborationDreams FROM $table
             WHERE idDreams = '{$idDream}'"
         );
+        $dreamFr = $this->_dateTimeFr($datas);
+        return $dreamFr;
     }
+
+    public function listDreams($idUser) {
+        $table = $this->_table;
+        return $this->prepare(
+            "SELECT idDreams FROM $table 
+              WHERE idUserDreams = '{$idUser}'"
+        );
+    }
+
+    private function _dateTimeFr($datas) {
+
+        for($i = 0 ; $i < count($datas); $i++) {
+
+            $date = new \DateTime($datas[$i]->dateDreams);
+            $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
+            $datas[$i]->dateDreamsFr = $dateFr->format($date);
+
+            $time = $datas[$i]->hourDreams;
+            $hour = $time[0] . $time[1];
+            $min = $time[3] . $time[4];
+
+            if(($hour === "00") || ($hour === '01')) {
+                $time = $time[0] . $time[1] . ' heure ' . $time[3] . $time[4] . ' minutes ';
+            }
+            else {
+                $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4]. ' minutes ';
+            }
+
+            if(($min === '00') || ($min === '01')) {
+                $time = str_replace('minutes', 'minute', $time);
+            }
+
+            $datas[$i]->hourDreams = $time;
+        }
+
+
+        return $datas;
+    }
+
 
 }
