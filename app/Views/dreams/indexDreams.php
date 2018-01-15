@@ -1,4 +1,4 @@
-<?php include_once($this->viewPath . 'dreams/nav.php'); ?>
+<?php include_once($this->viewPath . 'dreams/nav.php'); var_dump($dreams);?>
 <section id="indexDreams">
 
     <?php
@@ -55,7 +55,7 @@
                 <li class="indexDreams-month">
                     <h4><?=  $listMonth[$monthLastIteration]?></h4>
                     <ol>
-                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr ?></a></li>
+                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
 
                             <?php
                             } else {
@@ -71,12 +71,12 @@
                 <li class="indexDreams-month">
                     <h4><?=  $listMonth[$monthLastIteration] ?></h4>
                     <ol>
-                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr?> </a></li>
+                        <li><a href='?p=dreams.read.<?= $dream->idDreams ?>'> <?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?> </a></li>
                             <?php
-                                } else {
+                                } else { ?>
 
-                                    echo "<li><a href='?p=dreams.read.$dream->idDreams'>$dream->dateDreamsFr </a></li>";
-                                }
+                        <li><a href='?p=dreams.read.<?= $dream->idDreams ?>'><?= $dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
+                               <?php }
 
 
                         }

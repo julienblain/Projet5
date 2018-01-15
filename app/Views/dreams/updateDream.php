@@ -1,9 +1,9 @@
-<?php include_once ($this->viewPath. 'dreams/nav.php');?>
+<?php include_once ($this->viewPath. 'dreams/nav.php');var_dump($dream);?>
 <section id="updateDream">
 
-    <h2 id="readDream-title">Rêve du <?= $dateTime[0] . ' à ' . $dateTime[1]?></h2>
+    <h2 id="readDream-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h2>
     <h3>Modifier</h3>
-    <form action="?p=dreams.updated.<?= $_GET['p'][-1] ?>" id="updated">
+    <form action="?p=dreams.updated.<?= $_GET['p'][-1] ?>" id="updated" method="post">
         <fieldset id="updateDream-dream">
             <legend>Rêve</legend>
             <label for="dreamUpdated">
@@ -32,8 +32,8 @@
 
         <fieldset id="updateDream-previousEvents">
             <legend>Évènements précédents</legend>
-            <label for="updatedDream-previousEvents">
-                <textarea name="updatedDream-previousEvents" id="updatedDream-previousEvents"><?= $dream[0]->previousEventsDreams?></textarea>
+            <label for="previousEventsUpdated">
+                <textarea name="previousEventsUpdated" id="previousEventsUpdated"><?= $dream[0]->previousEventsDreams?></textarea>
             </label>
         </fieldset>
 
@@ -41,8 +41,9 @@
     </form>
 
 
-    <button id="updateDream-update"><a href="?p=dreams.read.<?= $_GET['p'][-1] ?>">Lire</a></button>
+    <button id="updateDream-read"><a href="?p=dreams.read.<?= $_GET['p'][-1] ?>">Lire</a></button>
     <button id="updateDream-delete"><a href="?p=dreams.delete.<?= $_GET['p'][-1] ?>">Supprimer</a></button>
 
+    <?php include_once ($this->viewPath. 'dreams/btnPreviousAndNextDream.php'); ?>
 
 </section>

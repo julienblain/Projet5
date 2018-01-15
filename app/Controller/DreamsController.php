@@ -13,10 +13,12 @@ class DreamsController extends AppController
     private $_hour;
     private $_elaboration;
     private $_eventsPrevious;
+    private $_idDream;
 
     public function __construct() {
         //parent gives viewPath and loadModel
         $this->_table = $this->loadModel('Dreams');
+        $this->_idDream = $_GET['p'][-1];
     }
 
     private function _getDream()
@@ -100,31 +102,72 @@ class DreamsController extends AppController
     }
 
     public function read() {
-        $idDream = explode('.', $_GET['p']);
-        $dream = $this->_table->readDream($idDream[2]);
-       $this->render('dreams.readDream', compact('dream', 'dateTime'));
+        $idDream = $_GET['p'][-1];
+        $dream = $this->_table->readDream($idDream);
+        $dream = $this->_previousAndNextDream($dream);
+       $this->render('dreams.readDream', compact('dream'));
 
+    }
+
+    private function _previousAndNextDream($dream) {
+        // we recover the previous dream id and the next dream id for the buttons in view
+        $idDream = $_GET['p'][-1];
+        $listDreams = $_SESSION['listDreams'];
+        $countListDreams = count($listDreams) -1;
+
+        if($idDream !== $listDreams[0]) {
+            $key = array_keys($listDreams, $idDream);
+            $keyPrevious = $key[0] -1;
+            $dream['previousDream'] = $listDreams[$keyPrevious];
+        }
+        else {
+            $dream['previousDream'] = 'notExist';
+        }
+
+        if($idDream != $listDreams[$countListDreams]) {
+            $key = array_keys($listDreams, $idDream);
+            $keyNext = $key[0] + 1;
+            var_dump($key);
+            $dream['nextDream'] = $listDreams[$keyNext];
+        }
+        else {
+            $dream['nextDream'] = 'notExist';
+        }
+
+        return $dream;
     }
 
     public function update() {
         $idDream = explode('.', $_GET['p']);
         $dream = $this->_table->readDream($idDream[2]);
-        $dateTime = $this->_dateTimeFr($dream);
-        $this->render('dreams.updateDream', compact('dream', 'dateTime'));
+        $dream = $this->_previousAndNextDream($dream);
+        $this->render('dreams.updateDream', compact('dream'));
     }
 
-    public function updatedDream() {
-
-
-
-
-
-
+    public function updated() {
+        $this->_checkUser();
+        $this->_table->updatedDream($this->_idDream);
+        include_once ($this->viewPath . 'notification/updatedDream.php');
+        $this->indexDreams();
     }
 
-    // check if the dream belongs to the user
+    // check if the dream is at it
     private function _checkUser() {
+        if(in_array($this->_idDream, $_SESSION['listDreams'], true)) {
+           return true;
+        } else {
+            include_once ($this->viewPath . 'errors/forbiddenPage.php');
+            $this->indexDreams();
+            die();
+        }
 
+    }
+
+    public function delete() {
+        $this->_checkUser();
+        $this->_table->deleteDream($this->_idDream);
+        include_once ($this->viewPath . 'notification/deletedDream.php');
+        $this->indexDreams();
     }
 
 

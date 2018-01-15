@@ -81,12 +81,42 @@ class DreamsEntity extends Entity
                 $time = str_replace('minutes', 'minute', $time);
             }
 
-            $datas[$i]->hourDreams = $time;
+            $datas[$i]->hourDreamsFr = $time;
         }
 
 
         return $datas;
     }
 
+    public function updatedDream($idDream) {
+        $dream = htmlspecialchars($_POST['dreamUpdated']);
+        $date = htmlspecialchars($_POST['dateUpdated']);
+        $hour = htmlspecialchars($_POST['hourUpdated']);
+        $elaboration = htmlspecialchars($_POST['elaborationUpdated']);
+        $previousEvents = htmlspecialchars($_POST['previousEventsUpdated']);
+        $idUser = $_SESSION['idUser'];
+
+
+        $table = $this->_table;
+        return $this->update(
+            ("UPDATE $table 
+            SET dreamDreams = :dream, dateDreams = :dateUpdated, hourDreams = :hourUpdated, elaborationDreams =:elaboration, previousEventsDreams = :previousEvents
+            WHERE idDreams = '{$idDream}' AND  idUserDreams = '{$idUser}'
+            "),
+            (array(
+                'dream' => $dream,
+                'dateUpdated' => $date,
+                'hourUpdated' => $hour,
+                'elaboration' => $elaboration,
+                'previousEvents' => $previousEvents
+            ))
+        );
+    }
+
+    public function deleteDream($idDream) {
+        $table = $this->_table;
+        $idUser = $_SESSION['idUser'];
+        return $this->delete("DELETE FROM $table WHERE idDreams = '{$idDream}' AND idUserDreams = '{$idUser}'");
+    }
 
 }
