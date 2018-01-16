@@ -14,11 +14,13 @@ require(ROOT. '/lib/PHPMailer/src/SMTP.php');
 
 class UserController extends AppController {
     private $_table;
+    private $_tableTmp;
     private $_settingsMailer;
 
     public function __construct() {
         //parent gives viewPath and loadModel
         $this->_table = $this->loadModel('User');
+        $this->_tableTmp =$this->loadModel('Tmp');
     }
 
 
@@ -26,11 +28,12 @@ class UserController extends AppController {
 
         if(isset($_POST['mail']) && isset($_POST['password'])) {
             $mail = htmlspecialchars($_POST['mail']);
+            $mailSha1 = sha1($mail);
             $password = htmlspecialchars($_POST['password']);
 
             // User is the loaded UserTable, created by loadModel in the constructor
-            $user = $this->_table->login($mail);
-            if (($user) && ($user[0]->passwordUsers === sha1($password)) && ($user[0]->activeUsers === '1')) {
+            $user = $this->_table->login($mailSha1);
+            if ((!empty($user)) && ($user[0]->passwordUsers === sha1($password)) ) {
                 $_SESSION['idUser'] = $user[0]->idUsers;
                 $_SESSION['mailUser'] = $mail;
                 $this->homeLogged();
@@ -52,27 +55,53 @@ class UserController extends AppController {
             $mailUser = htmlspecialchars($_POST['mail']);
             $password = htmlspecialchars($_POST['password']);
             $passwordSha1 = sha1($password);
+            $mailSha1 = sha1($mailUser);
             $validationKey = random_int(0, 10000);
-            $validationKeySha1 = sha1($validationKey);
+
 
             // verification if a account with its mail already existing by a count req
-            $alreadyExisting = $this->_table->alreadyExistingAccount($mailUser);
+            $alreadyExisting = $this->_table->alreadyExistingAccount($mailSha1);
+            $alreadyExistingTmp = $this->_tableTmp->alreadyExistingAccount($mailSha1);
+            var_dump($alreadyExistingTmp);
+
+            // this mail is already a actif account
             if(($alreadyExisting[0]->countMail) != '0') {
                 include_once($this->viewPath. 'errors/accountExistingAlready.php');
                 $this->home();
             }
+            //this mail already exist but it is not actif
+            elseif ((!empty($alreadyExistingTmp)) && ((intVal($alreadyExistingTmp[0]->tryValidationTmp)) <= 3)) {
+                $body =
+                    'Bienvenu !
+                
+                Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
+                L\'ancien mail de validation ne fonctionnera plus.
+                
+                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
+
+                $this->_phpMailer($body, $mailUser);
+                $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
+                include_once($this->viewPath. 'errors/accountExistingAlreadyTmp.php');
+                $this->home();
+            }
+            //this mail already exist and there was too much attempt
+            elseif ((!empty($alreadyExistingTmp)) && ((intVal($alreadyExistingTmp[0]->tryValidationTmp)) > 3)) {
+                include_once($this->viewPath. 'notification/error/createTooMuch.php');
+                $this->home();
+            }
+
             else {
-                    $body =
+                $body =
                         'Bienvenu !
                 
                 Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
                 
                 http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
 
-                    $this->_phpMailer($body, $mailUser);
-                    $this->_table->createAccount($mailUser, $passwordSha1, $validationKeySha1);
-                    include_once($this->viewPath. 'home/mailSent.php');
-                    $this->home();
+                $this->_phpMailer($body, $mailUser);
+                $this->_tableTmp->createAccount($mailSha1, $passwordSha1, $validationKey);
+                include_once($this->viewPath. 'home/mailSent.php');
+                $this->home();
             }
         }
         else {
@@ -91,82 +120,65 @@ class UserController extends AppController {
         $mail = str_replace('(', '', $mail);
         $mail = str_replace(')', '', $mail);
 
-        $datasUser = $this->_table->verifCreatingAccount($mail);
+        $datasTmp = $this->_tableTmp->verifCreatingAccount(sha1($mail));
 
-        if(($datasUser[0]->keyUsers === sha1($key)) && ($datasUser[0]->activeUsers === '0')) {
-            $idUser = $datasUser[0]->idUsers;
+        var_dump($datasTmp);
+        if((!empty($datasTmp)) && ($datasTmp[0]->keyTmp == $key)) {
 
-            $_SESSION['idUser'] = $idUser;
+            // create account on the active user table
+            $this->_table->createdAccount($datasTmp[0]->mailTmp, $datasTmp[0]->passwordTmp);
+            $_SESSION['idUser'] = $this->_table->getIdUser($datasTmp[0]->mailTmp);
 
-            // account active
-            $this->_table->accountActif($idUser);
+            //delete on the table not active account
+            $this->_tableTmp->deleteByIdTmp($datasTmp[0]->idTmp);
+
 
             include_once($this->viewPath . 'notification/createdAccount.php');
             $this->homeLogged();
         }
-        elseif ($datasUser[0]->keyUsers != sha1($key)) {
-            include_once($this->viewPath. 'errors/errorKey.php');
+        elseif ((!empty($datasTmp)) && ($datasTmp[0]->keyTmp != $key)) {
+            include_once($this->viewPath. 'notification/error/errorKey.php');
             $this->home();
         }
         else {
-            include_once($this->viewPath. 'errors/accountAlreadyActif.php');
+            include_once($this->viewPath. 'notification/error/accountAlreadyActive.php');
             $this->home();
         }
     }
 
     public function forgetPass() {
         $mailUser = htmlspecialchars($_POST['mail']);
-        $user = $this->_table->accountExist($mailUser);
+        $account = $this->_table->alreadyExistingAccount(sha1($mailUser));
+        var_dump($account);
 
         //if account not found
-        if(empty($user)) {
-            include_once($this->viewPath. 'errors/accountNotFound.php');
+        if($account[0]->countMail === '0') {
+            include_once($this->viewPath. 'notification/error/accountNotFound.php');
             $this->home();
         }
         else {
+            $idUser = $this->_table->getIdUser(sha1($mailUser));
+            var_dump($idUser);
+            $idUser = $idUser->idUsers;
+            $password = random_int(0,10000);
+            $passwordSha1 = sha1($password);
 
-            // if account is not active, we send a mail with a new key
-            if($user[0]->activeUsers === '0') {
-                $validationKey = random_int(0, 10000);
-                $validationKeySha1 = sha1($validationKey);
-                $idUser = $user[0]->idUsers;
-                $password = $user[0]->passwordUsers;
+            // we change the password of the account
+            $this->_table->forgetPassword($idUser, $passwordSha1);
 
-                    $body =
-                        'Bienvenu !
+            //we send a mail with a new password
+            $body = '
+                Bonjour, 
                 
-                Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
-                
-                
-                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
-                    $this->_phpMailer($body, $mailUser);
-                    //update key
-                    $this->_table->forgetActivate($idUser, $validationKeySha1);
-                    include_once($this->viewPath. 'home/mailSentNotActive.php');
-                    $this->home();
-            }
-            // the account exist and it is active, we send a mail with a new password
-            else {
-                $idUser = $user[0]->idUsers;
-                $password = random_int(0,10000);
-                $passwordSha1 = sha1($password);
+                Voici le nouveau mot de passe associé à votre compte. Il est vivement conseillé de le changer dès votre prochaine connexion dans votre espace utilisateur.
+                Nouveau mot de pass : ' .$password.
+                '
+                Tcho ! :)' ;
 
-                // we change the password of the account
-                $this->_table->forgatePassword($idUser, $mailUser, $passwordSha1);
+            $this->_phpMailer($body, $mailUser);
+            include_once($this->viewPath. 'notification/mailSentPassword.php');
+            $this->home();
 
-                //we send a mail with a new password
-                $body = '
-                    Bonjour, 
-                    
-                    Voici le nouveau mot de passe associé à votre compte. Il est vivement conseillé de le changer dès votre prochaine connexion dans votre espace utilisateur.
-                    Nouveau mot de pass : ' .$password.
-                    '
-                    Tcho ! :)' ;
-
-                $this->_phpMailer($body, $mailUser);
-                include_once($this->viewPath. 'home/mailSentPassword.php');
-                $this->home();
-            }
         }
     }
 
@@ -175,15 +187,15 @@ class UserController extends AppController {
     }
 
     public function updatedAccountMail() {
-        var_dump($_POST);
-        var_dump($_SESSION);
+
         if($_SESSION['mailUser'] === htmlspecialchars($_POST['mail'])) {
             $this->homeLogged();
         }
         else {
             // verification if a account with its mail already existing by a count req
-            $alreadyExisting = $this->_table->alreadyExistingAccount(htmlspecialchars($_POST['mail']));
+            $alreadyExisting = $this->_table->alreadyExistingAccount(sha1(htmlspecialchars($_POST['mail'])));
             if(($alreadyExisting[0]->countMail) != '0') {
+                include_once($this->viewPath. 'notification/error/accountAlreadyActive.php');
                 $this->homeLogged();
             }
             else {
@@ -191,15 +203,15 @@ class UserController extends AppController {
                 $password = htmlspecialchars($_POST['password']);
                 $user = $this->_table->getPassword($idUser);
 
-                if (($user) && ($user->passwordUsers === sha1($password))) {
+                if ((!empty($user)) && ($user->passwordUsers === sha1($password))) {
                     //updated mail
                     $_SESSION['mailUser'] = htmlspecialchars($_POST['mail']);
-                    $this->_table->updatedMail($idUser, htmlspecialchars($_POST['mail']));
+                    $this->_table->updatedMail($idUser, sha1(htmlspecialchars($_POST['mail'])));
                     include_once($this->viewPath. 'notification/updatedMail.php');
                     $this->homeLogged();
                 }
                 else {
-                    include_once($this->viewPath. 'errors/badPassword.php');
+                    include_once($this->viewPath. 'notification/error/badPassword.php');
                     $this->updateAccount();
 
                 }
@@ -208,12 +220,11 @@ class UserController extends AppController {
     }
 
     public function updatedAccountPassword() {
-        var_dump($_POST);
         $idUser = $_SESSION['idUser'];
         $password = htmlspecialchars($_POST['oldPassword']);
         $user = $this->_table->getPassword($idUser);
 
-        if (($user) && ($user->passwordUsers === sha1($password))) {
+        if ((!empty($user)) && ($user->passwordUsers === sha1($password))) {
             // changing password
             $password = sha1(htmlspecialchars($_POST['newPassword']));
             $this->_table->updatePassword($idUser, $password);
@@ -221,7 +232,7 @@ class UserController extends AppController {
             $this->homeLogged();
         }
         else {
-            include_once($this->viewPath. 'errors/badPassword.php');
+            include_once($this->viewPath. 'notification/error/badPassword.php');
             $this->updateAccount();
         }
     }

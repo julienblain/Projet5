@@ -23,7 +23,7 @@
         </label>
         <label for="updateAccountNewPassword">
             Nouveau mot de passe :
-            <input type="text" id="updateAccountNewPassword" name="newPassword" required>
+            <input type="password" id="updateAccountNewPassword" name="newPassword" required>
         </label>
         <button id="updateAccountPassword" type="submit">Changer</button>
 
