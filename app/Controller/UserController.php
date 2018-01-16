@@ -26,6 +26,8 @@ class UserController extends AppController {
 
     public function control() {
 
+        $this->recaptcha();
+
         if(isset($_POST['mail']) && isset($_POST['password'])) {
             $mail = htmlspecialchars($_POST['mail']);
             $mailSha1 = sha1($mail);
@@ -51,6 +53,9 @@ class UserController extends AppController {
     }
 
     public function createAccount() {
+
+        $this->recaptcha();
+
         if(isset($_POST['mail']) && isset($_POST['password'])) {
             $mailUser = htmlspecialchars($_POST['mail']);
             $password = htmlspecialchars($_POST['password']);
@@ -75,11 +80,11 @@ class UserController extends AppController {
                     'Bienvenu !
                 
                 Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
-                L\'ancien mail de validation ne fonctionnera plus.
                 
                 http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
 
-                $this->_phpMailer($body, $mailUser);
+
+                $this->_phpMailer($body,  $mailUser);
                 $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
                 include_once($this->viewPath. 'errors/accountExistingAlreadyTmp.php');
                 $this->home();
@@ -127,7 +132,8 @@ class UserController extends AppController {
 
             // create account on the active user table
             $this->_table->createdAccount($datasTmp[0]->mailTmp, $datasTmp[0]->passwordTmp);
-            $_SESSION['idUser'] = $this->_table->getIdUser($datasTmp[0]->mailTmp);
+            $idUser = $this->_table->getIdUser($datasTmp[0]->mailTmp);
+            $_SESSION['idUser'] = $idUser->idUsers;
 
             //delete on the table not active account
             $this->_tableTmp->deleteByIdTmp($datasTmp[0]->idTmp);
@@ -147,6 +153,9 @@ class UserController extends AppController {
     }
 
     public function forgetPass() {
+
+        $this->recaptcha();
+
         $mailUser = htmlspecialchars($_POST['mail']);
         $account = $this->_table->alreadyExistingAccount(sha1($mailUser));
         var_dump($account);
@@ -246,6 +255,7 @@ class UserController extends AppController {
         //send mail
         $mail = new PHPMailer;
         try{
+            $mail->CharSet = 'UTF-8';
             $mail->isSMTP();
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
@@ -256,9 +266,10 @@ class UserController extends AppController {
             $mail->setFrom($this->_settingsMailer['setFrom']);
 
             $mail->addAddress($mailUser);
-            $mail->Subject = 'Votre compte Journal des reves';
+            $mail->Subject = 'Votre compte Journal des rêves';
 
             $mail->Body = $body;
+
             $mail->send();
         }
         catch (Exception $e){

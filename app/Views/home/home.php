@@ -11,20 +11,23 @@
                 Mot de passe :
                 <input id="home-login-form-password" type="password" name="password" required>
             </label>
-
-            <button id="home-login-form-btn" type="submit" name="home-login-form-btn">Valider</button>
+            <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
+            <button id="home-login-form-btn" name="home-login-form-btn" type="submit">Valider</button>
         </form>
+
         <div>
             <button id="home-login-forgetPass-h3">Mot de passe oublié ?</button>
             <form action="?p=user.forgetPass" id="home-login-forgetPass-form" method="post">
                 <label for="home-login-forgetPass-mail">
                     Mail :
                     <input id="home-login-forgetPass-mail" type="email" name="mail" required>
+                    <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
                     <button id="home-login-forgetPass-btn" type="submit" name="home-login-forgetPass-btn">Valider</button>
                 </label>
             </form>
         </div>
     </div>
+
     <div id="home-createAccount">
         <h2>S'inscrire :</h2>
         <form action="?p=user.createAccount" id="home-createAccount-form" method="post">
@@ -39,6 +42,7 @@
             </label>
 
             <p id="home-createAccount-form-p">Un lien de validation de votre compte vous sera envoyé par mail.</p>
+            <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
             <button id="home-createAccount-form-btn" type="submit" name="home-createAccount-form-btn">Envoyer</button>
         </form>
     </div>

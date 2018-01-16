@@ -35,7 +35,12 @@ class DreamsEntity extends Entity
             ORDER BY dreams.dateDreams DESC"
         );
 
-        $datas = $this->_dateTimeFr($datas);
+        var_dump($datas);
+
+        if(!empty($datas)) {
+            $datas = $this->_dateTimeFr($datas);
+        }
+
         return $datas;
     }
 

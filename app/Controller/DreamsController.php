@@ -94,11 +94,17 @@ class DreamsController extends AppController
 
     public function indexDreams()
     {
-
-        $dreams = $this->_table->dreamsByIdUser($_SESSION['idUser']);
+        $idUser = $_SESSION['idUser'];
+        $dreams = $this->_table->dreamsByIdUser($idUser);
         $this->_listDreams($dreams);
 
-        $this->render('dreams.indexDreams', compact('dreams'));
+        if(empty($dreams)) {
+            include_once ($this->viewPath . '/notification/emptyIndex.php');
+            $this->homeLogged();
+        } else {
+            $this->render('dreams.indexDreams', compact('dreams'));
+        }
+
     }
 
     public function read() {

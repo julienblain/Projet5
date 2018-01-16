@@ -11,6 +11,7 @@ class AppController extends Controller
     //utiliser dans controller.php
     protected $template = 'default';
     protected $viewPath =  ROOT . '/app/Views/';
+    private $_keyPrivate;
 
    /* public function __construct()
     {
@@ -39,4 +40,27 @@ class AppController extends Controller
         return $this->loadModel('Dreams')->dreamsByIdUser($_SESSION['idUser']);
 
     }*/
+
+    protected function recaptcha() {
+        if($this->_keyPrivate === null) {
+            $config = require(ROOT . '/config/recaptcha.php');
+            $this->_keyPrivate = $config['keyPrivate'];
+        }
+        $secret = $this->_keyPrivate;
+        $remoteip = $_SERVER['REMOTE_ADDR'];
+        $response = $_POST['g-recaptcha-response'];
+
+        $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+            . $secret . "&response=" . $response . "&remoteip" . $remoteip;
+
+        $decode = json_decode(file_get_contents($api_url), true);
+
+        if($decode['success'] == true) {
+           return true;
+        }
+        else {
+            $this->home();
+            die();
+        }
+    }
 }
