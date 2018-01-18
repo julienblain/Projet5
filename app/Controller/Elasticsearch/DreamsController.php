@@ -23,4 +23,8 @@ class DreamsController
 
        $this->_index->indexing($dream);
     }
+
+    public function deleting($id) {
+        $this->_index->deleting($id);
+    }
 }

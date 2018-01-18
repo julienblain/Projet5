@@ -46,7 +46,7 @@ class DreamsEntity extends Entity
         $idUser = $_SESSION['idUser'];
         $table = $this->_table;
         $datas = $this->prepare(
-            "SELECT idUserDreams, dateDreams, hourDreams, dreamDreams, previousEventsDreams, elaborationDreams FROM $table
+            "SELECT idDreams, idUserDreams, dateDreams, hourDreams, dreamDreams, previousEventsDreams, elaborationDreams FROM $table
             WHERE idDreams = '{$idDream}'"
         );
         $dreamFr = $this->_dateTimeFr($datas);
@@ -92,15 +92,9 @@ class DreamsEntity extends Entity
         return $datas;
     }
 
-    public function updatedDream($idDream) {
-        $dream = htmlspecialchars($_POST['dreamUpdated']);
-        $date = htmlspecialchars($_POST['dateUpdated']);
-        $hour = htmlspecialchars($_POST['hourUpdated']);
-        $elaboration = htmlspecialchars($_POST['elaborationUpdated']);
-        $previousEvents = htmlspecialchars($_POST['previousEventsUpdated']);
+    public function updatedDream($idDream, $dream, $date, $hour, $elaboration, $previousEvents) {
+
         $idUser = $_SESSION['idUser'];
-
-
         $table = $this->_table;
         return $this->update(
             ("UPDATE $table 
@@ -119,6 +113,7 @@ class DreamsEntity extends Entity
 
     public function deleteDream($idDream) {
         $table = $this->_table;
+        echo $idDream. 'icicicic';
         $idUser = $_SESSION['idUser'];
         return $this->delete("DELETE FROM $table WHERE idDreams = '{$idDream}' AND idUserDreams = '{$idUser}'");
     }

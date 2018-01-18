@@ -17,8 +17,8 @@ class DreamsEntity
 
     public function indexing($dream) {
         $params = [
-            'index' => 'dreams',
-            'type' => 'dream',
+            'index' => $this->_index,
+            'type' => $this->_type,
             'id' => $dream[0]->idDreams,
             'body' => ['fields' => [
                 'idUserDreams' => $dream[0]->idUserDreams,
@@ -31,5 +31,15 @@ class DreamsEntity
         ];
 
         return $this->_db->indexing($params);
+    }
+
+    public function deleting($idDream) {
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'id' => $idDream
+        ];
+
+        return $this->_db->deleting($params);
     }
 }

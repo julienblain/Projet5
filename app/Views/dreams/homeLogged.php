@@ -3,8 +3,8 @@
     <form action="?p=dreams.created" id="dreamForm" method="post">
         <fieldset id="dream">
             <legend>Rêve</legend>
-            <label for="dreamWrite">
-                <textarea name="dreamWrite" id="dreamWrite" cols="30" rows="10" required placeholder="Requis"></textarea> <br> <!--verifier si le required fonctionne sur safari -->
+            <label for="dream">
+                <textarea name="dream" id="dreamWrite" cols="30" rows="10" required placeholder="Requis"></textarea> <br> <!--verifier si le required fonctionne sur safari -->
             </label>
 
 
@@ -23,15 +23,15 @@
 
         <fieldset id="elaboration">
             <legend>Élaboration</legend>
-            <label for="elaborationWrite">
-                <textarea name="elaborationWrite" id="elaborationTextarea" cols="30" rows="10"></textarea> <br>
+            <label for="elaboration">
+                <textarea name="elaboration" id="elaborationTextarea" cols="30" rows="10"></textarea> <br>
             </label>
         </fieldset>
 
         <fieldset id="previousEvents">
             <legend>Évènements précédents</legend>
-            <label for="previousEventsWrite">
-                <textarea name="previousEventsWrite" id="previousEventsWrite" cols="30" rows="10"></textarea> <br>
+            <label for="previousEvents">
+                <textarea name="previousEvents" id="previousEventsWrite" cols="30" rows="10"></textarea> <br>
             </label>
         </fieldset>
 

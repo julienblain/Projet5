@@ -28,4 +28,8 @@ class Elasticsearch
         return $this->_client->index($params);
 
     }
+
+    public function deleting($params) {
+        return $this->_client->delete($params);
+    }
 }
