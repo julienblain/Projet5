@@ -27,4 +27,12 @@ class DreamsController
     public function deleting($id) {
         $this->_index->deleting($id);
     }
+
+    public function updating($idDream, $dream, $date, $hour, $elaboration, $previousEvents) {
+        return $this->_index->updating($idDream, $dream, $date, $hour, $elaboration, $previousEvents);
+    }
+
+    public function search() {
+        return $this->_index->search();
+    }
 }

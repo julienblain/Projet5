@@ -42,4 +42,47 @@ class DreamsEntity
 
         return $this->_db->deleting($params);
     }
+
+    public function updating($idDream, $dream, $date, $hour, $elaboration, $previousEvents) {
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'id' => $idDream,
+            'body' => ['doc' => [
+                'idUserDreams' => $_SESSION['idUser'],
+                'dateDreams' => $date,
+                'hourDreams' => $hour,
+                'dreamDreams' => $dream,
+                'previousEventsDreams' => $previousEvents,
+                'elaborationDreams' => $elaboration
+            ]]
+        ];
+
+        return $this->_db->updating($params);
+
+    }
+
+    public function search() {
+        $searchedWord = htmlspecialchars($_POST['search']);
+        echo $searchedWord .' mot';
+
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'body' => [
+                'query' => [
+                    'match' => [
+                        'fields' => [
+                            'dreamDreams' => $searchedWord
+                        ]
+
+
+                    ]
+                ]
+            ]
+        ];
+
+        $resultat = $this->_db->search($params);
+        var_dump($resultat);
+    }
 }

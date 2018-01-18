@@ -32,4 +32,12 @@ class Elasticsearch
     public function deleting($params) {
         return $this->_client->delete($params);
     }
+
+    public function updating($params) {
+        return $this->_client->update($params);
+    }
+
+    public function search($params) {
+        return $this->_client->search($params);
+    }
 }

@@ -12,5 +12,6 @@
     <button id="readDream-delete"><a href="?p=dreams.delete.<?= $dream[0]->idDreams ?>">Supprimer</a></button>
 
     <?php include_once ($this->viewPath. 'dreams/btnPreviousAndNextDream.php'); ?>
+    <?php include_once ($this->viewPath. 'dreams/search.php'); ?>
 
 </section>

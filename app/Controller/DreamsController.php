@@ -1,5 +1,5 @@
 <?php
-
+//checkUser() allows to control if the dreams have at the user
 
 namespace App\Controller;
 
@@ -135,8 +135,19 @@ class DreamsController extends AppController
         $this->_setIdDream();
         $dream = $this->_table->readDream($this->_getIdDream());
         $dream = $this->_previousAndNextDream($dream);
-       $this->render('dreams.readDream', compact('dream'));
 
+        if(!empty($_POST['search'])){
+           $this->search();
+        }
+        else {
+            $this->render('dreams.readDream', compact('dream'));
+        }
+
+    }
+
+    private function search() {
+        $elastic = new \App\Controller\Elasticsearch\DreamsController;
+        $elastic->search();
     }
 
     private function _previousAndNextDream($dream) {
@@ -169,6 +180,7 @@ class DreamsController extends AppController
 
     public function update() {
         $this->_setIdDream();
+        $this->_checkUser();
         $dream = $this->_table->readDream($this->_getIdDream());
         $dream = $this->_previousAndNextDream($dream);
         $this->render('dreams.updateDream', compact('dream'));
@@ -176,7 +188,6 @@ class DreamsController extends AppController
 
     public function updated() {
         $this->_setIdDream();
-        $this->_checkUser();
 
         // giving value of $_Post
         $this->_setDream();
@@ -188,7 +199,7 @@ class DreamsController extends AppController
         $this->_table->updatedDream($this->_getIdDream(), $this->_getDream(), $this->_getDate(), $this->_getHour(), $this->_getElaboration(), $this->_getEventsPrevious());
 
         $elastic = new \App\Controller\Elasticsearch\DreamsController;
-        //$elastic->indexing($dream);
+        $elastic->updating($this->_getIdDream(), $this->_getDream(), $this->_getDate(), $this->_getHour(), $this->_getElaboration(), $this->_getEventsPrevious());
 
         include_once ($this->viewPath . 'notification/updatedDream.php');
         $this->indexDreams();
