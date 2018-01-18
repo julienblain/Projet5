@@ -2,7 +2,9 @@
 
 
 namespace App\Controller;
+
 use Core\Controller\Controller;
+
 
 class DreamsController extends AppController
 {
@@ -85,7 +87,17 @@ class DreamsController extends AppController
             $this->_setElaboration();
             $this->_setEventsPrevious();
 
+            //insert in mysql bddd
             $this->_table->createdDream($this->_getDream(), $this->_getDate(), $this->_getHour(), $this->_getElaboration(), $this->_getEventsPrevious());
+
+            //insert in elastic bdd
+            $dream = $this->_table->lastDream($_SESSION['idUser']);
+
+            $elastic = new \App\Controller\Elasticsearch\DreamsController;
+            $elastic->indexing($dream);
+
+
+
 
             include_once ($this->viewPath . '/notification/dreamCreated.php');
             $this->homeLogged();
@@ -96,7 +108,71 @@ class DreamsController extends AppController
     {
         $idUser = $_SESSION['idUser'];
         $dreams = $this->_table->dreamsByIdUser($idUser);
+        //put in session
         $this->_listDreams($dreams);
+
+
+        /*ELASTIC A SUPPRIMER
+
+
+        var_dump($dream);
+        // conversion en json
+        $index = array(
+            'index' => array(
+                "_index" => "dreams",
+                "_type" => "dream",
+                "_id" => $dream[0]->idDreams
+            )
+        );
+
+        $indexJson = json_encode($index);
+        $fields = array(
+            'fields' => array(
+                'idUserDreams' => $dream[0]->idUserDreams,
+                'dateDreams' => $dream[0]->dateDreams,
+                'hourDreams' => $dream[0]->hourDreams,
+                'dreamDreams' => $dream[0]->dreamDreams,
+                'previousEventsDreams' => $dream[0]->previousEventsDreams,
+                'elaborationDreams' => $dream[0]->elaborationDreams
+            )
+        );
+        $fieldsJson = json_encode($fields);
+
+
+
+        $fileName = 'test.json';
+        $file = fopen($fileName, 'w+');
+        fwrite($file, $indexJson);
+        fwrite($file, $fieldsJson);
+        fclose($file);
+
+        $hostTruc = '127.0.0.1';
+        $portTruc = '9200';
+        $indexElastic = 'dreams';
+        $type = 'dream';
+        $docId = $dream[0]->idDreams;
+
+        //curl
+        $url = 'http://'.$hostTruc.':'.$portTruc.'/'.$indexElastic.'/'.$type.'/'.$docId;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_PORT, $portTruc);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($index));
+        curl_setopt($curl, CURLOPT_HEADER, array('Accept'=>'application/json','Content-Type' => 'application/json'));
+
+        $curlData = curl_exec($curl);
+        curl_close($curl);
+
+        $rep = json_decode($curlData, true);
+        var_dump($rep);
+
+
+        */
+
+
+
 
         if(empty($dreams)) {
             include_once ($this->viewPath . '/notification/emptyIndex.php');

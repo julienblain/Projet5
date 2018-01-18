@@ -24,7 +24,6 @@ final class Router {
 
        return $controller->$action() ;
 
-
     }
 
     public function getPage() : array

@@ -1,14 +1,22 @@
 <?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: root
+ * Date: 18/01/18
+ * Time: 18:01
+ */
 
 namespace Core;
 
-class Config {
+
+class ConfigElasticsearch
+{
     private $_settings;
 
     public function __construct()
     {
         if($this->_settings === null) {
-            $this->setSettings(require(ROOT . '/config/config.php'));
+            $this->setSettings(require(ROOT . '/config/configElasticsearch.php'));
         }
 
     }
@@ -30,7 +38,4 @@ class Config {
     {
         $this->_settings = $settings;
     }
-
-
-
 }

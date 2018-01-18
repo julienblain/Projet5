@@ -7,9 +7,9 @@ use App\AppException;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require(ROOT. '/lib/PHPMailer/src/Exception.php');
-require(ROOT. '/lib/PHPMailer/src/PHPMailer.php');
-require(ROOT. '/lib/PHPMailer/src/SMTP.php');
+require(ROOT. '/vendor/PHPMailer/src/Exception.php');
+require(ROOT. '/vendor/PHPMailer/src/PHPMailer.php');
+require(ROOT. '/vendor/PHPMailer/src/SMTP.php');
 
 
 class UserController extends AppController {

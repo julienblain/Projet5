@@ -1,4 +1,4 @@
-<?php include_once($this->viewPath . 'dreams/nav.php'); var_dump($dreams);?>
+<?php include_once($this->viewPath . 'dreams/nav.php');?>
 <section id="indexDreams">
 
     <?php

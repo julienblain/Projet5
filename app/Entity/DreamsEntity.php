@@ -35,8 +35,6 @@ class DreamsEntity extends Entity
             ORDER BY dreams.dateDreams DESC"
         );
 
-        var_dump($datas);
-
         if(!empty($datas)) {
             $datas = $this->_dateTimeFr($datas);
         }
@@ -62,6 +60,7 @@ class DreamsEntity extends Entity
               WHERE idUserDreams = '{$idUser}'"
         );
     }
+
 
     private function _dateTimeFr($datas) {
 
@@ -122,6 +121,13 @@ class DreamsEntity extends Entity
         $table = $this->_table;
         $idUser = $_SESSION['idUser'];
         return $this->delete("DELETE FROM $table WHERE idDreams = '{$idDream}' AND idUserDreams = '{$idUser}'");
+    }
+
+
+    //ELASTIC A SUPPRIMER
+    public function lastDream($idUser) {
+        $table = $this->_table;
+        return $this->prepare("SELECT * FROM $table WHERE idUserDreams = '{$idUser}' ORDER BY idDreams DESC LIMIT 1");
     }
 
 }

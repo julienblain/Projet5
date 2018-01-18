@@ -32,6 +32,7 @@ final class App
         App\Autoloader::register();
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
+        require ROOT . '/vendor/Composer/vendor/autoload.php';
     }
 
 
