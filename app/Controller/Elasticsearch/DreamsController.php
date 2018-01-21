@@ -7,32 +7,190 @@
  */
 namespace App\Controller\Elasticsearch;
 
+use App\Controller\AppController;
 use App\Entity\Elasticsearch\DreamsEntity;
 
-class DreamsController
+class DreamsController extends AppController
 {
     private $_index;
 
     public function __construct()
     {
-        $index = '\App\Entity\Elasticsearch\DreamsEntity';
-        $this->_index = new $index();
+        $this->_index = new DreamsEntity();
     }
 
-    public function indexing($dream) {
+    private function _checkUser() {
+        $params = $_GET['p'];
+        $params = \explode('.', $params);
+        $idDream = $params[2];
 
-       $this->_index->indexing($dream);
+        if(in_array($idDream, $_SESSION['listDreams'], true)){
+            return true;
+        }
+        else {
+            include_once ($this->viewPath . 'errors/forbiddenPage.php');
+            $this->indexDreams();
+            die();
+        }
     }
 
-    public function deleting($id) {
-        $this->_index->deleting($id);
+
+    private function _previousAndNextDreams($dream) {
+        // we recover the previous dream id and the next dream id for the buttons in view
+        $idDream = $dream[0]->id;
+        $listDreams = $_SESSION['listDreams'];
+        $countListDreams = count($listDreams) -1;
+
+        if($idDream !== $listDreams[0]) {
+            $key = array_keys($listDreams, $idDream);
+
+            $keyPrevious = $key[0] -1;
+            $dream[0]->previousDream = $listDreams[$keyPrevious];
+        }
+        else {
+            $dream[0]->previousDream = 'notExist';
+        }
+
+        if($idDream != $listDreams[$countListDreams]) {
+            $key = array_keys($listDreams, $idDream);
+            $keyNext = $key[0] + 1;
+            $dream[0]->nextDream = $listDreams[$keyNext];
+        }
+        else {
+            $dream[0]->nextDream = 'notExist';
+        }
+
+        return $dream;
     }
 
-    public function updating($idDream, $dream, $date, $hour, $elaboration, $previousEvents) {
-        return $this->_index->updating($idDream, $dream, $date, $hour, $elaboration, $previousEvents);
+
+    public function indexDreams() {
+
+        $dreams = $this->_index->searchList();
+        $dreams = $this->_dateTimeFr($dreams);
+        $this->_dreamListSession($dreams);
+
+        if(empty($dreams)) {
+
+            include_once ($this->viewPath . '/notification/emptyIndex.php');
+            $this->homeLogged();
+        }
+        else {
+            $this->render('dreams.indexDreams', compact('dreams'));
+        }
     }
+
+    public function read() {
+        $this->_checkUser();
+        $dreamDatas = $this->_index->searchByIdDream();
+        $dream = $this->_dateTimeFr($dreamDatas);
+        $dream = $this->_previousAndNextDreams($dream);
+
+        if(!empty($_POST['search'])){
+            $this->search();
+        }
+        else {
+            $this->render('dreams.readDream', compact('dream'));
+        }
+
+    }
+
+    public function update() {
+        $this->_checkUser();
+        $dreamDatas = $this->_index->searchByIdDream();
+        $dream = $this->_dateTimeFr($dreamDatas);
+        $dream = $this->_previousAndNextDreams($dream);
+
+        if(!empty($_POST['search'])){
+            $this->search();
+        }
+        else {
+            $this->render('dreams.updateDream', compact('dream'));
+        }
+    }
+
+    public function updated() {
+        $this->_checkUser();
+        $this->_index->updating();
+        include_once ($this->viewPath . 'notification/updatedDream.php');
+        $this->indexDreams();
+    }
+
+    public function delete() {
+        $this->_checkUser();
+        $this->_index->deleting();
+
+        include_once ($this->viewPath . 'notification/deletedDream.php');
+        $this->homeLogged();
+    }
+
+
 
     public function search() {
-        return $this->_index->search();
+        $resultsDream = $this->_index->search();
+        print_r($resultsDream);
+        //$resultsElaboration = $this->_index->searchElaboration();
+
+      // echo 'dreamTTT'; print_r($resultsDream);
+      //echo 'elaboraiton ';  print_r($resultsElaboration);
     }
+
+    public function created() {
+        $this->_index->indexing();
+        $this->homeLogged();
+    }
+
+    // insert in $_Session the dream list for this user
+    private function _dreamListSession($dreamList) {
+
+        if(!empty($_SESSION['listDreams'])) {
+            unset($_SESSION['listDreams']);
+        }
+
+        $_SESSION['listDreams'] = [];
+        for($i = 0; $i < count($dreamList); $i++) {
+            $_SESSION['listDreams'][$i] = $dreamList[$i]->id;
+        }
+    }
+
+    private function _dateTimeFr($dateTime) {
+
+        if(gettype($dateTime) == 'object' ) { //TODO a ameliorer questioner
+            $datas[0] = (object) $dateTime->_source['fields'];
+            $datas[0]->id = $dateTime->_id;
+        }
+        else {
+            $datas = $dateTime;
+        }
+
+
+        for($i = 0 ; $i < count($datas); $i++) {
+
+            $date = new \DateTime($datas[$i]->date);
+            $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
+            $datas[$i]->dateDreamsFr = $dateFr->format($date);
+
+            $time = $datas[$i]->hour;
+            $hour = $time[0] . $time[1];
+            $min = $time[3] . $time[4];
+
+            if(($hour === "00") || ($hour === '01')) {
+                $time = $time[0] . $time[1] . ' heure ' . $time[3] . $time[4] . ' minutes ';
+            }
+            else {
+                $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4]. ' minutes ';
+            }
+
+            if(($min === '00') || ($min === '01')) {
+                $time = str_replace('minutes', 'minute', $time);
+            }
+
+            $datas[$i]->hourDreamsFr = $time;
+        }
+
+        return $datas;
+    }
+
+
+
 }

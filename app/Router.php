@@ -146,7 +146,7 @@ final class Router {
     /**
      * @return string
      */
-    public function getController() : string
+    public function getController()
     {
         return $this->_controller;
     }
@@ -154,7 +154,16 @@ final class Router {
 
     public function setController()
     {
-        $this->_controller = '\App\Controller\\' . ucfirst($this->_page[0]) . 'Controller';
+        if(($this->_page[0] == 'user') || ($this->_page[0] == 'app')) {
+            $this->_controller = '\App\Controller\\' . ucfirst($this->_page[0]) . 'Controller';
+        }
+        elseif($this->_page[0] == 'dreams') {
+            $this->_controller = '\App\Controller\Elasticsearch\\' . ucfirst($this->_page[0]) . 'Controller';
+        }
+        else {
+            echo 'FAIRE LEXCECPTION';
+        }
+        
     }
 
 

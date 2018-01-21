@@ -21,7 +21,6 @@ class Elasticsearch
                 ->setHosts($hosts)
                 ->build();
         }
-
     }
 
     public function indexing($params) {
@@ -39,5 +38,18 @@ class Elasticsearch
 
     public function search($params) {
         return $this->_client->search($params);
+    }
+
+    //supprimer
+    public function dede($params) {
+        return $this->_client->indices()->delete($params);
+    }
+
+    public function mapping($params) {
+        return $this->_client->indices()->create($params);
+    }
+
+    public function get($params) {
+        return $this->_client->get($params);
     }
 }

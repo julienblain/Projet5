@@ -1,8 +1,8 @@
 <?php
-if($dream['previousDream'] !== 'notExist') { ?>
-    <button id="readDream-previous"><a href="?p=dreams.read.<?= $dream['previousDream'] ?>">Rêve précédent</a></button>
+if($dream[0]->previousDream !== 'notExist') { ?>
+    <button id="readDream-previous"><a href="?p=dreams.read.<?= $dream[0]->previousDream ?>">Rêve précédent</a></button>
 
 <?php }
-if($dream['nextDream'] !== 'notExist') {?>
-    <button id="readDream-next"><a href="?p=dreams.read.<?= $dream['nextDream']?>">Rêve suivant</a></button>
+if($dream[0]->nextDream !== 'notExist') {?>
+    <button id="readDream-next"><a href="?p=dreams.read.<?= $dream[0]->nextDream ?>">Rêve suivant</a></button>
 <?php } ?>

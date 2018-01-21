@@ -21,7 +21,7 @@
     <h2>Rêves précendents</h2>
     <ol id="indexDreams-listYears">
 
-        <?php $dateTime = new DateTime($dreams[0]->dateDreams);
+        <?php $dateTime = new DateTime($dreams[0]->date);
         $yearLastIteration = $dateTime->format('Y');
         $monthLastIteration = $dateTime->format('m');
         ?>
@@ -33,7 +33,7 @@
                     <ol>
                         <?php
                         foreach ($dreams as $dream) {
-                            $dateTime = new DateTime($dream->dateDreams);
+                            $dateTime = new DateTime($dream->date);
                             $yearFormat = $dateTime->format('Y');
 
                             if ($yearFormat != $yearLastIteration) {
@@ -55,7 +55,7 @@
                 <li class="indexDreams-month">
                     <h4><?=  $listMonth[$monthLastIteration]?></h4>
                     <ol>
-                        <li><a href='?p=dreams.read.<?=$dream->idDreams?>'><?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
+                        <li><a href='?p=dreams.read.<?=$dream->id?>'><?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
 
                             <?php
                             } else {
@@ -71,11 +71,11 @@
                 <li class="indexDreams-month">
                     <h4><?=  $listMonth[$monthLastIteration] ?></h4>
                     <ol>
-                        <li><a href='?p=dreams.read.<?= $dream->idDreams ?>'> <?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?> </a></li>
+                        <li><a href='?p=dreams.read.<?= $dream->id ?>'> <?=$dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?> </a></li>
                             <?php
                                 } else { ?>
 
-                        <li><a href='?p=dreams.read.<?= $dream->idDreams ?>'><?= $dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
+                        <li><a href='?p=dreams.read.<?= $dream->id ?>'><?= $dream->dateDreamsFr .' à '. $dream->hourDreamsFr ?></a></li>
                                <?php }
 
 
