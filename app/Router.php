@@ -71,6 +71,9 @@ final class Router {
                         case "user.homeLogged":
                             $this->_routingValidLogged();
                             break;
+                        case "user.deletedAccount";
+                            $this->_routingValidLogged();
+                            break;
 
                         case "dreams.created":
                             $this->_routingValidLogged();

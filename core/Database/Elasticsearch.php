@@ -52,4 +52,8 @@ class Elasticsearch
     public function get($params) {
         return $this->_client->get($params);
     }
+
+    public function deleteByQuery($params) {
+        return $this->_client->deleteByQuery($params);
+    }
 }

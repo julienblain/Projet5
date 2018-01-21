@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use \App;
 use App\AppException;
-
+use App\Controller\Elasticsearch\DreamsController;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -244,6 +244,25 @@ class UserController extends AppController {
             include_once($this->viewPath. 'notification/error/badPassword.php');
             $this->updateAccount();
         }
+    }
+
+    public function deletedAccount() {
+        $pass = $this->_table->getPassword($_SESSION['idUser']);
+        var_dump($pass);
+        var_dump($_POST);
+        $passPost = htmlspecialchars($_POST['password']);
+
+        if ((!empty($pass)) && ($pass->passwordUsers === sha1($passPost))) {
+            $this->_table->deleteAccount();
+            $dreamsElastic = new DreamsController();
+            $dreamsElastic->deleteAccount();
+            $this->home();
+        }
+        else {
+            include_once($this->viewPath. 'notification/error/badPassword.php');
+            $this->updateAccount();
+        }
+
     }
 
     private function _phpMailer($body, $mailUser) {

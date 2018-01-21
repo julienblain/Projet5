@@ -153,6 +153,10 @@ class DreamsController extends AppController
         }
     }
 
+    public function deleteAccount() {
+        return $this->_index->deleteAccount();
+    }
+
     private function _dateTimeFr($dateTime) {
 
         if(gettype($dateTime) == 'object' ) { //TODO a ameliorer questioner

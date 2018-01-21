@@ -119,4 +119,12 @@ class UserEntity extends Entity
             ))
         );
     }
+
+    public function deleteAccount() {
+        $table = $this->_table;
+        $idUser = $_SESSION['idUser'];
+        return $this->delete(
+            "DELETE FROM $table WHERE idUsers = {$idUser}"
+        );
+    }
 }

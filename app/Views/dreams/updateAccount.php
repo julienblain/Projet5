@@ -26,8 +26,18 @@
             <input type="password" id="updateAccountNewPassword" name="newPassword" required>
         </label>
         <button id="updateAccountPassword" type="submit">Changer</button>
-
     </form>
+
+    <form action="?p=user.deletedAccount" method="post">
+        <h3>Supprimer le profil</h3>
+        <label for="updateAccountDeletedAccount">
+            Mot de passe :
+            <input type="password" id="updateAccountDeletedAccount" name="password">
+        </label>
+
+        <button type="submit" >Supprimer le compte</button>
+    </form>
+
 
 
 </section>

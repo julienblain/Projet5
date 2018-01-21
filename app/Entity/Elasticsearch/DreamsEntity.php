@@ -230,4 +230,20 @@ class DreamsEntity extends AppController
         ];
         return $this->_db->search($params);
     }
+
+    public function deleteAccount() {
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'body' => [
+                'query' => [
+                    'term' => [
+                        'fields.idUser' => $_SESSION['idUser']
+                    ]
+                ]
+            ]
+        ];
+
+         return $this->_db->deleteByQuery($params);
+    }
 }
