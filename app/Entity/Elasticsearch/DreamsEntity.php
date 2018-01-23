@@ -60,14 +60,14 @@ class DreamsEntity extends AppController
         $params = [
             'index' => $this->_index,
             'type' => $this->_type,
-            'body' => ['fields' => [
+            'body' => [
                 'idUser' => $_SESSION['idUser'],
                 'date' => $this->_date(),
                 'hour' => $this->_hour(),
                 'content' => $this->_content(),
                 'previousEvents' => $this->_previousEvents(),
                 'elaboration' => $this->_elaboration()
-            ]]
+            ]
         ];
 
         return $this->_db->indexing($params);
@@ -79,17 +79,17 @@ class DreamsEntity extends AppController
             'type' => $this->_type,
 
             'body' => [
-                '_source' => ['fields.date', 'fields.hour'],
+                '_source' => ['date', 'hour'],
                 'query' => [
                     'term' => [
-                        'fields.idUser' => $_SESSION['idUser']
+                        'idUser' => $_SESSION['idUser']
                     ]
                 ]
             ]
         ];
 
         $params['body']['sort'] =[   //out of params principal elsif bug with elasticsearch-php
-            'fields.date' => [
+            'date' => [
                 'order' =>'desc']] ;
 
         $dreamDatas = $this->_db->search($params);
@@ -97,8 +97,8 @@ class DreamsEntity extends AppController
 
         foreach ($dreamDatas['hits']['hits'] as $dreamDateTime) {
             $dream['id'] =  $dreamDateTime['_id'];
-            $dream['date'] = $dreamDateTime['_source']['fields']['date'];
-            $dream['hour'] = $dreamDateTime['_source']['fields']['hour'];
+            $dream['date'] = $dreamDateTime['_source']['date'];
+            $dream['hour'] = $dreamDateTime['_source']['hour'];
             $dreamList[] = (object) $dream;
             $dream = [];
         }
@@ -151,85 +151,12 @@ class DreamsEntity extends AppController
         return $this->_db->updating($params);
     }
 
-    public function mapping() {
-        $params = [
-            'index' => 'dreams',
-            'body' => [
-                'settings' => [
-                    'number_of_shards' => 3,
-                    'number_of_replicas' =>2,
-
-                ],
-                'mappings' => [
-
-                    'dream' => [
-                        'properties' => [ //properties is necessary
-                            'idUser' => [
-                                'type' => 'integer'
-                            ],
-                            'date' => [
-                                'type' => 'date'
-                            ],
-                            'hour' => [
-                                'type' => 'text'
-                            ],
-                            'content' => [
-                                'type' => 'text',
-                                'analyzer' => 'french'
-                            ],
-                            'elaboration' => [
-                                'type' => 'text',
-                                'analyzer' => 'french'
-                            ],
-                            'previousEvents' => [
-                                'type' => 'text',
-                                'analyzer' => 'french'
-
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $this->_db->mapping($params);
-
-    }
-
+    //a supprimer
     public function dede() {
         $params = ['index' => 'dreams'];
         $this->_db->dede($params);
     }
 
-
-
-    public function searchWord() {
-       $searchedWord = htmlspecialchars($_POST['search']);
-
-        $params = [
-            'index' => $this->_index,
-            'type' => $this->_type,
-            'body' => [
-                'query' => [
-                    'bool' => [
-                        'must' => [
-                            'match' => [
-                                'fields.idUser' => $_SESSION['idUser']
-                            ]
-                        ],
-                        'should' => [
-                            'match' => [
-                                'fields.content' => $searchedWord
-                            ]
-                        ]
-
-
-                    ]
-                ]
-            ]
-        ];
-        return $this->_db->search($params);
-    }
 
     public function deleteAccount() {
         $params = [
@@ -244,6 +171,118 @@ class DreamsEntity extends AppController
             ]
         ];
 
-         return $this->_db->deleteByQuery($params);
+        return $this->_db->deleteByQuery($params);
     }
+
+    public function searchWord() {
+       $searchedWord = htmlspecialchars($_POST['search-txt']);
+
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'must' => [ //TODO a test must suivant resulta
+                            'multi_match' => [
+                                'query' => $searchedWord,
+                                'type' => 'most_fields',
+                                'analyzer' => 'french_heavy',
+                                'fields' => ['content', 'elaboration', 'previousEvents'],
+
+
+                            ]
+                        ],
+
+                        'filter' => [
+                            'term' => [
+                               'idUser' => $_SESSION['idUser']
+                            ]                        ]
+
+
+
+
+                    ]
+                ]
+            ]
+        ];
+        return $this->_db->search($params);
+    }
+
+
+
+    public function searchPhrase() {
+
+    }
+
+    public function mapping() {
+
+            $params = [
+                'index' => 'dreams',
+                'body' => [
+                    'settings' => [
+                        'number_of_shards' => 3,
+                        'number_of_replicas' =>2,
+                        'analysis' => [
+                            'filter' => [
+                                'french_elision' => [
+                                    'type' => 'elision',
+                                    'article_case' => true,
+                                    'articles' => ['l', 'm', 't', 'qu', 'n', 's', 'j', 'd', 'c', 'jusqu', 'quoiqu', 'lorsqu', 'puisqu' ]
+                                ],
+                                'french_stemmer' => [
+                                    'type' => 'stemmer',
+                                    'language' => 'light_french'
+                                ]
+                            ],
+                            'analyzer' => [
+                                'french_heavy' => [
+                                    'tokenizer' => 'icu_tokenizer',
+                                    'filter' => [
+                                        'french_elision',
+                                        'icu_folding',
+                                        'lowercase',
+                                        'french_stemmer'
+                                    ]
+                                ]
+                            ]
+                        ]
+
+                    ],
+                    'mappings' => [
+
+                        'dream' => [
+                            'properties' => [ //properties is necessary
+                                'idUser' => [
+                                    'type' => 'integer'
+                                ],
+                                'date' => [
+                                    'type' => 'date'
+                                ],
+                                'hour' => [
+                                    'type' => 'text'
+                                ],
+                                'content' => [
+                                    'type' => 'text',
+                                    'analyzer' => 'french_heavy'
+                                ],
+                                'elaboration' => [
+                                    'type' => 'text',
+                                    'analyzer' => 'french_heavy'
+                                ],
+                                'previousEvents' => [
+                                    'type' => 'text',
+                                    'analyzer' => 'french_heavy'
+
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+
+            $this->_db->mapping($params);
+    }
+
+
 }
