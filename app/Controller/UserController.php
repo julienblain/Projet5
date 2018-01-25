@@ -134,6 +134,7 @@ class UserController extends AppController {
             $this->_table->createdAccount($datasTmp[0]->mailTmp, $datasTmp[0]->passwordTmp);
             $idUser = $this->_table->getIdUser($datasTmp[0]->mailTmp);
             $_SESSION['idUser'] = $idUser->idUsers;
+            $_SESSION['mailUser'] = $mail;
 
             //delete on the table not active account
             $this->_tableTmp->deleteByIdTmp($datasTmp[0]->idTmp);

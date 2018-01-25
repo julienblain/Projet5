@@ -177,8 +177,10 @@ class DreamsController extends AppController
     }
 
     public function created() {
-        $this->_index->indexing();
-       //$this->_index->mapping();
+      //$this->_index->dede();
+        //$this->_index->mapping();
+      $this->_index->indexing();
+
         $this->homeLogged();
     }
 
@@ -189,9 +191,9 @@ class DreamsController extends AppController
         }
         else {
 
-            $searchedDreams = $this->_index->searchWord();
+           $searchedDreams = $this->_index->searchWord();
             print_r($searchedDreams);
-            //$this->_index->dede();
+
         }
 
     }

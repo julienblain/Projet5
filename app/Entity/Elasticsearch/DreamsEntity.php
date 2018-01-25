@@ -3,6 +3,7 @@ namespace App\Entity\Elasticsearch;
 
 use App\Controller\AppController;
 use Core\Database\Elasticsearch;
+use function PHPSTORM_META\type;
 
 class DreamsEntity extends AppController
 {
@@ -188,9 +189,7 @@ class DreamsEntity extends AppController
                                 'query' => $searchedWord,
                                 'type' => 'most_fields',
                                 'analyzer' => 'french_heavy',
-                                'fields' => ['content', 'elaboration', 'previousEvents'],
-
-
+                                'fields' => ['content', 'elaboration', 'previousEvents']
                             ]
                         ],
 
@@ -198,10 +197,6 @@ class DreamsEntity extends AppController
                             'term' => [
                                'idUser' => $_SESSION['idUser']
                             ]                        ]
-
-
-
-
                     ]
                 ]
             ]
@@ -232,17 +227,39 @@ class DreamsEntity extends AppController
                                 ],
                                 'french_stemmer' => [
                                     'type' => 'stemmer',
-                                    'language' => 'light_french'
+                                    'language' => 'french'
+                                ],
+                                'snowball' => [ //tronque les mots
+                                    'type'=> 'snowball',
+                                    'language' => 'French'
+                                ],
+                                'french_stop' => [ //supprime les mots vides
+                                    'type' => 'stop',
+                                    'stopwords' => '_french_'
+                                ],
+                                'worddelimiter' => [ //separe les mots
+                                    'type' => 'word_delimiter'
+                                ],
+                                'custom_ngram' => [
+                                    'type' => 'ngram',
+                                    'min_gram' => 4, //a voir si on modifie avec du vrais text et taille memoire
+                                    'max_gram' => 5
                                 ]
                             ],
                             'analyzer' => [
                                 'french_heavy' => [
-                                    'tokenizer' => 'icu_tokenizer',
+                                    'tokenizer' => 'icu_tokenizer', // plugin elastic load
                                     'filter' => [
                                         'french_elision',
-                                        'icu_folding',
+                                        'french_stop',
+
                                         'lowercase',
-                                        'french_stemmer'
+                                        //'snowball',
+                                        'french_stemmer',
+                                        'icu_folding', //plugin elastic load supprime les caracteres speciaux
+                                        'worddelimiter',
+                                        'custom_ngram'
+
                                     ]
                                 ]
                             ]
