@@ -13,11 +13,11 @@ final class Router {
         $this->setPage();
         $this->setAction();
         $this->setController();
-        echo 'page <br>';
-        var_dump($this->_page) ;
-        echo $this->_action . ' action<br>';
-        echo $this->_controller . ' controller<br>';
-        var_dump($_SESSION);
+      //  echo 'page <br>';
+       // var_dump($this->_page) ;
+        //echo $this->_action . ' action<br>';
+        //echo $this->_controller . ' controller<br>';
+        //var_dump($_SESSION);
        $controller = $this->getController();
        $controller = new $controller;
        $action = $this->getAction();
@@ -88,6 +88,9 @@ final class Router {
                             $this->_routingValidLogged();
                             break;
                         case "dreams.delete":
+                            $this->_routingValidLogged();
+                            break;
+                        case "dreams.search":
                             $this->_routingValidLogged();
                             break;
 

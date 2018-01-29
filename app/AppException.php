@@ -13,6 +13,10 @@ class AppException extends \Exception
         echo "<p class='notification'>La page demandée n'existe pas. </p>";
     }
 
+    public function search() {
+
+    }
+
 
 
 }

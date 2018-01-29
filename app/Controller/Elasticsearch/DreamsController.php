@@ -9,6 +9,7 @@ namespace App\Controller\Elasticsearch;
 
 use App\Controller\AppController;
 use App\Entity\Elasticsearch\DreamsEntity;
+use function PHPSTORM_META\type;
 
 class DreamsController extends AppController
 {
@@ -131,15 +132,17 @@ class DreamsController extends AppController
     }
 
     public function read() {
-        $this->_checkUser();
-        var_dump($_POST);
+
+       $this->_checkUser();
+
         $dreamDatas = $this->_index->searchByIdDream();
         $dream = $this->_dateTimeFr($dreamDatas);
         $dream = $this->_previousAndNextDreams($dream);
 
         if(!empty($_POST['search-txt'])){
+
             $this->search();
-            echo 'ici';
+
         }
         else {
             $this->render('dreams.readDream', compact('dream'));
@@ -185,15 +188,18 @@ class DreamsController extends AppController
     }
 
 
+    //call by ajaxSearch.php
     public function search() {
-        if((isset($_POST['search-phrase'])) && (htmlspecialchars($_POST['search-phrase']) === 'checked')) {
-            $searchedDreams = $this->_index->searchPhrase();
+
+        if(!empty($_POST['search-txt'])) {
+
+           $datas =  $this->_index->searchWord();
+            $datas = json_encode($datas);// js object build
+            echo $datas;
         }
         else {
-
-           $searchedDreams = $this->_index->searchWord();
-            print_r($searchedDreams);
-
+           include_once ($this->viewPath . 'notification/error/notWordSearch.php');
+           return false;
         }
 
     }

@@ -179,16 +179,17 @@ class DreamsEntity extends AppController
        $searchedWord = htmlspecialchars($_POST['search-txt']);
 
         $params = [
+            'size' => 30,
             'index' => $this->_index,
             'type' => $this->_type,
             'body' => [
                 'query' => [
                     'bool' => [
-                        'must' => [ //TODO a test must suivant resulta
+                        'must' => [
                             'multi_match' => [
                                 'query' => $searchedWord,
                                 'type' => 'most_fields',
-                                'analyzer' => 'french_heavy',
+                                'analyzer' => 'french_heavy', // defined in mapping
                                 'fields' => ['content', 'elaboration', 'previousEvents']
                             ]
                         ],
@@ -204,11 +205,6 @@ class DreamsEntity extends AppController
         return $this->_db->search($params);
     }
 
-
-
-    public function searchPhrase() {
-
-    }
 
     public function mapping() {
 
@@ -248,15 +244,14 @@ class DreamsEntity extends AppController
                             ],
                             'analyzer' => [
                                 'french_heavy' => [
-                                    'tokenizer' => 'icu_tokenizer', // plugin elastic load
+                                    'tokenizer' => 'icu_tokenizer', // loaded plugin
                                     'filter' => [
                                         'french_elision',
                                         'french_stop',
 
                                         'lowercase',
-                                        //'snowball',
                                         'french_stemmer',
-                                        'icu_folding', //plugin elastic load supprime les caracteres speciaux
+                                        'icu_folding', // loaded plugin which deletes the special characters
                                         'worddelimiter',
                                         'custom_ngram'
 

@@ -1,17 +1,18 @@
 <section id="search">
     <?php 
-    $p = $_GET['p'];
+    //$p = $_GET['p'];
 
     ?>
-    <form action="?p=<?= $p?>.search" id="truc" method="post">
+    <form id="truc" action="" method="post">
 
         <label for="search-txt">Rechercher :
-            <input type="text" name="search-txt" id="search-txt">
+            <input type="text" name="search-txt" id="search-txt" required>
         </label>
 
-        <label for="search-phrase">Expression exacte :
-            <input type="checkbox" name="search-phrase" id="search-phrase" value="checked">
-        </label>
-        <button type="submit" id="search-btnSubmit">Valider</button>
+        <button type="button" id="search-btnSubmit">Valider</button>
     </form>
 </section>
+
+<aside id = 'partResultsSearch'>
+    <!-- results by js function -->
+</aside>
