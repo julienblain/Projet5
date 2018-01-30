@@ -15,7 +15,7 @@
                  <input type="date" name="dreamDate" id="dreamDate" value="<?php echo date('Y-m-d'); ?>" >
             </label>
             <label for="dreamHour"> Heure :
-                <input type="time" id="dreamHour" name="dreamHour" value="<?php echo date('H:m'); ?>">
+                <input type="time" id="dreamHour" name="dreamHour" value="<?php echo date('H:i');?>">
             </label>
         </fieldset>
 

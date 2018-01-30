@@ -1,3 +1,7 @@
+<header>
+
+</header>
+
 <section id="home">
     <div id="home-login">
         <h2>Déjà inscrit :</h2>

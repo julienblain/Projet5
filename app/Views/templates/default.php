@@ -2,14 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Journal de rêve</title>
+    <title>BLA-BLA</title>
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
 </head>
 <body>
 
-<div><?= $content ?></div>
+<?= $content ?>
 
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"

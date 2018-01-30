@@ -1,4 +1,4 @@
 config/*
 vendor/*
-
+public/img/*
 .idea/*
