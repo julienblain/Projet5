@@ -1,0 +1,237 @@
+/*////////// GENERAL  ////////////*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, input, textarea {
+    font-size: 27px;
+}
+
+body {
+    margin: 2%;
+    font-family: 'Francois One', sans-serif;
+    background-color: grey;
+    color: white;
+}
+
+section {
+    margin: 2% 0;
+}
+
+fieldset { /* delete the browser design */
+    margin: 2% 0;
+    border-width: 0;
+    border-style: none;
+    border-color: white;
+    border-image: none;
+
+}
+
+textarea { /* delete the browser design */
+    border-color: white;
+    border-width: 0;
+    border-style: none;
+    border-image : none;
+
+    /* custome */
+    color: black;
+
+    padding: 5px;
+
+    font-size: 20px;
+}
+
+input {/* delete the browser design */
+    border: none;
+    padding: 4px;
+    text-align: center;
+}
+
+.normalizeDesign {
+    font-family: 'Francois One', sans-serif;
+    color: white;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #4b4b4b;
+}
+
+/*//////////  HEADER  ////////////*/
+header {
+    display: flex;
+    margin-bottom: 3%;
+}
+
+#logo {
+
+    text-align: center;
+    background-color: #ff3838;
+}
+
+#logo-img {
+    width: 26%;
+    height: 100%;
+}
+
+nav {
+    width: 50%;
+    display: flex;
+   align-items: center;
+    justify-content: space-between;
+}
+
+nav a {
+
+    height: 100%;
+    text-align: center;
+    width: 25%;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+header .fa {
+    color : white;
+}
+
+#nav-home {
+    border: 2px solid #ffaf40;
+    background-color: #ffaf40;
+}
+
+#nav-book {
+    border: 2px solid #c56cf0 ;
+    background-color: #c56cf0;
+}
+
+#nav-profil {
+    border: 2px solid #18dcff ;
+    background-color: #18dcff;
+}
+
+#nav-logout {
+    border: 2px solid #4b4b4b ;
+    background-color: #4b4b4b;
+}
+
+
+/*////////////  HOMELOGGED  ///////////*/
+#dream {
+    background-color: #7158e2;
+    color: white;
+}
+
+#dream label {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 2;
+}
+
+#dream p, #dreamWrite {
+    display: inline-block;
+}
+
+#dreamWrite {
+    margin: 10px;
+    height: 50vh;
+    width: 75%;
+}
+
+#dream p {
+    text-align: center;
+    width: 25%;
+    height: 40vh;
+    line-height: 40vh;
+}
+
+#dream span {
+   position: absolute;
+    padding-top: 5vh;
+    font-size: 60px;
+    left: 18%;
+    color: #fff200 ;
+}
+
+#dateTime label {
+    display: inline-block;
+    color: white;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+}
+
+#dateTime-dreamDate {
+    background-color: #17c0eb ;
+    width: 58%;
+    margin-right: 1%;
+}
+
+#dateTime-dreamDate .fa-calendar::before {
+    position: relative;
+    font-size: 40px;
+    top: 4px;
+    right: 50px;
+}
+
+
+#dateTime-dreamHour {
+    background-color: #ffb8b8;
+    width: 40%;
+}
+
+#dateTime-dreamHour .fa-clock-o::before {
+    position: relative;
+    font-size: 45px;
+    top: 6px;
+    right: 50px;
+}
+
+#moreElements {
+    display: flex;
+    margin-top: 2%;
+}
+
+#moreElements fieldset {
+    width: 50%;
+    margin-top: 0;
+}
+#moreElements p {
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+}
+
+#moreElements textarea {
+    border: 2px solid grey;
+    display: none;
+}
+
+#elaboration p {
+   background-color: #c56cf0 ;
+    margin-right: 2%;
+}
+
+#previousEvents p {
+    background-color: #ffaf40;
+    margin-left: 2%;
+}
+
+#homeLogged #submitDream {
+    width: 14%;
+    margin-left: 43%;
+}
+
+
+
+
+
+

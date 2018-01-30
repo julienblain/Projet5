@@ -1,40 +1,47 @@
 <?php include_once ($this->viewPath. 'dreams/nav.php');?>
 <section id="homeLogged">
     <form action="?p=dreams.created" id="dreamForm" method="post">
-        <fieldset id="dream">
-            <legend>Rêve</legend>
-            <label for="dream">
-                <textarea name="dream" id="dreamWrite" cols="30" rows="10" required placeholder="Requis"></textarea> <br> <!--verifier si le required fonctionne sur safari -->
-            </label>
 
+        <fieldset id="dream">
+            <label  for="dream">
+                <p>Votre rêve
+                    <span>&#x293B;</span></p>
+                <textarea name="dream" id="dreamWrite" required placeholder="Requis"></textarea> <br> <!--verifier si le required fonctionne sur safari -->
+            </label>
+        </fieldset>
 
             <?php
             //TODO penser que la date risque de bugger sur safari et ie
             ?>
-            <label for="dreamDate"> Date :
+        <fieldset id="dateTime">
+            <label for="dreamDate" id="dateTime-dreamDate">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
                  <input type="date" name="dreamDate" id="dreamDate" value="<?php echo date('Y-m-d'); ?>" >
             </label>
-            <label for="dreamHour"> Heure :
+            <label for="dreamHour" id="dateTime-dreamHour">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <input type="time" id="dreamHour" name="dreamHour" value="<?php echo date('H:i');?>">
             </label>
         </fieldset>
 
 
 
-        <fieldset id="elaboration">
-            <legend>Élaboration</legend>
-            <label for="elaboration">
-                <textarea name="elaboration" id="elaborationTextarea" cols="30" rows="10"></textarea> <br>
-            </label>
-        </fieldset>
+        <div id="moreElements">
+            <fieldset id="elaboration">
+                <label for="elaboration">
+                    <p>Élaboration</p>
+                    <textarea name="elaboration" id="elaborationTextarea" cols="30" rows="10"></textarea> <br>
+                </label>
+            </fieldset>
 
-        <fieldset id="previousEvents">
-            <legend>Évènements précédents</legend>
-            <label for="previousEvents">
-                <textarea name="previousEvents" id="previousEventsWrite" cols="30" rows="10"></textarea> <br>
-            </label>
-        </fieldset>
+            <fieldset id="previousEvents">
 
-        <button id="submitDream" type="submit">Valider</button>
+                <label for="previousEvents">
+                    <p>Évènements précédents</p>
+                    <textarea name="previousEvents" id="previousEventsWrite" cols="30" rows="10"></textarea> <br>
+                </label>
+            </fieldset>
+        </div>
+        <input id="submitDream" class="normalizeDesign btn" type="submit" value="Valider">
     </form>
 </section>
