@@ -13,8 +13,9 @@ body, input, textarea {
 body {
     margin: 2%;
     font-family: 'Francois One', sans-serif;
-    background-color: grey;
+
     color: white;
+    background-color: grey;
 }
 
 section {
@@ -200,27 +201,32 @@ header .fa {
     margin-top: 2%;
 }
 
-#moreElements fieldset {
+#elaborationTxt, #previousEventsTxt   {
+    display: inline-block;
     width: 50%;
     margin-top: 0;
-}
-#moreElements p {
+
     text-align: center;
     height: 70px;
     line-height: 70px;
 }
+#moreElements p {
 
-#moreElements textarea {
-    border: 2px solid grey;
-    display: none;
 }
 
-#elaboration p {
+#elaboration textarea, #previousEvents textarea {
+    border: 2px solid grey;
+    display: none;
+    width: 100%;
+
+}
+
+#elaborationTxt {
    background-color: #c56cf0 ;
     margin-right: 2%;
 }
 
-#previousEvents p {
+#previousEventsTxt {
     background-color: #ffaf40;
     margin-left: 2%;
 }

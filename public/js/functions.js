@@ -80,6 +80,29 @@ $(document).ready(function() {
         }
     }
 
+    // toggle homeLogged
+    if(document.getElementById('moreElements')) {
+
+
+
+        $("#elaborationTxt").click(function() {
+            if($("#previousEventsWrite").css('display') !== 'none') {
+               // $("#previousEventsTxt").click();
+                $("#previousEventsWrite").toggle(200);
+            }
+            $("#elaborationTextarea").delay(200).toggle(200);
+        });
+
+        $("#previousEventsTxt").click(function() {
+
+            if($("#elaborationTextarea").css('display') !== 'none') {
+               // $("#elaborationTxt").click();
+                $("#elaborationTextarea").toggle(200);
+            }
+            $("#previousEventsWrite").delay(200).toggle(200);
+        });
+    }
+
 });
 
 // convert date in french

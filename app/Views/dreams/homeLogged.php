@@ -27,21 +27,24 @@
 
 
         <div id="moreElements">
+            <p id="elaborationTxt">Élaboration</p>
+            <p id="previousEventsTxt">Évènements précédents</p>
+        </div>
             <fieldset id="elaboration">
                 <label for="elaboration">
-                    <p>Élaboration</p>
-                    <textarea name="elaboration" id="elaborationTextarea" cols="30" rows="10"></textarea> <br>
+
+                    <textarea name="elaboration" id="elaborationTextarea"></textarea>
                 </label>
             </fieldset>
 
             <fieldset id="previousEvents">
 
                 <label for="previousEvents">
-                    <p>Évènements précédents</p>
-                    <textarea name="previousEvents" id="previousEventsWrite" cols="30" rows="10"></textarea> <br>
+
+                    <textarea name="previousEvents" id="previousEventsWrite"></textarea>
                 </label>
             </fieldset>
-        </div>
+
         <input id="submitDream" class="normalizeDesign btn" type="submit" value="Valider">
     </form>
 </section>
