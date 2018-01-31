@@ -1,3 +1,5 @@
+/* developed in landscape mobil first*/
+
 /*////////// GENERAL  ////////////*/
 
 * {
@@ -20,6 +22,26 @@ body {
 
 section {
     margin: 2% 0;
+}
+
+h2 {
+    font-size: 1.3em;
+    padding: 15px;
+    background-color: #7158e2;
+
+}
+
+h3 {
+    font-size: 1.2em;
+    padding: 15px;
+    background-color: #17c0eb;
+
+}
+
+h4 {
+    font-size: 1.1em;
+    padding: 15px;
+    background-color: #67e6dc;
 }
 
 fieldset { /* delete the browser design */
@@ -59,7 +81,12 @@ input {/* delete the browser design */
 .btn {
     padding: 10px;
     background-color: #4b4b4b;
+    border-radius: 4px;
+    border : 3px solid #4b4b4b;
+    border-bottom: 3px solid #282828;
 }
+
+
 
 /*//////////  HEADER  ////////////*/
 header {
@@ -102,8 +129,8 @@ header .fa {
 }
 
 #nav-home {
-    border: 2px solid #ffaf40;
-    background-color: #ffaf40;
+    border: 2px solid #ff9f1a;
+    background-color: #ff9f1a;
 }
 
 #nav-book {
@@ -112,13 +139,13 @@ header .fa {
 }
 
 #nav-profil {
-    border: 2px solid #18dcff ;
-    background-color: #18dcff;
+    border: 2px solid #17c0eb ;
+    background-color: #17c0eb;
 }
 
 #nav-logout {
-    border: 2px solid #4b4b4b ;
-    background-color: #4b4b4b;
+    border: 2px solid #3d3d3d ;
+    background-color: #3d3d3d;
 }
 
 
@@ -235,6 +262,99 @@ header .fa {
     width: 14%;
     margin-left: 43%;
 }
+
+
+/*///////////  INDEXDREAMS  ///////////*/
+#indexDreams-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list li {
+    display: flex;
+    padding: 15px;
+    flex-grow: 0.5;
+}
+
+#indexDreams-list li {
+    flex-direction: column;
+}
+
+#indexDreams-list h2 p, #indexDreams-list h3 p, #indexDreams-list h4 p, #indexDreams-list li {
+    margin: auto;
+}
+
+#indexDreams-list a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+#indexDreams-list p {
+    text-align: center;
+}
+
+#indexDreams-list li[class$='0'], #indexDreams-list li[class$='6'] {
+    background-color: #ff4d4d;
+}
+
+#indexDreams-list li[class$='1'], #indexDreams-list li[class$='7'] {
+    background-color: #ffaf40;
+}
+
+#indexDreams-list li[class$='2'], #indexDreams-list li[class$='8'] {
+    background-color: #c56cf0;
+}
+
+#indexDreams-list li[class$='3'], #indexDreams-list li[class$='9'] {
+    background-color: #4b4b4b;
+}
+
+#indexDreams-list li[class$='4']{
+    background-color: #ffb8b8;
+}
+
+#indexDreams-list li[class$='5']{
+    background-color: #3ae374 ;
+}
+
+#indexDreams-list a:visited { /* be careful to order*/
+    color: #E6E6FA;
+}
+
+
+/*////////////  PROFIL  ////////////*/
+
+
+/*
+pour odri
+#indexDreams-list li:hover {
+    background-color : white;
+    border : 2px solid  #7158e2;
+}
+
+#indexDreams-list a:hover {
+    color :  #7158e2;
+}
+
+
+
+
+pareil menu
+.btn:hover {
+    color : #4b4b4b
+     background-color: white;
+    border : 3px solid #4b4b4b;
+}
+
+
+*/
+
+
+
 
 
 

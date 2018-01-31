@@ -73,6 +73,62 @@ class DreamsController extends AppController
         return $datas;
     }
 
+
+
+    private function _dayHourFr($dateTime) {
+        $listMonth = array(
+            '01' => 'janvier',
+            '02' => 'février',
+            '03' => 'mars',
+            '04' => 'avril',
+            '05' => 'mai',
+            '06' => 'juin',
+            '07' => 'juillet',
+            '08' => 'août',
+            '09' => 'septembre',
+            '10' => 'octobre',
+            '11' => 'novembre',
+            '12' => 'décembre'
+        );
+
+        if(gettype($dateTime) == 'object' ) {
+            $datas[0] = (object) $dateTime->_source;
+            $datas[0]->id = $dateTime->_id;
+        }
+        else {
+            $datas = $dateTime;
+        }
+
+        for($i = 0 ; $i < count($datas); $i++) {
+
+            $date = new \DateTime($datas[$i]->date);
+            $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
+
+            $datas[$i]->yearFr = $date->format('Y');
+            $month = $date->format('m');
+            $datas[$i]->monthFr = $listMonth[$month];
+
+            $day = $dateFr->format($date);
+            $deleteYear = substr($day, -4);
+            $day = str_replace((' ' . $deleteYear), '', $day);
+            $deleteMonth =$datas[$i]->monthFr;
+            $datas[$i]->dayFr = str_replace((' '. $deleteMonth), '', $day);
+
+            $time = $datas[$i]->hour;
+            $hour = $time[0] . $time[1] .'h';
+            $min = $time[3] . $time[4] . 'm';
+            $time = $hour . $min;
+
+            $datas[$i]->hour = $time;
+        }
+
+        return $datas;
+
+    }
+
+
+
+
     // insert in $_Session the dream list for this user
     private function _dreamListSession($dreamList) {
 
@@ -118,7 +174,7 @@ class DreamsController extends AppController
     public function indexDreams() {
 
         $dreams = $this->_index->searchList();
-        $dreams = $this->_dateTimeFr($dreams);
+        $dreams = $this->_dayHourFr($dreams);
         $this->_dreamListSession($dreams);
 
         if(empty($dreams)) {
