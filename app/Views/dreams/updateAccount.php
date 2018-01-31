@@ -12,7 +12,7 @@
             Mot de passe :
             <input type="password" id="updateAccountMail-password" name="password" required>
         </label>
-        <button id="updateAccountMail" type="submit">Changer</button>
+        <button id="updateAccountMail" class="btn" type="submit"><i class="fa fa-check"></i></button>
     </form>
 
     <form action="?p=user.updatedAccountPassword" method="post">
@@ -25,7 +25,7 @@
             Nouveau mot de passe :
             <input type="password" id="updateAccountNewPassword" name="newPassword" required>
         </label>
-        <button id="updateAccountPassword" type="submit">Changer</button>
+        <button id="updateAccountPassword" class="btn" type="submit"><i class="fa fa-check"></i></button>
     </form>
 
     <form action="?p=user.deletedAccount" method="post">
@@ -35,7 +35,7 @@
             <input type="password" id="updateAccountDeletedAccount" name="password">
         </label>
 
-        <button type="submit" >Supprimer le compte</button>
+        <button type="submit" id="deleteAccount" class="btn btnDelete"><i class="fa fa-trash"></i></button>
     </form>
 
 

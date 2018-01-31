@@ -103,6 +103,18 @@ $(document).ready(function() {
         });
     }
 
+    // delete Account
+    if(document.getElementById('deleteAccount')) {
+        $('#deleteAccount').click(function () {
+            if(confirm('Êtes-vous sûr·e de vouloir votre compte ?')) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
+    }
+
 });
 
 // convert date in french
