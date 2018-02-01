@@ -6,7 +6,6 @@
     </div>
     <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">
         <fieldset id="updateDream-dream">
-            <legend>Rêve</legend>
             <label for="dream">
                 <textarea name="dream" id="dreamUpdated" class="ru-dream" required ><?= $dream[0]->content ?></textarea> <!--verifier si le required fonctionne sur safari -->
             </label>

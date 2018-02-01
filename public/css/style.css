@@ -28,6 +28,10 @@ a {
     color: #ffff;
 }
 
+ol {
+    list-style: none;
+}
+
 section {
     margin: 4% 0;
 }
@@ -102,6 +106,8 @@ input {/* delete the browser design */
     border : 3px solid #ff3838;
     border-bottom: 3px solid #5b1111;
     line-height: 0;
+
+    order: 3;
 }
 
 .btnRead, .btnUpdate {
@@ -114,6 +120,35 @@ input {/* delete the browser design */
     background-color: #4b4b4b;
     border: 3px solid #4b4b4b;
     border-bottom: 3px solid #3d3d3d;
+}
+
+#btnAction {
+    display: flex;
+    margin : 4% 0;
+    justify-content: space-between;
+}
+
+#next {
+    order: 4;
+}
+
+#previous {
+    order: 1;
+}
+
+.btnRead {
+    order: 2;
+}
+
+.btnUpdate {
+    order: 2;
+}
+
+.btnSearch {
+    background-color: #7158e2;
+    font-size: 1.2em;
+    border: 3px solid #7158e2;
+    border-bottom: #3f337a 3px solid;
 }
 
 .fa::before {
@@ -172,28 +207,6 @@ input {/* delete the browser design */
 }
 
 
-
-#btnAction {
-    display: flex;
-    margin-top: 4%;
-    justify-content: space-between;
-}
-
-#next {
-    order: 4;
-}
-
-#previous {
-    order: 1;
-}
-
-.btnRead {
-    order: 2;
-}
-
-.btnDelete {
-    order: 3;
-}
 /*//////////  HEADER  ////////////*/
 header {
     display: flex;
@@ -354,31 +367,33 @@ header .fa {
     text-align: center;
 }
 
-#indexDreams-list li[class$='0'], #indexDreams-list li[class$='6'] {
+
+/*  for index dreams and results search */
+#indexDreams-list li[class$='0'], #indexDreams-list li[class$='6'], #resultsSearch li[id$='0'], #resultsSearch li[id$='6'] {
     background-color: #ff4d4d;
 }
 
-#indexDreams-list li[class$='1'], #indexDreams-list li[class$='7'] {
+#indexDreams-list li[class$='1'], #indexDreams-list li[class$='7'], #resultsSearch li[id$='1'], #resultsSearch li[id$='7'] {
     background-color: #ffaf40;
 }
 
-#indexDreams-list li[class$='2'], #indexDreams-list li[class$='8'] {
+#indexDreams-list li[class$='2'], #indexDreams-list li[class$='8'], #resultsSearch li[id$='2'], #resultsSearch li[id$='8'] {
     background-color: #c56cf0;
 }
 
-#indexDreams-list li[class$='3'], #indexDreams-list li[class$='9'] {
+#indexDreams-list li[class$='3'], #indexDreams-list li[class$='9'], #resultsSearch li[id$='3'], #resultsSearch li[id$='9'] {
     background-color: #4b4b4b;
 }
 
-#indexDreams-list li[class$='4']{
+#indexDreams-list li[class$='4'], #resultsSearch li[id$='4'] {
     background-color: #ffb8b8;
 }
 
-#indexDreams-list li[class$='5']{
+#indexDreams-list li[class$='5'], #resultsSearch li[id$='5'] {
     background-color: #3ae374 ;
 }
 
-#indexDreams-list a:visited { /* be careful to order*/
+#indexDreams-list a:visited, #resultsSearch a:visited { /* be careful to order*/
     color: #E6E6FA;
 }
 
@@ -433,7 +448,6 @@ header .fa {
 }
 
 #updateDream-updated {
-    margin-top: 2%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -443,12 +457,112 @@ header .fa {
     height: 250px;
 }
 
-#updateDream-dream legend {
-    background-color: #ff4d4d;
+
+/*////////////  READDREAM  /////////////*/
+#readDream-date {
+    font-size: 1.2em;
+    padding: 15px;
+    background-color: #17c0eb;
+}
+
+#readTitlteBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#readDream-dream {
+    padding: 15px;
+    background-color: #7158e2;
+}
+
+#readDream-dream .ru-dream, .ru-elaboration, .ru-previousEvents {
+    height: auto;
+    width: 100%;
+    font-size: 0.9em;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    /*-o-hyphens: auto;**/
+    hyphens: auto;
+    text-align: justify;
+}
+
+
+.read-aside {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+}
+
+#read-aside-elaboration, #readDreamElaboration div  {
+    background-color: #c56cf0;
+}
+
+#read-aside-elaboration, #read-aside-events {
+    align-self: flex-start;
+    padding: 15px;
+}
+
+#readDreamElaboration div {
     padding: 15px;
 }
 
 
+#read-aside-events, #readDreamPreviousEvents div {
+    background-color: #ffaf40;
+    padding: 15px;
+}
+
+
+/*/////////////  SEARCH  //////////*/
+#searchForm {
+    display: flex;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+#search {
+    margin: 4% 0 0 0;
+}
+#searchForm input {
+    margin-left: 15px;
+}
+
+#searchForm label {
+    padding: 2%;
+    background-color: #4b4b4b;
+    margin-right: 30px;
+}
+
+#partResultsSearch {
+    display: flex;
+    flex-direction: column;
+}
+
+#partResultsSearch h3 {
+    align-self: flex-start;
+}
+
+#resultsSearch {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#resultsSearch li {
+    padding: 15px;
+    flex-grow: 1;
+    font-size: 0.9em;
+    display: flex;
+}
+
+#resultsSearch a {
+    margin: auto;
+}
 
 
 
