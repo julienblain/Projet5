@@ -115,6 +115,18 @@ $(document).ready(function() {
         })
     }
 
+    //delete Dream
+    if(document.getElementById('updateDream-delete')) {
+        $('#updateDream-delete').click(function () {
+            if(confirm('Êtes-vous sûr·e de vouloir supprimer ce rêve ?')) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
+    }
+
 });
 
 // convert date in french

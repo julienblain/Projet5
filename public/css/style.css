@@ -8,11 +8,12 @@
     padding: 0;
 }
 
-body, input, textarea {
-    font-size: 27px;
+body {
+
 }
 
 body {
+    font-size: 27px;
     margin: 2%;
     font-family: 'Francois One', sans-serif;
 
@@ -20,6 +21,11 @@ body {
 
     background-color: #2f0e91;
 
+}
+
+a {
+    text-decoration: none;
+    color: #ffff;
 }
 
 section {
@@ -47,7 +53,7 @@ h4 {
 }
 
 fieldset { /* delete the browser design */
-    margin: 2% 0;
+    margin: 0;
     border-width: 0;
     border-style: none;
     border-color: white;
@@ -66,12 +72,13 @@ textarea { /* delete the browser design */
 
     padding: 5px;
 
-    font-size: 20px;
+    font-size: 12px;
 }
 
 input {/* delete the browser design */
     border: none;
     padding: 4px;
+    font-size: 27px;
 
 }
 
@@ -87,6 +94,7 @@ input {/* delete the browser design */
     height: 70px;
     width: 90px;
     line-height: 0;
+    text-decoration: none;
 }
 
 .btnDelete {
@@ -96,8 +104,96 @@ input {/* delete the browser design */
     line-height: 0;
 }
 
+.btnRead, .btnUpdate {
+    background-color: #ff9f1a;
+    border: 3px solid #ff9f1a;
+    border-bottom: 3px solid #965b0f;
+}
+
+.btnPreviousNext {
+    background-color: #4b4b4b;
+    border: 3px solid #4b4b4b;
+    border-bottom: 3px solid #3d3d3d;
+}
+
+.fa::before {
+    color: white;
+}
+
+.fa-calendar::before {
+    position: relative;
+    font-size: 40px;
+    top: 4px;
+    right: 50px;
+}
+
+.fa-clock-o::before {
+    position: relative;
+    font-size: 45px;
+    top: 6px;
+    right: 50px;
+}
+
+#moreElements {
+    display: flex;
+    margin-top: 2%;
+    width: 100%;
+}
+
+#elaborationTxt, #previousEventsTxt   {
+    display: inline-block;
+    width: 50%;
+    margin-top: 0;
+
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+}
+
+#elaboration textarea, #previousEvents textarea {
+    display: none;
+    width: 96vw;
+    height: 200px;
+}
+
+#elaborationTxt {
+    background-color: #c56cf0 ;
+
+}
+
+#previousEventsTxt {
+    background-color: #ffaf40;
+    margin-left: 2%;
+}
+
+#submitDream {
+    margin-top: 3%;
+    margin-left: 45%;
+}
 
 
+
+#btnAction {
+    display: flex;
+    margin-top: 4%;
+    justify-content: space-between;
+}
+
+#next {
+    order: 4;
+}
+
+#previous {
+    order: 1;
+}
+
+.btnRead {
+    order: 2;
+}
+
+.btnDelete {
+    order: 3;
+}
 /*//////////  HEADER  ////////////*/
 header {
     display: flex;
@@ -158,6 +254,31 @@ header .fa {
     background-color: #3d3d3d;
 }
 
+#dateTime {
+    margin-top: 2%;
+    width: 100%;
+}
+
+#dateTime label {
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+}
+
+#dateTime-dreamDate {
+    background-color: #17c0eb ;
+    width: 58%;
+    margin-right: 1%;
+}
+
+
+
+#dateTime-dreamHour {
+    background-color: #ffb8b8;
+    width: 40%;
+}
+
 
 /*////////////  HOMELOGGED  ///////////*/
 #dream {
@@ -197,80 +318,6 @@ header .fa {
     font-size: 60px;
     left: 18%;
     color: #fff200 ;
-}
-
-#dateTime label {
-    display: inline-block;
-    color: white;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-}
-
-#dateTime-dreamDate {
-    background-color: #17c0eb ;
-    width: 58%;
-    margin-right: 1%;
-}
-
-#dateTime-dreamDate .fa-calendar::before {
-    position: relative;
-    font-size: 40px;
-    top: 4px;
-    right: 50px;
-}
-
-
-#dateTime-dreamHour {
-    background-color: #ffb8b8;
-    width: 40%;
-}
-
-#dateTime-dreamHour .fa-clock-o::before {
-    position: relative;
-    font-size: 45px;
-    top: 6px;
-    right: 50px;
-}
-
-#moreElements {
-    display: flex;
-    margin-top: 2%;
-}
-
-#elaborationTxt, #previousEventsTxt   {
-    display: inline-block;
-    width: 50%;
-    margin-top: 0;
-
-    text-align: center;
-    height: 70px;
-    line-height: 70px;
-}
-#moreElements p {
-
-}
-
-#elaboration textarea, #previousEvents textarea {
-    border: 2px solid grey;
-    display: none;
-    width: 100%;
-    height: 200px;
-}
-
-#elaborationTxt {
-   background-color: #c56cf0 ;
-
-}
-
-#previousEventsTxt {
-    background-color: #ffaf40;
-    margin-left: 2%;
-}
-
-#homeLogged #submitDream {
-    width: 14%;
-    margin-left: 43%;
 }
 
 
@@ -374,13 +421,32 @@ header .fa {
     border-top: 2px solid #ff9f1a;
 }
 
+#updateAccount .btn {
+    align-self: flex-end;
+}
 
 
+/*////////////  UPDATEDREAM  ////////////*/
+#updateDream-title {
+    display: flex;
+    justify-content: space-between;
+}
 
+#updateDream-updated {
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.ru-dream {
+    width: 96vw;
+    height: 250px;
+}
 
-
-
+#updateDream-dream legend {
+    background-color: #ff4d4d;
+    padding: 15px;
+}
 
 
 

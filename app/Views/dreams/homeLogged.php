@@ -44,6 +44,6 @@
                     <textarea name="previousEvents" id="previousEventsWrite"></textarea>
                 </label>
             </fieldset>
-        <button id="submitDream" class="normalizeDesign btn" type="submit"><i class="fa fa-check"></i></button>
+        <button id="submitDream" class="btn" type="submit"><i class="fa fa-check"></i></button>
     </form>
 </section>

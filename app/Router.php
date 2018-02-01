@@ -84,6 +84,9 @@ final class Router {
                         case "dreams.read":
                             $this->_routingValidLogged();
                             break;
+                        case "dreams.update":
+                            $this->_routingValidLogged();
+                            break;
                         case "dreams.updated":
                             $this->_routingValidLogged();
                             break;

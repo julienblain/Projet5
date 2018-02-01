@@ -1,49 +1,66 @@
-<?php include_once ($this->viewPath. 'dreams/nav.php'); var_dump($dream);?>
+<?php include_once ($this->viewPath. 'dreams/nav.php'); ?>
 <section id="updateDream">
-
-    <h2 id="readDream-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h2>
-    <h3>Modifier</h3>
-    <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updated" method="post">
+    <div id="updateDream-title">
+        <h2 id="updateDream-title" class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h2>
+        <h3>Modifier</h3>
+    </div>
+    <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">
         <fieldset id="updateDream-dream">
             <legend>Rêve</legend>
             <label for="dream">
-                <textarea name="dream" id="dreamUpdated" required ><?= $dream[0]->content ?></textarea> <!--verifier si le required fonctionne sur safari -->
+                <textarea name="dream" id="dreamUpdated" class="ru-dream" required ><?= $dream[0]->content ?></textarea> <!--verifier si le required fonctionne sur safari -->
             </label>
-
+        </fieldset>
 
             <?php
             //TODO penser que la date risque de bugger sur safari et ie
             ?>
-            <label for="dreamDate"> Date :
-                <input type="date" name="dreamDate" id="dateUpdated" value="<?php echo $dream[0]->date; ?>" >
+        <fieldset id="dateTime">
+            <label for="dreamDate" id="dateTime-dreamDate">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <input type="date" name="dreamDate" id="dreamDate" value="<?php echo $dream[0]->date; ?>" >
             </label>
-            <label for="dreamHour"> Heure :
-                <input type="time" id="hourUpdated" name="dreamHour" value="<?php echo $dream[0]->hour; ?>">
+            <label for="dreamHour" id="dateTime-dreamHour">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <input type="time" id="dreamDate" name="dreamHour" value="<?php echo $dream[0]->hour; ?>">
             </label>
         </fieldset>
 
 
-        <fieldset id="updateDream-elaboration">
-            <legend>Élaboration</legend>
+        <div id="moreElements">
+            <p id="elaborationTxt">Élaboration</p>
+            <p id="previousEventsTxt">Évènements précédents</p>
+        </div>
+
+        <fieldset id="elaboration">
             <label for="elaboration">
-                <textarea name="elaboration" id="elaborationUpdated"><?= $dream[0]->elaboration ?></textarea>
+                <textarea name="elaboration" id="elaborationTextarea"><?= $dream[0]->elaboration ?></textarea>
             </label>
         </fieldset>
 
-        <fieldset id="updateDream-previousEvents">
-            <legend>Évènements précédents</legend>
+        <fieldset id="previousEvents">
             <label for="previousEvents">
-                <textarea name="previousEvents" id="previousEventsUpdated"><?= $dream[0]->previousEvents ?></textarea>
+                <textarea name="previousEvents" id="previousEventsWrite"><?= $dream[0]->previousEvents ?></textarea>
             </label>
         </fieldset>
 
-        <button id="updateDream-submit" type="submit">Modifier</button>
+        <button id="submitDream" class="btn" type="submit">
+            <i class="fa fa-check"></i>
+        </button>
     </form>
 
-
-    <button id="updateDream-read"><a href="?p=dreams.read.<?= $dream[0]->id ?>">Lire</a></button>
-    <button id="updateDream-delete"><a href="?p=dreams.delete.<?= $dream[0]->id ?>">Supprimer</a></button>
+    <div id="btnAction">
+        <button id="updateDream-read" class="btn btnRead">
+            <a href="?p=dreams.read.<?= $dream[0]->id ?>">
+                <i class="fa fa-file"></i>
+            </a>
+        </button>
+        <button id="updateDream-delete" class="btn btnDelete">
+            <a href="?p=dreams.delete.<?= $dream[0]->id ?>">
+                <i class="fa fa-trash"></i>
+            </a>
+        </button>
 
     <?php include_once ($this->viewPath. 'dreams/btnPreviousAndNextDream.php'); ?>
-
+    </div>
 </section>
