@@ -83,7 +83,7 @@ input {/* delete the browser design */
     border: none;
     padding: 4px;
     font-size: 27px;
-
+    background-color: white;
 }
 
 
@@ -159,14 +159,14 @@ input {/* delete the browser design */
     position: relative;
     font-size: 40px;
     top: 4px;
-    right: 50px;
+    right: 10px;
 }
 
 .fa-clock-o::before {
     position: relative;
     font-size: 45px;
     top: 6px;
-    right: 50px;
+    right: 10px;
 }
 
 #moreElements {

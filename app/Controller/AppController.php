@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use \App;
 use Core\Controller\Controller;
+use App\AppException;
 
 class AppController extends Controller
 {
@@ -42,23 +43,29 @@ class AppController extends Controller
     }*/
 
     protected function recaptcha() {
-        if($this->_keyPrivate === null) {
-            $config = require(ROOT . '/config/recaptcha.php');
-            $this->_keyPrivate = $config['keyPrivate'];
+        try {
+            if($this->_keyPrivate === null) {
+                $config = require(ROOT . '/config/recaptcha.php');
+                $this->_keyPrivate = $config['keyPrivate'];
+            }
+            $secret = $this->_keyPrivate;
+            $remoteip = $_SERVER['REMOTE_ADDR'];
+            $response = $_POST['g-recaptcha-response'];
+
+            $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+                . $secret . "&response=" . $response . "&remoteip" . $remoteip;
+
+            $decode = json_decode(file_get_contents($api_url), true);
+
+            if($decode['success'] == true) {
+                return true;
+            }
+            else {
+                throw new AppException();
+            }
         }
-        $secret = $this->_keyPrivate;
-        $remoteip = $_SERVER['REMOTE_ADDR'];
-        $response = $_POST['g-recaptcha-response'];
-
-        $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
-            . $secret . "&response=" . $response . "&remoteip" . $remoteip;
-
-        $decode = json_decode(file_get_contents($api_url), true);
-
-        if($decode['success'] == true) {
-           return true;
-        }
-        else {
+        catch(AppException $ex) {
+            $ex->recaptcha();
             $this->home();
             die();
         }

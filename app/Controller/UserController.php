@@ -293,9 +293,10 @@ class UserController extends AppController {
             $mail->send();
         }
         catch (Exception $e){
-            //not use AppException
-            include_once($this->viewPath. 'notification/error/mailNotSent.php');
-            //echo $mail->ErrorInfo;
+
+            $ex = new AppException();
+            $ex->phpMailer();
+
             $this->home();
         }
     }

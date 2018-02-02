@@ -2,6 +2,7 @@
 
 namespace Core\Database;
 
+use App\AppException;
 use Core\Config;
 
 class MysqlDatabase {
@@ -31,7 +32,10 @@ class MysqlDatabase {
                 );
             }
             catch (\PDOException $e){
-                die('Erreur de connexion à la base de donnée.');
+
+                // in app folder
+                $ex = new AppException();
+                $ex->mysqlDatabase();
             }
 
             $this->_pdo = $pdo;

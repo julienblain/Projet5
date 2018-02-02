@@ -6,7 +6,7 @@
             <label  for="dream">
                 <p>Votre rêve
                     <span>&#x293B;</span></p>
-                <textarea name="dream" id="dreamWrite" required placeholder="Requis"></textarea> <br> <!--verifier si le required fonctionne sur safari -->
+                <textarea name="dream" id="dreamWrite" required >Requis</textarea> <br> <!--verifier si le required fonctionne sur safari -->
             </label>
         </fieldset>
 

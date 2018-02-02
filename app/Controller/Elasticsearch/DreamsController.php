@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: root
- * Date: 18/01/18
- * Time: 17:02
- */
+
 namespace App\Controller\Elasticsearch;
 
 use App\Controller\AppController;
 use App\Entity\Elasticsearch\DreamsEntity;
-use function PHPSTORM_META\type;
+
 
 class DreamsController extends AppController
 {
@@ -37,7 +32,7 @@ class DreamsController extends AppController
 
     private function _dateTimeFr($dateTime) {
 
-        if(gettype($dateTime) == 'object' ) { //TODO a ameliorer questioner
+        if(gettype($dateTime) == 'object' ) {
             $datas[0] = (object) $dateTime->_source;
             $datas[0]->id = $dateTime->_id;
         }
@@ -72,8 +67,6 @@ class DreamsController extends AppController
 
         return $datas;
     }
-
-
 
     private function _dayHourFr($dateTime) {
         $listMonth = array(
@@ -125,9 +118,6 @@ class DreamsController extends AppController
         return $datas;
 
     }
-
-
-
 
     // insert in $_Session the dream list for this user
     private function _dreamListSession($dreamList) {
@@ -188,22 +178,13 @@ class DreamsController extends AppController
     }
 
     public function read() {
-
-       $this->_checkUser();
+        $this->_checkUser();
 
         $dreamDatas = $this->_index->searchByIdDream();
         $dream = $this->_dateTimeFr($dreamDatas);
         $dream = $this->_previousAndNextDreams($dream);
 
-        if(!empty($_POST['search-txt'])){
-
-            $this->search();
-
-        }
-        else {
-            $this->render('dreams.readDream', compact('dream'));
-        }
-
+        $this->render('dreams.readDream', compact('dream'));
     }
 
     public function update() {
@@ -212,19 +193,22 @@ class DreamsController extends AppController
         $dream = $this->_dateTimeFr($dreamDatas);
         $dream = $this->_previousAndNextDreams($dream);
 
-        if(!empty($_POST['search'])){
-            $this->search();
-        }
-        else {
-            $this->render('dreams.updateDream', compact('dream'));
-        }
+        $this->render('dreams.updateDream', compact('dream'));
+
     }
 
     public function updated() {
         $this->_checkUser();
-        $this->_index->updating();
-        include_once ($this->viewPath . 'notification/updatedDream.php');
-        $this->indexDreams();
+
+        if(empty($_POST['dream'])) {
+            include_once ($this->viewPath . 'notification/error/emptyTextarea.php');
+            $this->indexDreams();
+        }
+        else {
+            $this->_index->updating();
+            include_once ($this->viewPath . 'notification/updatedDream.php');
+            $this->indexDreams();
+        }
     }
 
     public function delete() {
@@ -232,15 +216,21 @@ class DreamsController extends AppController
         $this->_index->deleting();
 
         include_once ($this->viewPath . 'notification/deletedDream.php');
-        $this->homeLogged();
+        $this->indexDreams();
     }
 
     public function created() {
       //$this->_index->dede();
         //$this->_index->mapping();
-      $this->_index->indexing();
-        include_once ($this->viewPath . 'notification/dreamCreated.php');
-        $this->homeLogged();
+
+        if(empty($_POST['dream'])) {
+            include_once ($this->viewPath . 'notification/error/emptyTextarea.php');
+            $this->homeLogged();
+        } else {
+            $this->_index->indexing();
+            include_once ($this->viewPath . 'notification/dreamCreated.php');
+            $this->homeLogged();
+        }
     }
 
 
@@ -261,9 +251,7 @@ class DreamsController extends AppController
     }
 
 
-
-
-
+    //call by UserController
     public function deleteAccount() {
         return $this->_index->deleteAccount();
     }

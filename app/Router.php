@@ -34,7 +34,6 @@ final class Router {
     public function setPage()
     {
         try {
-            //TODO settings list
             if(isset($_GET['p'])) {
                 //cleaning $_GET
                 $get = \explode('.', $_GET['p']);
@@ -97,28 +96,25 @@ final class Router {
                             $this->_routingValidLogged();
                             break;
 
-                            default :
-                            $this->_routingValid();
+                        default :
                             throw new AppException();
                     }
                 }
                 catch (AppException $e) {
                     echo $e->router();
+                    $this->_routingHome();
                 }
-
             }
             elseif (count($_GET) === 0) {
                 $this->_routingHome();
             }
             else {
-                //TODO a voir
-                $this->_routingHome();
                throw new AppException();
             }
         }
         catch (AppException $e) {
-            //TODO creation de la class error write in log
             echo $e->router();
+            $this->_routingHome();
         }
     }
 
@@ -132,8 +128,6 @@ final class Router {
         isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
 
     }
-
-
 
     private function _routingHome() {
         $page = "app.home";
@@ -152,9 +146,7 @@ final class Router {
         $this->_action = $this->_page[1];
     }
 
-    /**
-     * @return string
-     */
+
     public function getController()
     {
         return $this->_controller;
@@ -166,15 +158,9 @@ final class Router {
         if(($this->_page[0] == 'user') || ($this->_page[0] == 'app')) {
             $this->_controller = '\App\Controller\\' . ucfirst($this->_page[0]) . 'Controller';
         }
-        elseif($this->_page[0] == 'dreams') {
+        else {
             $this->_controller = '\App\Controller\Elasticsearch\\' . ucfirst($this->_page[0]) . 'Controller';
         }
-        else {
-            echo 'FAIRE LEXCECPTION';
-        }
-        
     }
-
-
 
 }
