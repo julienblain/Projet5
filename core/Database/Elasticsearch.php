@@ -3,8 +3,10 @@
 namespace Core\Database;
 
 
+use App\AppException;
 use Core\ConfigElasticsearch;
 use Elasticsearch\ClientBuilder;
+use \Elasticsearch\Common\Exceptions\NoNodesAvailableException;
 
 class Elasticsearch
 {
@@ -23,37 +25,51 @@ class Elasticsearch
         }
     }
 
+    private function _req($reqType, $params) {
+
+       try {
+           $this->_client->$reqType($params);
+       }
+       catch(\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
+           $ex = new AppException();
+           $ex->elasticDatabase();
+       }
+}
+
     public function indexing($params) {
-        return $this->_client->index($params);
+
+        $this->_req('index', $params);
 
     }
 
     public function deleting($params) {
-        return $this->_client->delete($params);
+
+        $this->_req('delete', $params);
     }
 
     public function updating($params) {
-        return $this->_client->update($params);
+        $this->_req('update', $params);
     }
 
     public function search($params) {
-        return $this->_client->search($params);
+        $this->_req('search', $params);
+
     }
 
-    //supprimer
+    public function get($params) {
+        $this->_req('get', $params);
+    }
+
+    public function deleteByQuery($params) {
+        $this->_req('deleteByQuery', $params);
+    }
+
+    //delete all bdd
     public function dede($params) {
         return $this->_client->indices()->delete($params);
     }
 
     public function mapping($params) {
         return $this->_client->indices()->create($params);
-    }
-
-    public function get($params) {
-        return $this->_client->get($params);
-    }
-
-    public function deleteByQuery($params) {
-        return $this->_client->deleteByQuery($params);
     }
 }
