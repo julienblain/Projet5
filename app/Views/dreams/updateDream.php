@@ -63,3 +63,5 @@
     <?php include_once ($this->viewPath. 'dreams/btnPreviousAndNextDream.php'); ?>
     </div>
 </section>
+
+<?php include_once ($this->viewPath. 'dreams/search.php'); ?>

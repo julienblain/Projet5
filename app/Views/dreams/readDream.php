@@ -1,4 +1,4 @@
-<?php include_once ($this->viewPath. 'dreams/nav.php'); ?>
+<?php include_once ($this->viewPath. 'dreams/nav.php');?>
 <section id="readDream">
 
     <div id="readTitlteBox">
@@ -10,19 +10,29 @@
         <p class="ru-dream"><?= $dream[0]->content ?></p>
     </article>
 
+    <?php
+    if($dream[0]->elaboration !== null) {
+        echo '
     <aside id="readDreamElaboration" class="read-aside">
         <p id="read-aside-elaboration">Élaboration</p>
         <div>
-            <p id="readDream-elaboration" class="ru-elaboration"><?= $dream[0]->elaboration ?></p>
+            <p id="readDream-elaboration" class="ru-elaboration">'. $dream[0]->elaboration. '</p>
         </div>
-    </aside>
+    </aside>';
+    }
+    ?>
+
+    <?php
+    if($dream[0]->previousEvents !== null) {
+        echo '
     <aside id="readDreamPreviousEvents" class="read-aside">
         <p id="read-aside-events">Évenements précédents</p>
         <div>
-            <p id="readDream-previousEvents" class="ru-previousEvents"><?= $dream[0]->previousEvents ?></p>
+            <p id="readDream-previousEvents" class="ru-previousEvents">'. $dream[0]->previousEvents. '</p>
         </div>
-    </aside>
-
+    </aside>';
+    }
+    ?>
 
     <div id="btnAction">
         <button id="readDream-update" class="btn btnUpdate">

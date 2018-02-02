@@ -29,7 +29,7 @@ class DreamsController extends AppController
             return true;
         }
         else {
-            include_once ($this->viewPath . 'errors/forbiddenPage.php');
+            include_once ($this->viewPath . 'notification/error/forbiddenPage.php');
             $this->indexDreams();
             die();
         }
@@ -239,7 +239,7 @@ class DreamsController extends AppController
       //$this->_index->dede();
         //$this->_index->mapping();
       $this->_index->indexing();
-
+        include_once ($this->viewPath . 'notification/dreamCreated.php');
         $this->homeLogged();
     }
 

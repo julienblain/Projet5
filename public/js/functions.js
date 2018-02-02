@@ -116,8 +116,8 @@ $(document).ready(function() {
     }
 
     //delete Dream
-    if(document.getElementById('updateDream-delete')) {
-        $('#updateDream-delete').click(function () {
+    if(document.getElementsByClassName('btnDelete')) {
+        $('.btnDelete').click(function () {
             if(confirm('Êtes-vous sûr·e de vouloir supprimer ce rêve ?')) {
                 return true;
             }
@@ -125,6 +125,11 @@ $(document).ready(function() {
                 return false;
             }
         })
+    }
+
+    //notification
+    if(document.getElementsByClassName('notification')) {
+        $(".notification").delay(2000).fadeOut('slow');
     }
 
 });

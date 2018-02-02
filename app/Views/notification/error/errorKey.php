@@ -1,2 +1,2 @@
 <?php
-echo "<p class='notification'>Oups ! Erreur ! La clé de vérification ne correspond pas. </p>";
+echo "<p class='notification notifError'>Oups ! Erreur ! La clé de vérification ne correspond pas. </p>";

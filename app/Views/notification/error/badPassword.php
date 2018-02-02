@@ -1,1 +1,1 @@
-<p class='notification'>Erreur de mot de passe. </p>
+<p class='notification notifError'>Erreur de mot de passe. </p>

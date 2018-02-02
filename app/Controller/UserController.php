@@ -41,13 +41,13 @@ class UserController extends AppController {
                 $this->homeLogged();
             } else {
                 // login or password error
-                include_once($this->viewPath . 'errors/loginError.php');
+                include_once($this->viewPath . 'notification/error/loginError.php');
                 $this->home();
             }
         }
         else {
             // login or password error
-            include_once($this->viewPath . 'errors/loginError.php');
+            include_once($this->viewPath . 'notification/error/loginError.php');
             $this->home();
         }
     }
@@ -71,7 +71,7 @@ class UserController extends AppController {
 
             // this mail is already a actif account
             if(($alreadyExisting[0]->countMail) != '0') {
-                include_once($this->viewPath. 'errors/accountExistingAlready.php');
+                include_once($this->viewPath. 'notification/error/accountExistingAlready.php');
                 $this->home();
             }
             //this mail already exist but it is not actif
@@ -86,7 +86,7 @@ class UserController extends AppController {
 
                 $this->_phpMailer($body,  $mailUser);
                 $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
-                include_once($this->viewPath. 'errors/accountExistingAlreadyTmp.php');
+                include_once($this->viewPath. 'notification/error/accountExistingAlreadyTmp.php');
                 $this->home();
             }
             //this mail already exist and there was too much attempt
@@ -105,13 +105,13 @@ class UserController extends AppController {
 
                 $this->_phpMailer($body, $mailUser);
                 $this->_tableTmp->createAccount($mailSha1, $passwordSha1, $validationKey);
-                include_once($this->viewPath. 'home/mailSent.php');
+                include_once($this->viewPath. 'home/notification/mailSent.php');
                 $this->home();
             }
         }
         else {
             // login or password error
-            include_once($this->viewPath . 'errors/createAccount.php');
+            include_once($this->viewPath . 'notification/error/createAccount.php');
             $this->home();
         }
     }
@@ -294,7 +294,7 @@ class UserController extends AppController {
         }
         catch (Exception $e){
             //not use AppException
-            include_once($this->viewPath. 'errors/mailNotSent.php');
+            include_once($this->viewPath. 'notification/error/mailNotSent.php');
             //echo $mail->ErrorInfo;
             $this->home();
         }

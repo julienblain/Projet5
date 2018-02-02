@@ -207,6 +207,20 @@ input {/* delete the browser design */
 }
 
 
+.notification {
+    position: absolute;
+    padding: 15px;
+    margin: 2%;
+    border-radius: 10px;
+    background-color: #3ae374;
+}
+
+.notifError {
+    background-color: #ff4d4d;
+}
+
+
+
 /*//////////  HEADER  ////////////*/
 header {
     display: flex;
@@ -393,9 +407,9 @@ header .fa {
     background-color: #3ae374 ;
 }
 
-#indexDreams-list a:visited, #resultsSearch a:visited { /* be careful to order*/
-    color: #E6E6FA;
-}
+/*#indexDreams-list a:visited, #resultsSearch a:visited { /* be careful to order*/
+/*    color: #E6E6FA;
+} a voir si on met ou pas*/
 
 
 /*////////////  PROFIL  ////////////*/
