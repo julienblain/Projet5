@@ -36,9 +36,9 @@ $(document).ready(function() {
                     console.log(status);
                 },
 
-                complete : function (result) {
+                success : function (result) {
 
-                    var datas = JSON.parse(result.responseText);
+                    var datas = JSON.parse(result);
                     var divSearch = document.getElementById('partResultsSearch');
                     divSearch.innerHTML = ''; // delete content if there is one
 
@@ -76,6 +76,7 @@ $(document).ready(function() {
                         divSearch.appendChild(noResults);
                     }
                 }
+
             });
         }
     }

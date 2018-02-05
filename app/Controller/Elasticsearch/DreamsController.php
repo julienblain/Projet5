@@ -170,7 +170,7 @@ class DreamsController extends AppController
         if(empty($dreams)) {
 
             include_once ($this->viewPath . '/notification/emptyIndex.php');
-            $this->homeLogged();
+             return $this->homeLogged();
         }
         else {
             $this->render('dreams.indexDreams', compact('dreams'));
@@ -216,7 +216,7 @@ class DreamsController extends AppController
         $this->_index->deleting();
 
         include_once ($this->viewPath . 'notification/deletedDream.php');
-        $this->indexDreams();
+        $this->homeLogged();
     }
 
     public function created() {

@@ -14,11 +14,7 @@ class AppController extends Controller
     protected $viewPath =  ROOT . '/app/Views/';
     private $_keyPrivate;
 
-   /* public function __construct()
-    {
-        //delimiter dans controller.php
-        $this->viewPath = ROOT . '/app/Views/';
-    }*/
+
 
     //give the model to load
     protected function loadModel(string $modelName) {
@@ -34,13 +30,9 @@ class AppController extends Controller
 
     public function homeLogged() {
         //$navLogged = $this->navLogged();
-        $this->render('dreams.homeLogged'); //, compact('navLogged')
+        $this->render('dreams.homeLogged');
     }
 
-    /*protected function navLogged() {
-        return $this->loadModel('Dreams')->dreamsByIdUser($_SESSION['idUser']);
-
-    }*/
 
     protected function recaptcha() {
         try {

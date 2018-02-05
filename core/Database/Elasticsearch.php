@@ -27,41 +27,42 @@ class Elasticsearch
 
     private function _req($reqType, $params) {
 
-       try {
-           $this->_client->$reqType($params);
-       }
-       catch(\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
-           $ex = new AppException();
-           $ex->elasticDatabase();
-       }
-}
+        try {
+            return $this->_client->$reqType($params);
+
+        }
+        catch(\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
+            $ex = new AppException();
+            $ex->elasticDatabase();
+        }
+    }
 
     public function indexing($params) {
 
-        $this->_req('index', $params);
+        return $this->_req('index', $params);
 
     }
 
     public function deleting($params) {
 
-        $this->_req('delete', $params);
+        return $this->_req('delete', $params);
     }
 
     public function updating($params) {
-        $this->_req('update', $params);
+        return $this->_req('update', $params);
     }
 
     public function search($params) {
-        $this->_req('search', $params);
-
+        return $this->_req('search', $params);
     }
 
     public function get($params) {
-        $this->_req('get', $params);
+
+        return $this->_req('get', $params);
     }
 
     public function deleteByQuery($params) {
-        $this->_req('deleteByQuery', $params);
+        return $this->_req('deleteByQuery', $params);
     }
 
     //delete all bdd

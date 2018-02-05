@@ -94,16 +94,19 @@ class DreamsEntity extends AppController
                 'order' =>'desc']] ;
 
         $dreamDatas = $this->_db->search($params);
+        //var_dump($dreamDatas);
         $dreamList = [];
 
-        foreach ($dreamDatas['hits']['hits'] as $dreamDateTime) {
-            $dream['id'] =  $dreamDateTime['_id'];
-            $dream['date'] = $dreamDateTime['_source']['date'];
-            $dream['hour'] = $dreamDateTime['_source']['hour'];
-            $dreamList[] = (object) $dream;
-            $dream = [];
+        if($dreamDatas !== null) {
+            foreach ($dreamDatas['hits']['hits'] as $dreamDateTime) {
+                $dream['id'] =  $dreamDateTime['_id'];
+                $dream['date'] = $dreamDateTime['_source']['date'];
+                $dream['hour'] = $dreamDateTime['_source']['hour'];
+                $dreamList[] = (object) $dream;
+                $dream = [];
+            }
         }
-
+//var_dump($dreamList);
         return $dreamList;
     }
 
