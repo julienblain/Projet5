@@ -369,28 +369,16 @@ header .fa {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    justify-content: center;
 }
 
 #indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list li {
     display: flex;
     padding: 15px;
-    flex-grow: 0.5;
 }
 
-#indexDreams-list li {
-    flex-direction: column;
-}
-
-#indexDreams-list h2 p, #indexDreams-list h3 p, #indexDreams-list h4 p, #indexDreams-list li {
+#indexDreams-list p {
     margin: auto;
-}
-
-#indexDreams-list a {
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
 }
 
 #indexDreams-list p {
@@ -422,11 +410,6 @@ header .fa {
 #indexDreams-list li[class$='5'], #resultsSearch li[id$='5'] {
     background-color: #3ae374 ;
 }
-
-/*#indexDreams-list a:visited, #resultsSearch a:visited { /* be careful to order*/
-/*    color: #E6E6FA;
-} a voir si on met ou pas*/
-
 
 /*////////////  PROFIL  ////////////*/
 #updateAccount h2{

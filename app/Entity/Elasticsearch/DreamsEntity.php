@@ -78,7 +78,7 @@ class DreamsEntity extends AppController
         $params = [
             'index' => $this->_index,
             'type' => $this->_type,
-            'size' => 10000, //max results which return
+            'size' => 10000, //max result return
 
             'body' => [
                 '_source' => ['date', 'hour'],
