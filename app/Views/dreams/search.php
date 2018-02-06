@@ -17,4 +17,15 @@
 
 <aside id = 'partResultsSearch'>
     <!-- results by js function -->
+
 </aside>
+
+<div id="boxArrowSearch">
+    <button id="arrowLeftSearch" class="btn btnPreviousNext">
+        <i class="fa fa-arrow-left"></i>
+
+    </button>
+    <button id="arrowRightSearch" class="btn btnPreviousNext">
+        <i class="fa fa-arrow-right"></i>
+    </button>
+</div>

@@ -78,6 +78,7 @@ class DreamsEntity extends AppController
         $params = [
             'index' => $this->_index,
             'type' => $this->_type,
+            'size' => 10000, //max results which return
 
             'body' => [
                 '_source' => ['date', 'hour'],
@@ -89,12 +90,12 @@ class DreamsEntity extends AppController
             ]
         ];
 
-        $params['body']['sort'] =[   //out of params principal elsif bug with elasticsearch-php
-            'date' => [
-                'order' =>'desc']] ;
+        $params['body']['sort'] = [  //out of params principal elsif bug with elasticsearch-php
+            ['date' => [
+                'order' =>'desc']]]
+           ;
 
         $dreamDatas = $this->_db->search($params);
-        //var_dump($dreamDatas);
         $dreamList = [];
 
         if($dreamDatas !== null) {
@@ -106,7 +107,7 @@ class DreamsEntity extends AppController
                 $dream = [];
             }
         }
-//var_dump($dreamList);
+
         return $dreamList;
     }
 
@@ -180,9 +181,14 @@ class DreamsEntity extends AppController
 
     public function searchWord() {
        $searchedWord = htmlspecialchars($_POST['search-txt']);
+       $from = htmlspecialchars($_POST['from']);
+
+       //use from size params because the scrolling params doesn t support previous results
+       //$from = htmlspecialchars($_POST['from']);
 
         $params = [
-            'size' => 30,
+            'from' => $from,
+            'size' => 6,
             'index' => $this->_index,
             'type' => $this->_type,
             'body' => [
@@ -206,6 +212,36 @@ class DreamsEntity extends AppController
             ]
         ];
         return $this->_db->search($params);
+    }
+
+
+    public function countSearch() {
+        $searchedWord = htmlspecialchars($_POST['search-txt']);
+        $params = [
+            'index' => $this->_index,
+            'type' => $this->_type,
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'must' => [
+                            'multi_match' => [
+                                'query' => $searchedWord,
+                                'type' => 'most_fields',
+                                'analyzer' => 'french_heavy', // defined in mapping
+                                'fields' => ['content', 'elaboration', 'previousEvents']
+                            ]
+                        ],
+
+                        'filter' => [
+                            'term' => [
+                                'idUser' => $_SESSION['idUser']
+                            ]                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $this->_db->count($params);
     }
 
 

@@ -549,7 +549,7 @@ header .fa {
 /*/////////////  SEARCH  //////////*/
 #searchForm {
     display: flex;
-    padding: 15px;
+
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
@@ -557,7 +557,7 @@ header .fa {
 }
 
 #search {
-    margin: 4% 0 0 0;
+    margin: 6% 0 0 0;
 }
 #searchForm input {
     margin-left: 15px;
@@ -569,13 +569,18 @@ header .fa {
     margin-right: 30px;
 }
 
-#partResultsSearch {
-    display: flex;
-    flex-direction: column;
+#arrowLeftSearch, #arrowRightSearch {
+    display: none;
+    opacity: 0.5;
 }
 
-#partResultsSearch h3 {
-    align-self: flex-start;
+#partResultsSearch {
+    margin-top: 2%;
+}
+#titleBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #resultsSearch {
@@ -584,15 +589,26 @@ header .fa {
 }
 
 #resultsSearch li {
-    padding: 15px;
-    flex-grow: 1;
+    width: 50%;
     font-size: 0.9em;
+    padding: 15px;
     display: flex;
+    justify-content: center;
 }
 
-#resultsSearch a {
-    margin: auto;
+#boxArrowSearch {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
 }
+
+#boxArrowSearch .btnPreviousNext {
+    margin: 0 1% 0 1%;
+}
+
+
+
+
 
 
 /*///////////  HOME CONNECTION  ///////////*/

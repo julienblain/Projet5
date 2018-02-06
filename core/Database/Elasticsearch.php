@@ -73,4 +73,8 @@ class Elasticsearch
     public function mapping($params) {
         return $this->_client->indices()->create($params);
     }
+
+    public function count($params) {
+        return $this->_req('count', $params);
+    }
 }

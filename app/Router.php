@@ -10,6 +10,13 @@ final class Router {
 
     public function __construct()
     {
+        // result search are dynamically included in a page
+        if((isset($_GET['p']) && ($_GET['p'] !== 'dreams.search'))) {
+            if($_GET['p'] !== 'dreams.countSearch') {
+                include_once(ROOT. '/app/Views/templates/headHtml.php');
+            }
+        }
+
         $this->setPage();
         $this->setAction();
         $this->setController();
@@ -93,6 +100,9 @@ final class Router {
                             $this->_routingValidLogged();
                             break;
                         case "dreams.search":
+                            $this->_routingValidLogged();
+                            break;
+                        case "dreams.countSearch":
                             $this->_routingValidLogged();
                             break;
 

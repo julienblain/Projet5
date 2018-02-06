@@ -250,6 +250,13 @@ class DreamsController extends AppController
 
     }
 
+    // necessary for the result pagination
+    public function countSearch() {
+        $datas = $this->_index->countSearch();
+        $datas = json_encode($datas);
+        echo $datas;
+    }
+
 
     //call by UserController
     public function deleteAccount() {
