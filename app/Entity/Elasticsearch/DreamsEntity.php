@@ -277,7 +277,7 @@ class DreamsEntity extends AppController
                                 ],
                                 'custom_ngram' => [
                                     'type' => 'ngram',
-                                    'min_gram' => 4, //a voir si on modifie avec du vrais text et taille memoire
+                                    'min_gram' => 3, //a voir si on modifie avec du vrais text et taille memoire, changer lors responsive de 4 a 3
                                     'max_gram' => 5
                                 ]
                             ],

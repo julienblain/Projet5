@@ -8,9 +8,7 @@
     padding: 0;
 }
 
-body {
 
-}
 
 body {
     font-size: 27px;
@@ -203,7 +201,7 @@ input {/* delete the browser design */
 
 #submitDream {
     margin-top: 3%;
-    margin-left: 45%;
+
 }
 
 
@@ -231,7 +229,7 @@ header {
 #logo {
 
     text-align: center;
-    background-color: #ff3838;
+    background-color: white;
 }
 
 #logo-img {
@@ -314,6 +312,7 @@ header .fa {
     color: white;
 }
 
+
 #dream label {
 
     display: flex;
@@ -329,10 +328,20 @@ header .fa {
 
 #dreamWrite {
     margin: 10px;
-    height: 50vh;
+    height: 300px;
     width: 75%;
     /*font-size: 0.5em; a voir en sur les vrai devices */
 
+}
+
+/*ajout ap*/
+#dreamForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#dreamForm .btn {
+    align-self: center;
 }
 
 /*#dreamWrite::placeholder {
@@ -357,7 +366,7 @@ header .fa {
 
 #dream span {
    position: absolute;
-    padding-top: 5vh;
+    padding-top: 20px;
     font-size: 60px;
     left: 18%;
     color: #fff200 ;
@@ -427,7 +436,10 @@ header .fa {
 
 #updateAccount  h3 {
     width: 33%;
+    display: flex;
+    align-items: center;
     text-align: center;
+
 }
 
 #updateAccount label {
@@ -463,6 +475,9 @@ header .fa {
 #updateDream-updated {
     display: flex;
     flex-wrap: wrap;
+
+    /*ajout ap*/
+    justify-content: center;
 }
 
 .ru-dream {
@@ -482,7 +497,10 @@ header .fa {
     display: flex;
     justify-content: space-between;
 }
-
+/* ajout ap */
+#readTitlteBox h2, #readTitlteBox p {
+    text-align: center;
+}
 
 #readDream-dream {
     padding: 15px;
@@ -492,7 +510,7 @@ header .fa {
 #readDream-dream .ru-dream, .ru-elaboration, .ru-previousEvents {
     height: auto;
     width: 100%;
-    font-size: 0.9em;
+
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
@@ -577,6 +595,10 @@ header .fa {
     padding: 15px;
     display: flex;
     justify-content: center;
+
+    /*ajout ap */
+    text-align: center;
+    align-items: center;
 }
 
 #boxArrowSearch {
@@ -604,13 +626,208 @@ header .fa {
 
 
 
+/*////////////  RESPONSIVE  /////////////*/
+/* smartphone and tablet */
+@media all and (min-width: 568px) {
+    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+    textarea {
+        font-size: 0.7em;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    /*>>>>>>>>>>>  NAV  <<<<<<<<<<<<*/
+    header {
+        justify-content: space-between;
+    }
+
+    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+    textarea {
+        font-size: 1em;
+    }
+
+    /*>>>>>>>>>>>  READ <<<<<<<<<<<<*/
+    #readDream-dream .ru-dream, .ru-elaboration, .ru-previousEvents {
+        font-size: 1.1em;
+    }
+
+    /*>>>>>>>>>>>>  SEARCH  >>>>>>>>>>>*/
+    #resultsSearch li {
+        font-size: 1em;
+    }
+}
+
+
+
+/*////////////////////////  PORTRAIT  //////////////////////*/
+@media all and (orientation: portrait){
+    body {
+        font-size: 37px;
+    }
+
+    textarea {
+        font-size: 0.4em;
+    }
+
+    input {
+        font-size: 35px;
+    }
+
+    .btn {
+        font-size: 1.2em;
+        height: 90px;
+        width: 110px;
+    }
+
+    /*>>>>>>>>>>>  NAV  <<<<<<<<<<<<*/
+    header .fa {
+        font-size: 1.2em;
+    }
+
+    #logo-img {
+        width: 35%;
+    }
+
+    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+    #dream span {
+        padding-top: 40px;
+    }
+
+    #dreamWrite {
+        height: 600px;
+    }
+
+    #dreamWrite::placeholder {
+        font-size: 1.2em;
+    }
+
+    #elaborationTxt, #previousEventsTxt {
+        height: 100px;
+        line-height: 100px;
+    }
+
+   #dateTime label {
+       height: 100px;
+       line-height: 100px;
+   }
+
+    .fa-calendar::before {
+        font-size: 50px;
+        top: 6px;
+    }
+
+    .fa-clock-o::before {
+        font-size: 55px;
+        top: 8px;
+    }
+
+
+    /*>>>>>>>>>>>  SEARCH  <<<<<<<<<<<<*/
+
+    #search {
+        margin: 6% 0;
+    }
+    #resultsSearch li {
+        text-align: center;
+        align-items: center;
+    }
+
+
+    /*>>>>>>>>>>> UPDATEACCOUNT  <<<<<<<<<<<<*/
+    #updateAccount form {
+        flex-direction: column;
+    }
+
+    #updateAccount h3 {
+        width: auto;
+        align-self: flex-start;
+    }
+
+    #updateAccount label {
+        width: auto;
+        margin-right: 0;
+    }
+
+    #updateAccount label:nth-child(3n) {
+        margin-left: 0;
+    }
+
+    #updateAccount .btn {
+        align-self: center;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+}
+
+@media all and (orientation: portrait) and (min-height: 600px){
+    textarea {
+        font-size: 0.4em;
+    }
+
+    input {
+        font-size: 1em;
+    }
+
+
+    #dreamWrite {
+        height: 38vh;
+        margin: 1vh;
+    }
+
+    #dreamWrite::placeholder {
+        font-size: 1.8em;
+    }
+
+    .fa-clock-o::before {
+        top: 5px;
+    }
+
+    #submitDream {
+
+    }
+}
+
+
+@media all and (orientation: portrait) and (min-height: 736px) {
+    textarea {
+        font-size: 0.6em;
+    }
+    #elaboration textarea, #previousEvents textarea {
+        height: 400px;
+    }
+
+    .ru-dream {
+        height: 500px;
+    }
 
 
 
 
 
+}
 
+@media all and (orientation: portrait) and (min-height: 900px) {
+    body {
+        font-size: 30px;
+    }
+    input {
+        font-size: 0.9em;
+    }
+    #dreamWrite::placeholder {
+        font-size: 1em;
+    }
+}
 
+@media all and (orientation: portrait) and (min-height: 1000px) {
+    textarea {
+        font-size: 0.8em;
+    }
+
+    .fa-clock-o::before {
+        top: 9px;
+    }
+}
 
 
 
