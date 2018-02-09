@@ -152,6 +152,12 @@ var search = {
         }
         else {
             $("#arrowLeftSearch").css({"opacity" : "0.5"});
+
+            $("#arrowLeftSearch").on('mouseover', function() {
+                $("#arrowLeftSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
+                $("#arrowLeftSearch .fa").removeClass("fa-arrow-left").addClass("fa-arrow-left-opacity");
+            });
+
         }
 
         if((this.nbPage < this.nbTotalPage) && (this.nbPage > 0)) {
@@ -160,6 +166,8 @@ var search = {
         }
         else {
             $("#arrowRightSearch").css({"opacity" : "0.5"});
+            $("#arrowRightSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
+            $("#arrowRightSearch .fa").removeClass("fa-arrow-right").addClass("fa-arrow-right-opacity");
         }
     },
 

@@ -30,7 +30,7 @@
 
     <form action="?p=user.deletedAccount" method="post">
         <h3>Supprimer le profil</h3>
-        <label for="updateAccountDeletedAccount">
+        <label for="updateAccountDeletedAccount" id="deleteAccountLabel">
             Mot de passe :
             <input type="password" id="updateAccountDeletedAccount" name="password">
         </label>
