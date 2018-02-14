@@ -52,7 +52,9 @@ final class Router {
                             session_destroy();
                             $this->_routingHome();
                             break;
-
+                        case "app.home";
+                            $this->_routingHome();
+                            break;
                         case "user.control":
                             $this->_routingValid();
                             break;

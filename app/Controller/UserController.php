@@ -67,7 +67,7 @@ class UserController extends AppController {
             // verification if a account with its mail already existing by a count req
             $alreadyExisting = $this->_table->alreadyExistingAccount($mailSha1);
             $alreadyExistingTmp = $this->_tableTmp->alreadyExistingAccount($mailSha1);
-            var_dump($alreadyExistingTmp);
+
 
             // this mail is already a actif account
             if(($alreadyExisting[0]->countMail) != '0') {

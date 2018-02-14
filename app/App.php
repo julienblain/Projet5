@@ -8,7 +8,7 @@ final class App
     private static $_instance;  // (App) content App
 
     //singleton
-    public static function getInstance(): App
+    public static function getInstance()
     {
 
         if (self::$_instance === null) {
@@ -26,7 +26,7 @@ final class App
     }
 
 
-    private function _autoload(): void
+    private function _autoload()
     {
         require ROOT . '/app/Autoloader.php';
         App\Autoloader::register();

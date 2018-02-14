@@ -1031,6 +1031,7 @@ header .fa {
     }
     #searchForm label {
         max-height: 90px;
+        padding: 1%;
     }
 }
 
