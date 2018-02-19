@@ -24,7 +24,7 @@ class AppController extends Controller
 
     //home page app
     public function home() {
-
+        echo 'la';
         $this->render('home.home');
     }
 
