@@ -12,6 +12,7 @@ class DreamsController extends AppController
 
     public function __construct()
     {
+        parent::__construct();
         $this->_index = new DreamsEntity();
     }
 

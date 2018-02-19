@@ -18,6 +18,8 @@ class UserController extends AppController {
     private $_settingsMailer;
 
     public function __construct() {
+        parent::__construct();
+
         //parent gives viewPath and loadModel
         $this->_table = $this->loadModel('User');
         $this->_tableTmp =$this->loadModel('Tmp');
@@ -249,8 +251,6 @@ class UserController extends AppController {
 
     public function deletedAccount() {
         $pass = $this->_table->getPassword($_SESSION['idUser']);
-        var_dump($pass);
-        var_dump($_POST);
         $passPost = htmlspecialchars($_POST['password']);
 
         if ((!empty($pass)) && ($pass->passwordUsers === sha1($passPost))) {

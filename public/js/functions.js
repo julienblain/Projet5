@@ -19,7 +19,6 @@ $(document).ready(function() {
     // scrolling search data pagination
     if(document.getElementById('boxArrowSearch')) {
         $("#arrowLeftSearch").click(function () {
-            console.log('coco');
             search.clickingArrowLeft();
         });
 
@@ -28,11 +27,8 @@ $(document).ready(function() {
         });
     }
 
-
     // toggle homeLogged
     if(document.getElementById('moreElements')) {
-
-
 
         $("#elaborationTxt").click(function() {
             if($("#previousEventsWrite").css('display') !== 'none') {
@@ -55,17 +51,17 @@ $(document).ready(function() {
     // delete Account
     if(document.getElementById('deleteAccount')) {
         $('#deleteAccount').click(function () {
-            if(confirm('Êtes-vous sûr·e de vouloir votre compte ?')) {
+            if (confirm('Êtes-vous sûr·e de vouloir votre compte ?')) {
                 return true;
             }
             else {
                 return false;
             }
-        })
+        });
     }
 
     //delete Dream
-    if(document.getElementsByClassName('btnDelete')) {
+    if ((document.getElementsByClassName('btnDelete')) && (!document.getElementById('deleteAccount'))) {
         $('.btnDelete').click(function () {
             if(confirm('Êtes-vous sûr·e de vouloir supprimer ce rêve ?')) {
                 return true;
@@ -73,7 +69,7 @@ $(document).ready(function() {
             else {
                 return false;
             }
-        })
+        });
     }
 
     //notification

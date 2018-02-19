@@ -1,7 +1,9 @@
 <?php
+
 namespace App;
 
-final class Router {
+final class Router
+{
 
     private $_page;
     private $_action;
@@ -10,30 +12,19 @@ final class Router {
 
     public function __construct()
     {
-        // result search are dynamically included in a page
-        if((isset($_GET['p']) && ($_GET['p'] !== 'dreams.search'))) {
-            if($_GET['p'] !== 'dreams.countSearch') {
-                include_once(ROOT. '/app/Views/templates/headHtml.php');
-            }
-        }
-
         $this->setPage();
         $this->setAction();
         $this->setController();
-      //  echo 'page <br>';
-       // var_dump($this->_page) ;
-        //echo $this->_action . ' action<br>';
-        //echo $this->_controller . ' controller<br>';
-        //var_dump($_SESSION);
-       $controller = $this->getController();
-       $controller = new $controller;
-       $action = $this->getAction();
 
-       return $controller->$action() ;
+        $controller = $this->getController();
+        $controller = new $controller;
+        $action = $this->getAction();
+
+        return $controller->$action();
 
     }
 
-    public function getPage() : array
+    public function getPage(): array
     {
         return $this->_page;
     }
@@ -41,10 +32,10 @@ final class Router {
     public function setPage()
     {
         try {
-            if(isset($_GET['p'])) {
+            if (isset($_GET['p'])) {
                 //cleaning $_GET
                 $get = \explode('.', $_GET['p']);
-                $get = $get[0].'.'.$get[1];
+                $get = $get[0] . '.' . $get[1];
 
                 try {
                     switch ($get) {
@@ -111,43 +102,42 @@ final class Router {
                         default :
                             throw new AppException();
                     }
-                }
-                catch (AppException $e) {
+                } catch (AppException $e) {
                     echo $e->router();
                     $this->_routingHome();
                 }
-            }
-            elseif (count($_GET) === 0) {
+            } elseif (count($_GET) === 0) {
                 $this->_routingHome();
+            } else {
+                throw new AppException();
             }
-            else {
-               throw new AppException();
-            }
-        }
-        catch (AppException $e) {
+        } catch (AppException $e) {
             echo $e->router();
             $this->_routingHome();
         }
     }
 
-    private function _routingValid() {
+    private function _routingValid()
+    {
         $page = $_GET['p'];
         $page = \explode('.', $page);
         $this->_page = $page;
     }
 
-    private function _routingValidLogged() {
+    private function _routingValidLogged()
+    {
         isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
 
     }
 
-    private function _routingHome() {
+    private function _routingHome()
+    {
         $page = "app.home";
         $page = \explode('.', $page);
         $this->_page = $page;
     }
 
-    public function getAction() : string
+    public function getAction(): string
     {
         return $this->_action;
     }
@@ -167,10 +157,9 @@ final class Router {
 
     public function setController()
     {
-        if(($this->_page[0] == 'user') || ($this->_page[0] == 'app')) {
+        if (($this->_page[0] == 'user') || ($this->_page[0] == 'app')) {
             $this->_controller = '\App\Controller\\' . ucfirst($this->_page[0]) . 'Controller';
-        }
-        else {
+        } else {
             $this->_controller = '\App\Controller\Elasticsearch\\' . ucfirst($this->_page[0]) . 'Controller';
         }
     }

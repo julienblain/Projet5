@@ -169,7 +169,8 @@ input {/* delete the browser design */
 
 #moreElements {
     display: flex;
-    margin-top: 2%;
+    /*2%*/
+    margin-top: 2vw;
     width: 100%;
 }
 
@@ -200,7 +201,8 @@ input {/* delete the browser design */
 }
 
 #submitDream {
-    margin-top: 3%;
+    /*3%*/
+    margin-top: 3vw;
 
 }
 
@@ -281,7 +283,8 @@ header .fa {
 }
 
 #dateTime {
-    margin-top: 2%;
+    /*2% margin*/
+    margin-top: 2vw;
     width: 100%;
 }
 
@@ -431,7 +434,7 @@ header .fa {
 #updateAccount form {
     display: flex;
     flex-wrap: wrap;
-    margin: 4% 0;
+    margin: 4vw 0;
 }
 
 #updateAccount  h3 {
@@ -566,7 +569,7 @@ header .fa {
 }
 
 #searchForm label {
-    padding: 2%;
+    padding: 2vw;
     background-color: #4b4b4b;
     margin-right: 30px;
 }
@@ -843,10 +846,6 @@ header .fa {
     .fa-clock-o::before {
         top: 5px;
     }
-
-    #submitDream {
-
-    }
 }
 
 
@@ -903,13 +902,9 @@ header .fa {
         margin-bottom: 2%;
     }
 
-    section {
-        margin: 2% 0;
-    }
-
     textarea {
         font-size: 0.7em;
-        padding: 1%;
+        padding: 10px;
     }
 
     input {
@@ -1007,13 +1002,14 @@ header .fa {
     #elaboration {
         width: 49%;
         margin-right: 2%;
-        padding: 0 2% 2% 2%;
+        /*2%*/
+        padding: 0 2vw 2vw 2vw;
         background-color: #c56cf0;
     }
 
     #previousEvents {
         width: 49%;
-        padding: 0 2% 2% 2%;
+        padding: 0 2vw 2vw 2vw;
         background-color: #ffaf40;
     }
     #elaborationTxt, #previousEventsTxt {
@@ -1022,7 +1018,7 @@ header .fa {
 
     #updateDream-dream {
         width: 96vw;
-        padding: 2%;
+        padding: 2vw;
         background-color: #7158e2;
     }
 
@@ -1031,7 +1027,7 @@ header .fa {
     }
     #searchForm label {
         max-height: 90px;
-        padding: 1%;
+        padding: 1vw;
     }
 }
 
@@ -1056,7 +1052,7 @@ header .fa {
 
 @media all and (orientation: landscape) and (min-width: 1440px) {
     #updateAccount form {
-        margin: 1% 0;
+        margin: 1vw 0;
         width: 100%;
 
     }

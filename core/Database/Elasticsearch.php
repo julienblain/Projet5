@@ -35,7 +35,8 @@ class Elasticsearch
 
             $clientBuilder
                 ->setHandler($awsHandler)
-                ->setHosts($hosts);
+                ->setHosts($hosts)
+            ;
 
             $this->_client = $clientBuilder->build();
         }
@@ -49,7 +50,7 @@ class Elasticsearch
         } catch (\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
             var_dump($e->getMessage());
             $ex = new AppException();
-            $ex->elasticDatabase();
+           return  $ex->elasticDatabase();
         }
     }
 

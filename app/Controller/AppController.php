@@ -15,6 +15,19 @@ class AppController extends Controller
     private $_keyPrivate;
 
 
+    public function __construct()
+    {
+        // include head html
+        // result search are dynamically included in the page
+        //TODO Question plutot dans appController?
+        if ((isset($_GET['p']) && ($_GET['p'] !== 'dreams.search'))) {
+            if ($_GET['p'] !== 'dreams.countSearch') {
+                include_once(ROOT . '/app/Views/templates/headHtml.php');
+            }
+        } elseif (!isset($_GET['p'])) {
+            include_once(ROOT . '/app/Views/templates/headHtml.php');
+        }
+    }
 
     //give the model to load
     protected function loadModel(string $modelName) {
@@ -24,12 +37,10 @@ class AppController extends Controller
 
     //home page app
     public function home() {
-        echo 'la';
         $this->render('home.home');
     }
 
     public function homeLogged() {
-        //$navLogged = $this->navLogged();
         $this->render('dreams.homeLogged');
     }
 
