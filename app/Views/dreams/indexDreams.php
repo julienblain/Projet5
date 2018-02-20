@@ -5,16 +5,16 @@
 
     if (isset($dreams)) { ?>
         <ol id="indexDreams-list">
-            <h2><p>Rêves précendents</p></h2>
+            <li class="indexDreams-2title"><h2>Rêves précendents</h2></li>
             <?php
             $yearLastIteration = 0;
             $monthLastIteration = 0;
             $i = 0; //for li color
             foreach($dreams as $dream) {
                 if($dream->yearFr != $yearLastIteration) {
-                    echo '<h3 class="indexDreams-year"><p>Année '.$dream->yearFr .'</p></h3>';
+                    echo '<li class="indexDreams-3title"><h3 class="indexDreams-year">Année ' . $dream->yearFr . '</h3></li>';
                     $yearLastIteration = $dream->yearFr;
-                    echo '<h4 class="indexDreams-month"><p>'. ucfirst($dream->monthFr).'</p></h4>';
+                    echo '<li class="indexDreams-4title"><h4 class="indexDreams-month">' . ucfirst($dream->monthFr) . '</h4></li> ';
                     $monthLastIteration = $dream->monthFr;
                     echo '<li class="indexDreams-dateTime.'.$i.'">
                             <a href ="?p=dreams.read.'.$dream->id.'"> 
@@ -25,7 +25,7 @@
                 }
                 else {
                     if($dream->monthFr != $monthLastIteration) {
-                        echo '<h4 class="indexDreams-month"><p>'. ucfirst($dream->monthFr).'</p></h4>';
+                        echo '<li class="indexDreams-4title" > <h4 class="indexDreams-month">' . ucfirst($dream->monthFr) . '</h4> </li>';
                         $monthLastIteration = $dream->monthFr;
                         echo '<li class="indexDreams-dateTime.'.$i.'">
                                  <a href ="?p=dreams.read.'.$dream->id.'">

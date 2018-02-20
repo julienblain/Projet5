@@ -6,6 +6,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border-radius: 0;
 }
 
 
@@ -142,6 +143,12 @@ input {/* delete the browser design */
     order: 2;
 }
 
+.btnUpdate, .btnDelete, .btnRead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btnSearch {
     background-color: #7158e2;
     font-size: 1.2em;
@@ -152,6 +159,7 @@ input {/* delete the browser design */
 .fa::before {
     color: white;
 }
+
 
 .fa-calendar::before {
     position: relative;
@@ -329,7 +337,7 @@ header .fa {
     flex-grow: 2;
 }
 
-#dream p, #dreamWrite {
+#label-title, #dreamWrite {
     display: inline-block;
 }
 
@@ -364,18 +372,18 @@ header .fa {
 }
 
 */
-#dream p {
+#label-title {
     text-align: center;
     width: 25%;
     height: 40vh;
     line-height: 40vh;
 }
 
-#dream span {
+#label-arrow {
    position: absolute;
-    padding-top: 20px;
+    padding-top: 50px;
     font-size: 60px;
-    left: 18%;
+    left: 19%;
     color: #fff200 ;
 }
 
@@ -388,13 +396,28 @@ header .fa {
     justify-content: center;
 }
 
-#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list li {
+#indexDreams-list li {
     display: flex;
+}
+
+#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list p {
+    margin: auto;
+}
+
+#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list li[class^="indexDreams-dateTime"] {
     padding: 15px;
 }
 
-#indexDreams-list p {
-    margin: auto;
+.indexDreams-2title {
+    background-color: #7158e2;
+}
+
+.indexDreams-3title {
+    background-color: #17c0eb;
+}
+
+.indexDreams-4title {
+    background-color: #67e6dc;
 }
 
 #indexDreams-list p {
@@ -700,7 +723,7 @@ header .fa {
         color:  #3d3d3d;
     }
 
-    #indexDreams-list li:hover, #resultsSearch li:hover {
+    #indexDreams-list li[class^="indexDreams-dateTime"]:hover, #resultsSearch li:hover {
         background-color: #efdf02;
         cursor: pointer;
     }
@@ -757,9 +780,6 @@ header .fa {
     }
 
     /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
-    #dream span {
-        padding-top: 40px;
-    }
 
     #dreamWrite {
         height: 600px;
@@ -955,7 +975,7 @@ header .fa {
         justify-content: center;
     }
 
-    #dream p {
+    #label-title {
         width: 180px;
         height: auto;
         line-height: normal;
@@ -968,9 +988,9 @@ header .fa {
 
     }
 
-    #dream span {
+    #label-arrow {
         left: 135px;
-        padding-top: 5px;
+        padding-top: 40px;
     }
 
     .fa-calendar::before {

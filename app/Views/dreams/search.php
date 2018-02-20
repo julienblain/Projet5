@@ -1,10 +1,5 @@
 <section id="search">
-    <?php 
-    //$p = $_GET['p'];
-
-    ?>
-    <form id="searchForm" action="" method="post">
-
+    <form id="searchForm" method="post">
         <label for="search-txt">Rechercher :
             <input type="text" name="search-txt" id="search-txt" required>
         </label>
