@@ -1,7 +1,7 @@
 <header>
 
     <a href="http://localhost/Projet5/public/index.php?p=user.homeLogged" id="logo">
-         <img id="logo-img" src="http://localhost/Projet5/public/img/logo.png" alt="logo du site BLA-BLA">
+        <img id="logo-img" src="http://localhost/Projet5/public/img/logo.jpg" alt="logo du site BLA-BLA">
         <!--
         <span>BLA</span> <br>
         <span>BLA</span>

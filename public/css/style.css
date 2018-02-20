@@ -23,7 +23,7 @@ body {
 
 a {
     text-decoration: none;
-    color: #ffff;
+    color: white;
 }
 
 ol {
@@ -158,6 +158,10 @@ input {/* delete the browser design */
     font-size: 40px;
     top: 4px;
     right: 10px;
+}
+
+.fa-clock-o {
+    font-size: 45px; /*ie bug*/
 }
 
 .fa-clock-o::before {
@@ -780,6 +784,10 @@ header .fa {
         top: 6px;
     }
 
+    .fa-clock-o {
+        font-size: 55px; /* ie bug */
+    }
+
     .fa-clock-o::before {
         font-size: 55px;
         top: 8px;
@@ -970,6 +978,10 @@ header .fa {
         top: 3px;
     }
 
+    .fa-clock-o {
+        font-size: 1.5em; /* ie bug */
+    }
+
     .fa-clock-o::before {
         font-size: 1.5em;
     }
@@ -984,6 +996,7 @@ header .fa {
 
     #dateTime-dreamHour {
         width: 180px;
+        max-width: 270px; /*bug ie*/
 
     }
 

@@ -5,7 +5,7 @@
     <title>BLA-BLA</title>
     <link rel="stylesheet" href="http://localhost/Projet5/public/css/style.css">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Projet5/public/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Projet5/public/img/favicon.jpg">
 
     <script src="https://use.fontawesome.com/a758121022.js"></script>
     <!-- font-family nav -->
