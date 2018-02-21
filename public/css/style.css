@@ -155,29 +155,17 @@ input {/* delete the browser design */
     border: 3px solid #7158e2;
 }
 
-
-.fa::before {
-    color: white;
+#nav-login {
+    cursor: pointer;
 }
 
-
-.fa-calendar::before {
+.icon-calendar::before, .icon-clock2::before {
     position: relative;
-    font-size: 40px;
-    top: 4px;
+    font-size: 1.4em;
+    top: 7px;
     right: 10px;
 }
 
-.fa-clock-o {
-    font-size: 45px; /*ie bug*/
-}
-
-.fa-clock-o::before {
-    position: relative;
-    font-size: 45px;
-    top: 6px;
-    right: 10px;
-}
 
 #moreElements {
     display: flex;
@@ -258,7 +246,7 @@ nav {
     justify-content: space-between;
 }
 
-nav a {
+nav a, #nav-login {
 
     height: 100%;
     text-align: center;
@@ -289,7 +277,7 @@ header .fa {
     background-color: #17c0eb;
 }
 
-#nav-logout {
+#nav-logout, #nav-login {
     border: 3px solid #3d3d3d ;
     background-color: #3d3d3d;
 }
@@ -319,6 +307,53 @@ header .fa {
     background-color: #ffb8b8;
     width: 40%;
 }
+
+/*////////////  HOME  ///////////*/
+#home-login {
+    display: none;
+    position: absolute;
+    right: 2%;
+    margin-top: -2%;
+}
+
+#forgetPassBox {
+    display: none;
+}
+
+#home-login-form {
+    padding: 15px;
+    background-color: #ffaf40;
+}
+
+#home-login-forgetPass-form {
+    padding: 15px;
+    background-color: #17c0eb;
+}
+
+#home-login-form label, #home-login-form button, #home-login-forgetPass-form label {
+    margin-bottom: 2vw;
+}
+
+#home-login-form button, #home-login-forgetPass-form button {
+    margin-top: 2vw;
+    align-self: center;
+}
+
+#home-login-form, #home-login-forgetPass-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#home-login-forgetPass {
+    cursor: pointer;
+    opacity: 0.7;
+    text-decoration: underline;
+    font-size: 0.8em;
+    text-align: right;
+}
+
 
 
 /*////////////  HOMELOGGED  ///////////*/
@@ -674,52 +709,56 @@ header .fa {
 
     }
 
-    .btn:hover .fa-check::before {
+    .btn:hover .icon-checkmark::before {
         color: #3ae374;
     }
 
-    .btn:hover .fa-trash::before {
+    .btn:hover .icon-bin2::before {
         color: #ff3838;
     }
 
-    .btn:hover .fa-wrench::before, .btn:hover .fa-file::before {
+    .btn:hover .icon-wrench::before, .btn:hover .icon-file-empty::before {
         color: #ff9f1a;
     }
 
-    .btn:hover .fa-arrow-left::before, .btn:hover .fa-arrow-right::before {
+    .btn:hover .icon-arrow-left::before, .btn:hover .icon-arrow-right::before {
         color :#4b4b4b;
     }
 
-    .btnSearch:hover .fa-search::before {
+    .btnSearch:hover .icon-search::before {
         color :  #7158e2;
     }
 
     /*use in event js search when the btn is not clickable*/
-    .fa-arrow-left-opacity::before {
-        content : "\f060";
+    .icon-arrow-left-opacity::before {
+        content: "\ea38";
     }
 
-    .fa-arrow-right-opacity::before {
-        content : "\f061";
+    .icon-arrow-right-opacity::before {
+        content: "\ea34";
     }
 
-    #nav-home:hover, #nav-book:hover, #nav-profil:hover, #nav-logout:hover {
+    #nav-home:hover, #nav-book:hover, #nav-profil:hover, #nav-logout:hover, #nav-login:hover {
         background-color: white;
     }
 
-    #nav-home:hover .fa-home::before {
+    #nav-home:hover .icon-home3::before {
         color : #ff9f1a;
     }
 
-    #nav-book:hover .fa-book::before {
+    #nav-book:hover .icon-book::before {
         color :  #c56cf0;
     }
 
-    #nav-profil:hover .fa-user::before {
+    .icon-book::before {
+        font-size: 0.9em;
+    }
+
+    #nav-profil:hover .icon-user::before {
         color :  #17c0eb;
     }
 
-    #nav-logout:hover .fa-sign-out::before {
+    #nav-logout:hover .icon-exit::before, #nav-login:hover svg {
         color:  #3d3d3d;
     }
 
@@ -799,16 +838,16 @@ header .fa {
        line-height: 100px;
    }
 
-    .fa-calendar::before {
+    .icon-calendar::before {
         font-size: 50px;
         top: 6px;
     }
 
-    .fa-clock-o {
+    .icon-clock2 {
         font-size: 55px; /* ie bug */
     }
 
-    .fa-clock-o::before {
+    .icon-clock2::before {
         font-size: 55px;
         top: 8px;
     }
@@ -871,7 +910,7 @@ header .fa {
         font-size: 1.8em;
     }
 
-    .fa-clock-o::before {
+    .icon-clock2::before {
         top: 5px;
     }
 }
@@ -912,9 +951,6 @@ header .fa {
         font-size: 0.8em;
     }
 
-    .fa-clock-o::before {
-        top: 9px;
-    }
 }
 
 
@@ -950,7 +986,7 @@ header .fa {
 
     }
 
-    nav a {
+    nav a, #nav-login {
         font-size: 25px;
         height: 90px;
         width: 90px;
@@ -993,18 +1029,6 @@ header .fa {
         padding-top: 40px;
     }
 
-    .fa-calendar::before {
-        font-size: 1.2em;
-        top: 3px;
-    }
-
-    .fa-clock-o {
-        font-size: 1.5em; /* ie bug */
-    }
-
-    .fa-clock-o::before {
-        font-size: 1.5em;
-    }
 
    #dateTime {
        text-align: center;

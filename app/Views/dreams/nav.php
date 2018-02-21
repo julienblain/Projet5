@@ -6,19 +6,19 @@
     <nav>
         <a id="nav-home" href="http://localhost/Projet5/public/index.php?p=user.homeLogged"
            title="Retourner à l'accueil">
-            <i class="fa fa-home" aria-hidden="true"></i>
+            <i class="fa icon-home3"></i>
         </a>
 
         <a id="nav-book" href="http://localhost/Projet5/public/index.php?p=dreams.indexDreams" title="Index">
-            <i class="fa fa-book" aria-hidden="true"></i>
+            <i class="fa icon-book"></i>
         </a>
 
         <a id="nav-profil" href="http://localhost/Projet5/public/index.php?p=user.updateAccount" title="Profil">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fa icon-user"></i>
         </a>
 
         <a id="nav-logout" href="http://localhost/Projet5/public/index.php?p=app.logout" title="Se déconnecter">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <i class="fa icon-exit"></i>
         </a>
     </nav>
 </header>

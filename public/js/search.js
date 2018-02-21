@@ -155,7 +155,7 @@ var search = {
 
             $("#arrowLeftSearch").on('mouseover', function() {
                 $("#arrowLeftSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
-                $("#arrowLeftSearch .fa").removeClass("fa-arrow-left").addClass("fa-arrow-left-opacity");
+                $("#arrowLeftSearch .fa").removeClass("icon-arrow-left").addClass("icon-arrow-left-opacity");
             });
 
         }
@@ -167,7 +167,7 @@ var search = {
         else {
             $("#arrowRightSearch").css({"opacity" : "0.5"});
             $("#arrowRightSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
-            $("#arrowRightSearch .fa").removeClass("fa-arrow-right").addClass("fa-arrow-right-opacity");
+            $("#arrowRightSearch .fa").removeClass("icon-arrow-right").addClass("icon-arrow-right-opacity");
         }
     },
 

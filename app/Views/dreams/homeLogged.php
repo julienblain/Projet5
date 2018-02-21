@@ -13,12 +13,12 @@
 
         <fieldset id="dateTime">
             <label for="dreamDate" id="dateTime-dreamDate" aria-label="Choisir la date">
-                <i class="fa fa-calendar" aria-hidden="true"> </i>
+                <i class="fa icon-calendar"> </i>
                 <input type="date" title="Choisir la date" name="dreamDate" id="dreamDate"
                        value="<?php echo date('Y-m-d'); ?>">
             </label>
             <label for="dreamHour" id="dateTime-dreamHour" aria-label="Choisir l'heure">
-                <i class="fa fa-clock-o" aria-hidden="true"> </i>
+                <i class="fa icon-clock2"> </i>
                 <input type="time" id="dreamHour" title="Choisir l'heure" name="dreamHour"
                        value="<?php echo date('H:i'); ?>">
             </label>
@@ -43,7 +43,7 @@
         </fieldset>
 
         <button id="submitDream" class="btn" type="submit" title="Valider">
-            <i class="fa fa-check"></i>
+            <i class="fa icon-checkmark"></i>
         </button>
     </form>
 </section>

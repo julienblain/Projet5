@@ -37,12 +37,12 @@
         <div id="btnAction">
             <a href="?p=dreams.update.<?= $dream[0]->id ?>" id="readDream-update" class="btn btnUpdate"
                title="Modifier">
-                <i class="fa fa-wrench"></i>
+                <i class="fa icon-wrench"></i>
             </a>
 
             <a href="?p=dreams.delete.<?= $dream[0]->id ?>" id="readDream-delete" class="btn btnDelete"
                title="Supprimer">
-                <i class="fa fa-trash"></i>
+                <i class="fa icon-bin2"></i>
             </a>
 
             <?php include_once($this->viewPath . 'dreams/btnPreviousAndNextDream.php'); ?>

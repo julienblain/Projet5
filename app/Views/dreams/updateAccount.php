@@ -12,7 +12,7 @@
             <input type="password" id="updateAccountMail-password" name="password" required>
         </label>
         <button id="updateAccountMail" class="btn" type="submit" title="Modifier">
-            <i class="fa fa-check"></i>
+            <i class="fa icon-checkmark"></i>
         </button>
     </form>
 
@@ -27,7 +27,7 @@
             <input type="password" id="updateAccountNewPassword" name="newPassword" required>
         </label>
         <button id="updateAccountPassword" class="btn" type="submit" title="Modifier">
-            <i class="fa fa-check"></i>
+            <i class="fa icon-checkmark"></i>
         </button>
     </form>
 
@@ -38,7 +38,7 @@
             <input type="password" id="updateAccountDeletedAccount" name="password">
         </label>
         <button type="submit" id="deleteAccount" class="btn btnDelete" title="Supprimer">
-            <i class="fa fa-trash"></i>
+            <i class="fa icon-bin2"></i>
         </button>
     </form>
 </section>

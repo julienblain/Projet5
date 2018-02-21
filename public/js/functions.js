@@ -77,6 +77,18 @@ $(document).ready(function() {
         $(".notification").delay(2000).fadeOut('slow');
     }
 
+    //home login
+    if(document.getElementById('nav-login')) {
+        $("#nav-login").click(function () {
+            $("#home-login").toggle(200);
+        });
+    }
+    if(document.getElementById('home-login-forgetPass')) {
+        $("#home-login-forgetPass").click(function () {
+            $("#forgetPassBox").toggle(200);
+        });
+    }
+
 });
 
 // convert date in french

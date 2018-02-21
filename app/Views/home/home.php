@@ -1,33 +1,49 @@
-<section id="home">
-    <div id="home-login">
-        <h2>Déjà inscrit :</h2>
-        <form action="?p=user.control" id="home-login-form" method="post">
-            <label for="home-login-form-mail">
-                Mail :
-                <input id="home-login-form-mail" type="email" name="mail" required>
-            </label>
+<header>
+    <a href="http://localhost/Projet5/public/index.php?p=user.homeLogged" id="logo" title="Retourner à l'accueil">
+        <img id="logo-img" src="http://localhost/Projet5/public/img/logo.jpg" alt="logo du site BLA-BLA">
+    </a>
 
-            <label for="home-login-form-password">
-                Mot de passe :
-                <input id="home-login-form-password" type="password" name="password" required>
+    <nav>
+        <button title="Connexion" id="nav-login">
+            <i class="fa icon-enter"></i>
+        </button>
+    </nav>
+</header>
+
+<div id="home-login">
+    <form action="?p=user.control" id="home-login-form" method="post">
+        <label for="home-login-form-mail">
+            Mail :
+            <input id="home-login-form-mail" type="email" name="mail" required>
+        </label>
+
+        <label for="home-login-form-password">
+            Mot de passe :
+            <input id="home-login-form-password" type="password" name="password" required>
+        </label>
+        <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
+        <button id="home-login-form-btn" class="btn" name="home-login-form-btn" type="submit" title="Se connecter">
+            <i class="fa icon-checkmark"></i>
+        </button>
+        <p id="home-login-forgetPass">Mot de passe oublié ?</p>
+    </form>
+
+    <div id="forgetPassBox">
+
+        <form action="?p=user.forgetPass" id="home-login-forgetPass-form" method="post">
+            <label for="home-login-forgetPass-mail">
+                Mail :
+                <input id="home-login-forgetPass-mail" type="email" name="mail" required>
             </label>
             <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
-            <button id="home-login-form-btn" name="home-login-form-btn" type="submit">Valider</button>
+            <button id="home-login-forgetPass-btn" class="btn" type="submit" name="home-login-forgetPass-btn" title="Envoyer">
+                <i class="fa icon-checkmark"></i>
+            </button>
         </form>
-
-        <div>
-            <button id="home-login-forgetPass-h3">Mot de passe oublié ?</button>
-            <form action="?p=user.forgetPass" id="home-login-forgetPass-form" method="post">
-                <label for="home-login-forgetPass-mail">
-                    Mail :
-                    <input id="home-login-forgetPass-mail" type="email" name="mail" required>
-                    <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
-                    <button id="home-login-forgetPass-btn" type="submit" name="home-login-forgetPass-btn">Valider</button>
-                </label>
-            </form>
-        </div>
     </div>
+</div>
 
+<section id="home">
     <div id="home-createAccount">
         <h2>S'inscrire :</h2>
         <form action="?p=user.createAccount" id="home-createAccount-form" method="post">

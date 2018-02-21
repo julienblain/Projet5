@@ -5,7 +5,7 @@
         </label>
 
         <button type="button" id="search-btnSubmit" class="btn btnSearch" title="Valider">
-            <i class="fa fa-search"></i>
+            <i class="fa icon-search"></i>
         </button>
     </form>
 </section>
@@ -16,9 +16,9 @@
 
 <div id="boxArrowSearch">
     <button id="arrowLeftSearch" class="btn btnPreviousNext" title="Résultats précédents">
-        <i class="fa fa-arrow-left"></i>
+        <i class="fa icon-arrow-left"></i>
     </button>
     <button id="arrowRightSearch" class="btn btnPreviousNext" title="Résultats suivants">
-        <i class="fa fa-arrow-right"></i>
+        <i class="fa icon-arrow-right"></i>
     </button>
 </div>
