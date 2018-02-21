@@ -42,6 +42,8 @@
             </label>
         </fieldset>
 
-        <button id="submitDream" class="btn" type="submit"><i class="fa fa-check"></i></button>
+        <button id="submitDream" class="btn" type="submit" title="Valider">
+            <i class="fa fa-check"></i>
+        </button>
     </form>
 </section>

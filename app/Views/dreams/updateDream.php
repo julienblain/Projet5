@@ -7,8 +7,8 @@
         <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">
             <fieldset id="updateDream-dream">
                 <label for="dreamUpdated" aria-label="Modifier votre rêve">
-                    <textarea name="dream" id="dreamUpdated" class="ru-dream"
-                              required><?= $dream[0]->content ?></textarea>
+                <textarea name="dream" id="dreamUpdated" class="ru-dream"
+                          required><?= $dream[0]->content ?></textarea>
                     <!--verifier si le required fonctionne sur safari -->
                 </label>
             </fieldset>
@@ -25,7 +25,6 @@
                            title="Modifier l'heure">
                 </label>
             </fieldset>
-
 
             <div id="moreElements">
                 <p id="elaborationTxt">Élaboration</p>
@@ -44,17 +43,18 @@
                 </label>
             </fieldset>
 
-            <button id="submitDream" class="btn" type="submit">
+            <button id="submitDream" class="btn" type="submit" title="Valider">
                 <i class="fa fa-check"></i>
             </button>
         </form>
 
         <div id="btnAction">
-            <a href="?p=dreams.read.<?= $dream[0]->id ?>" id="updateDream-read" class="btn btnRead">
-                    <i class="fa fa-file"></i>
+            <a href="?p=dreams.read.<?= $dream[0]->id ?>" id="readDream-read" class="btn btnRead" title="Lire">
+                <i class="fa fa-file"></i>
             </a>
-            <a href="?p=dreams.delete.<?= $dream[0]->id ?>" id="updateDream-delete" class="btn btnDelete">
-                    <i class="fa fa-trash"></i>
+            <a href="?p=dreams.delete.<?= $dream[0]->id ?>" id="updateDream-delete" class="btn btnDelete"
+               title="Supprimer">
+                <i class="fa fa-trash"></i>
             </a>
 
             <?php include_once($this->viewPath . 'dreams/btnPreviousAndNextDream.php'); ?>

@@ -1,7 +1,6 @@
 <?php include_once ($this->viewPath .'dreams/nav.php');?>
 <section id="updateAccount">
     <h2>Votre profil</h2>
-
     <form action="?p=user.updatedAccountMail" method="post">
         <h3>Changer d'adresse mail</h3>
         <label for="updateAccountMail-mail">
@@ -12,7 +11,9 @@
             Mot de passe :
             <input type="password" id="updateAccountMail-password" name="password" required>
         </label>
-        <button id="updateAccountMail" class="btn" type="submit"><i class="fa fa-check"></i></button>
+        <button id="updateAccountMail" class="btn" type="submit" title="Modifier">
+            <i class="fa fa-check"></i>
+        </button>
     </form>
 
     <form action="?p=user.updatedAccountPassword" method="post">
@@ -25,7 +26,9 @@
             Nouveau mot de passe :
             <input type="password" id="updateAccountNewPassword" name="newPassword" required>
         </label>
-        <button id="updateAccountPassword" class="btn" type="submit"><i class="fa fa-check"></i></button>
+        <button id="updateAccountPassword" class="btn" type="submit" title="Modifier">
+            <i class="fa fa-check"></i>
+        </button>
     </form>
 
     <form action="?p=user.deletedAccount" method="post">
@@ -34,10 +37,8 @@
             Mot de passe :
             <input type="password" id="updateAccountDeletedAccount" name="password">
         </label>
-
-        <button type="submit" id="deleteAccount" class="btn btnDelete"><i class="fa fa-trash"></i></button>
+        <button type="submit" id="deleteAccount" class="btn btnDelete" title="Supprimer">
+            <i class="fa fa-trash"></i>
+        </button>
     </form>
-
-
-
 </section>

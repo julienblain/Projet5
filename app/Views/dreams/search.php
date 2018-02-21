@@ -4,7 +4,7 @@
             <input type="text" name="search-txt" id="search-txt" required>
         </label>
 
-        <button type="button" id="search-btnSubmit" class="btn btnSearch">
+        <button type="button" id="search-btnSubmit" class="btn btnSearch" title="Valider">
             <i class="fa fa-search"></i>
         </button>
     </form>
@@ -12,15 +12,13 @@
 
 <aside id = 'partResultsSearch'>
     <!-- results by js function -->
-
 </aside>
 
 <div id="boxArrowSearch">
-    <button id="arrowLeftSearch" class="btn btnPreviousNext">
+    <button id="arrowLeftSearch" class="btn btnPreviousNext" title="Résultats précédents">
         <i class="fa fa-arrow-left"></i>
-
     </button>
-    <button id="arrowRightSearch" class="btn btnPreviousNext">
+    <button id="arrowRightSearch" class="btn btnPreviousNext" title="Résultats suivants">
         <i class="fa fa-arrow-right"></i>
     </button>
 </div>
