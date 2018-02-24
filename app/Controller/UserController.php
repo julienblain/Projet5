@@ -4,18 +4,21 @@ namespace App\Controller;
 use \App;
 use App\AppException;
 use App\Controller\Elasticsearch\DreamsController;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require(ROOT. '/vendor/PHPMailer/src/Exception.php');
-require(ROOT. '/vendor/PHPMailer/src/PHPMailer.php');
-require(ROOT. '/vendor/PHPMailer/src/SMTP.php');
+//use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\Exception;
+
+//require(ROOT. '/vendor/PHPMailer/src/Exception.php');
+//require(ROOT. '/vendor/PHPMailer/src/PHPMailer.php');
+//require(ROOT. '/vendor/PHPMailer/src/SMTP.php');
 
 
 class UserController extends AppController {
     private $_table;
     private $_tableTmp;
-    private $_settingsMailer;
+    private $_subject = "Votre journal de rêve.";
+
+    //private $_settingsMailer;
 
     public function __construct() {
         parent::__construct();
@@ -70,7 +73,6 @@ class UserController extends AppController {
             $alreadyExisting = $this->_table->alreadyExistingAccount($mailSha1);
             $alreadyExistingTmp = $this->_tableTmp->alreadyExistingAccount($mailSha1);
 
-
             // this mail is already a actif account
             if(($alreadyExisting[0]->countMail) != '0') {
                 include_once($this->viewPath. 'notification/error/accountExistingAlready.php');
@@ -80,13 +82,16 @@ class UserController extends AppController {
             elseif ((!empty($alreadyExistingTmp)) && ((intVal($alreadyExistingTmp[0]->tryValidationTmp)) <= 3)) {
                 $body =
                     'Bienvenu !
-                
+
                 Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
-                
-                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
+                A bientôt !
+
+                http://www.julienblain.com/Projet5/public/index.php?p=user.createdAccount.' . $validationKey . '.(' . $mailUser . ')';
 
 
-                $this->_phpMailer($body,  $mailUser);
+                //$this->_phpMailer($body,  $mailUser);
+
+                mail($mailUser, $_subject, $body);
                 $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
                 include_once($this->viewPath. 'notification/error/accountExistingAlreadyTmp.php');
                 $this->home();
@@ -99,13 +104,16 @@ class UserController extends AppController {
 
             else {
                 $body =
-                        'Bienvenu !
-                
-                Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
-                
-                http://localhost/Projet5/public/index.php?p=user.createdAccount.'.$validationKey.'.('.$mailUser.')';
+                    'Bienvenu !
 
-                $this->_phpMailer($body, $mailUser);
+                Pour finaliser votre inscription il vous suffit de cliquer sur le lien ci-dessous (ou bien de le copier dans votre navigateur).
+                A bientôt !
+
+                http://www.julienblain.com/Projet5/public/index.php?p=user.createdAccount.' . $validationKey . '.(' . $mailUser . ')';
+
+                //$this->_phpMailer($body, $mailUser);
+                mail($mailUser, $_subject, $body);
+
                 $this->_tableTmp->createAccount($mailSha1, $passwordSha1, $validationKey);
                 include_once($this->viewPath. 'home/notification/mailSent.php');
                 $this->home();
@@ -129,7 +137,6 @@ class UserController extends AppController {
 
         $datasTmp = $this->_tableTmp->verifCreatingAccount(sha1($mail));
 
-        var_dump($datasTmp);
         if((!empty($datasTmp)) && ($datasTmp[0]->keyTmp == $key)) {
 
             // create account on the active user table
@@ -161,7 +168,6 @@ class UserController extends AppController {
 
         $mailUser = htmlspecialchars($_POST['mail']);
         $account = $this->_table->alreadyExistingAccount(sha1($mailUser));
-        var_dump($account);
 
         //if account not found
         if($account[0]->countMail === '0') {
@@ -170,7 +176,6 @@ class UserController extends AppController {
         }
         else {
             $idUser = $this->_table->getIdUser(sha1($mailUser));
-            var_dump($idUser);
             $idUser = $idUser->idUsers;
             $password = random_int(0,10000);
             $passwordSha1 = sha1($password);
@@ -180,14 +185,15 @@ class UserController extends AppController {
 
             //we send a mail with a new password
             $body = '
-                Bonjour, 
-                
+                Bonjour,
+
                 Voici le nouveau mot de passe associé à votre compte. Il est vivement conseillé de le changer dès votre prochaine connexion dans votre espace utilisateur.
                 Nouveau mot de pass : ' .$password.
                 '
                 Tcho ! :)' ;
 
-            $this->_phpMailer($body, $mailUser);
+            //$this->_phpMailer($body, $mailUser);
+            mail($mailUser, $_subject, $body);
             include_once($this->viewPath. 'notification/mailSentPassword.php');
             $this->home();
 
@@ -266,7 +272,7 @@ class UserController extends AppController {
 
     }
 
-    private function _phpMailer($body, $mailUser) {
+    /*private function _phpMailer2($body, $mailUser) {
         //configuration phpMailer
         if($this->_settingsMailer === null) {
             $this->_settingsMailer = require(ROOT . '/config/phpMailer.php');
@@ -299,5 +305,5 @@ class UserController extends AppController {
 
             $this->home();
         }
-    }
+    }*/
 }

@@ -535,11 +535,11 @@ header .fa {
 }
 
 #label-arrow {
-   position: absolute;
     padding-top: 50px;
     font-size: 60px;
-    left: 19%;
-    color: #fff200 ;
+    color: #fff200;
+    position: absolute;
+    margin-left: 170px;
 }
 
 /*///////////  INDEXDREAMS  ///////////*/
@@ -1215,8 +1215,8 @@ header .fa {
     }
 
     #label-arrow {
-        left: 135px;
         padding-top: 40px;
+        margin-left: 100px;
     }
 
 
