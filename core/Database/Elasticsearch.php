@@ -48,7 +48,6 @@ class Elasticsearch
             return $this->_client->$reqType($params);
 
         } catch (\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
-            var_dump($e->getMessage());
             $ex = new AppException();
            return  $ex->elasticDatabase();
         }
