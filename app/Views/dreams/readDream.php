@@ -2,7 +2,7 @@
     <section id="readDream">
 
         <div id="readTitlteBox">
-            <h2 id="readDream-title" class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h2>
+            <h1 id="readDream-title" class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h1>
             <p id="readDream-date"><?= $dream[0]->hourDreamsFr ?></p>
         </div>
 

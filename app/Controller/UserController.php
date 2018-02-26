@@ -4,7 +4,6 @@ namespace App\Controller;
 use \App;
 use App\AppException;
 use App\Controller\Elasticsearch\DreamsController;
-
 //use PHPMailer\PHPMailer\PHPMailer;
 //use PHPMailer\PHPMailer\Exception;
 
@@ -17,7 +16,6 @@ class UserController extends AppController {
     private $_table;
     private $_tableTmp;
     private $_subject = "Votre journal de rêve.";
-
     //private $_settingsMailer;
 
     public function __construct() {
@@ -91,7 +89,7 @@ class UserController extends AppController {
 
                 //$this->_phpMailer($body,  $mailUser);
 
-                mail($mailUser, $_subject, $body);
+                mail($mailUser, $this->_subject, $body);
                 $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
                 include_once($this->viewPath. 'notification/error/accountExistingAlreadyTmp.php');
                 $this->home();
@@ -112,7 +110,7 @@ class UserController extends AppController {
                 http://www.julienblain.com/Projet5/public/index.php?p=user.createdAccount.' . $validationKey . '.(' . $mailUser . ')';
 
                 //$this->_phpMailer($body, $mailUser);
-                mail($mailUser, $_subject, $body);
+                mail($mailUser, $this->_subject, $body);
 
                 $this->_tableTmp->createAccount($mailSha1, $passwordSha1, $validationKey);
                 include_once($this->viewPath. 'home/notification/mailSent.php');
@@ -193,7 +191,7 @@ class UserController extends AppController {
                 Tcho ! :)' ;
 
             //$this->_phpMailer($body, $mailUser);
-            mail($mailUser, $_subject, $body);
+            mail($mailUser, $this->_subject, $body);
             include_once($this->viewPath. 'notification/mailSentPassword.php');
             $this->home();
 

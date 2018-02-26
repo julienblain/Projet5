@@ -89,6 +89,19 @@ $(document).ready(function() {
         });
     }
 
+    //home register
+    if (document.getElementById('home-createAccount')) {
+        $("#nav-register").click(function () {
+            $("#home-createAccount").toggle(200);
+        });
+    }
+
+    if (document.getElementById('home-createAccount')) {
+        $("#home-register").click(function () {
+            $("#home-createAccount").toggle(200);
+        });
+    }
+
 });
 
 // convert date in french

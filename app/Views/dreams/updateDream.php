@@ -1,7 +1,7 @@
 <?php include_once($this->viewPath . 'dreams/nav.php'); ?>
     <section id="updateDream">
         <div id="updateDream-title">
-            <h2 class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h2>
+            <h1 class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h1>
             <h3>Modifier</h3>
         </div>
         <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">

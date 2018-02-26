@@ -116,7 +116,7 @@ var search = {
 
                     var titleBox = document.createElement('div');
                     titleBox.id = 'titleBox';
-                    var title = document.createElement('h3');
+                    var title = document.createElement('h2');
                     title.innerHTML = 'Résultas : ';
 
                     var page = document.createElement('p');

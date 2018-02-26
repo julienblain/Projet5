@@ -18,7 +18,7 @@
         </a>
 
         <a id="nav-logout" href="http://localhost/Projet5/public/index.php?p=app.logout" title="Se déconnecter">
-            <i class="fa icon-exit"></i>
+            <i class="fa icon-lock"></i>
         </a>
     </nav>
 </header>

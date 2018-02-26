@@ -141,14 +141,12 @@ class DreamsEntity extends AppController
             'id' => $this->_id(),
             'body' => [
                 'doc' => [
-                    'fields' => [
                         'idUser' => $_SESSION['idUser'],
                         'date' => $this->_date(),
                         'hour' => $this->_hour(),
                         'content' => $this->_content(),
                         'previousEvents' => $this->_previousEvents(),
                         'elaboration' => $this->_elaboration()
-                    ]
                 ]
             ]
         ];

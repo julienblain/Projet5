@@ -46,6 +46,9 @@ final class Router
                         case "app.home";
                             $this->_routingHome();
                             break;
+                        case "app.legalNotice";
+                            $this->_routingValid();
+                            break;
                         case "user.control":
                             $this->_routingValid();
                             break;

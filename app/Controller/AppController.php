@@ -73,4 +73,9 @@ class AppController extends Controller
             die();
         }
     }
+
+    public function legalNotice()
+    {
+        $this->render('templates.legalNotice');
+    }
 }

@@ -69,6 +69,7 @@ class Elasticsearch
     public function updating($params)
     {
         return $this->_req('update', $params);
+
     }
 
     public function search($params)

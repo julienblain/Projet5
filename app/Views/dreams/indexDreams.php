@@ -5,7 +5,7 @@
 
     if (isset($dreams)) { ?>
         <ol id="indexDreams-list">
-            <li class="indexDreams-2title"><h2>Rêves précendents</h2></li>
+            <li class="indexDreams-2title"><h1>Rêves précendents</h1></li>
             <?php
             $yearLastIteration = 0;
             $monthLastIteration = 0;
