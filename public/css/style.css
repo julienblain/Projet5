@@ -13,10 +13,15 @@
 
 body {
     font-size: 27px;
-    margin: 2%;
+    margin: 2vw 2vw 0 2vw;
     font-family: 'Francois One', sans-serif;
     color: white;
     background-color: #2f0e91;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #home-register {
@@ -255,7 +260,7 @@ nav a {
     text-decoration: none;
 }
 
-nav button {
+nav button, nav a {
     height: 90px;
     width: 90px;
     cursor: pointer;
@@ -271,11 +276,25 @@ nav button {
 }
 
 #nav-btn-box {
-    display: flex; /*else if space between btn*/
+    display: flex; /*else space between btn*/
 }
 
 header .fa {
     color : white;
+}
+
+nav a .fa {
+    font-size: 1.7em;
+}
+
+#nav-btn-box a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-lock {
+    margin-left: 20px;
 }
 
 #nav-home {
@@ -511,6 +530,9 @@ footer {
     padding: 15px;
     display: flex;
     justify-content: flex-end;
+
+    width: 100vw;
+    margin-left: -2vw;
 }
 
 #legalNotice h1 {
@@ -521,54 +543,40 @@ footer {
 #dream {
     background-color: #7158e2;
     color: white;
+    padding: 15px;
 }
 
-
-#dream label {
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-grow: 2;
-}
-
-#label-title, #dreamWrite {
+#dreamForm h1 {
     display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+
+#label-arrow {
+    display: none;
 }
 
 #dreamWrite {
-    margin: 10px;
-    height: 300px;
-    width: 75%;
-    /*font-size: 0.5em; a voir en sur les vrai devices */
-
+    width: 100%;
+    height: 200px;
 }
 
+#dreamWrite::placeholder {
+    font-size: 1.2em;
+}
 /*ajout ap*/
 #dreamForm {
     display: flex;
     flex-direction: column;
+
 }
 
 #dreamForm .btn {
     align-self: center;
 }
 
-#label-title {
-    text-align: center;
-    width: 25%;
-    height: 40vh;
-    line-height: 40vh;
-}
 
-#label-arrow {
-    padding-top: 50px;
-    font-size: 60px;
-    color: #fff200;
-    position: absolute;
-    margin-left: 170px;
-}
+
 
 /*///////////  INDEXDREAMS  ///////////*/
 #indexDreams-list {
@@ -829,7 +837,7 @@ footer {
 @media all and (min-width: 568px) {
     /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
     textarea {
-        font-size: 0.7em;
+        font-size: 0.6em;
     }
 }
 
@@ -930,6 +938,10 @@ footer {
         max-height: 100%;
     }
 
+    #home-question .box {
+        font-size: 0.7em;
+    }
+
 
 
 }
@@ -937,8 +949,11 @@ footer {
 @media all and (min-width: 1440px) {
 
     body {
-        margin-right: 10%;
-        margin-left: 10%;
+        margin: 4vw 10vw 0 10vw;
+    }
+
+    footer {
+        margin-left: -10vw;
     }
 
     /*
@@ -984,9 +999,11 @@ footer {
 
 
 /*////////////////////////  PORTRAIT  //////////////////////*/
+
 @media all and (orientation: portrait){
     body {
         font-size: 37px;
+        margin-top: 4vh;
     }
 
     textarea {
@@ -1013,7 +1030,7 @@ footer {
         width: auto;
     }
 
-    nav button {
+    nav button, #nav-btn-box a {
         height: 120px;
         width: 120px;
     }
@@ -1030,16 +1047,20 @@ footer {
     #home-question .box {
         font-size: 0.4em;
     }
-    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
 
     #dreamWrite {
-        height: 600px;
+        height: 250px;
     }
 
-    #dreamWrite::placeholder {
-        font-size: 1.2em;
+
+    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+    #dateTime, #moreElements {
+        margin-top: 4vh;
     }
 
+    #submitDream {
+        margin-top: 5vh;
+    }
     #elaborationTxt, #previousEventsTxt {
         height: 100px;
         line-height: 100px;
@@ -1052,16 +1073,15 @@ footer {
 
     .icon-calendar::before {
         font-size: 50px;
-        top: 6px;
+        top: 12px;
     }
 
     .icon-clock2 {
-        font-size: 55px; /* ie bug */
+        font-size: 50px; /* ie bug */
     }
 
     .icon-clock2::before {
-        font-size: 55px;
-        top: 8px;
+        font-size: 50px;
     }
 
 
@@ -1109,38 +1129,13 @@ footer {
 }
 
 @media all and (orientation: portrait) and (min-height: 600px){
-    textarea {
-        font-size: 0.4em;
-    }
-
     input {
         font-size: 1em;
     }
-
-
-    #dreamWrite {
-        height: 38vh;
-        margin: 1vh;
-    }
-
-    #dreamWrite::placeholder {
-        font-size: 1.8em;
-    }
-
-    .icon-clock2::before {
-        top: 5px;
-    }
-
 }
 
 
 @media all and (orientation: portrait) and (min-height: 736px) {
-    textarea {
-        font-size: 0.6em;
-    }
-    #elaboration textarea, #previousEvents textarea {
-        height: 400px;
-    }
 
     .ru-dream {
         height: 500px;
@@ -1158,9 +1153,7 @@ footer {
     input {
         font-size: 0.9em;
     }
-    #dreamWrite::placeholder {
-        font-size: 1em;
-    }
+
 
     .opacity {
         font-size: 0.8em;
@@ -1168,17 +1161,40 @@ footer {
 }
 
 @media all and (orientation: portrait) and (min-height: 1000px) {
-    textarea {
-        font-size: 0.8em;
-    }
-
     #home-question .box {
         font-size: 0.7em;
     }
 }
 
+@media all and (orientation: portrait) and (max-device-height: 900px) {
+    textarea {
+        font-size: 0.4em;
+    }
 
-/*////////////////////////  LAPTOP  //////////////////////*/
+    #dreamWrite::placeholder {
+        font-size: 2.5em;
+    }
+
+    .icon-clock2::before {
+        top: 12px;
+    }
+}
+
+@media all and (orientation: portrait) and (min-device-height: 1000px) {
+    body {
+        margin-top: 2vh;
+    }
+
+    .icon-clock2::before {
+        top: 12px;
+    }
+
+    textarea {
+        font-size: 0.5em;
+    }
+}
+
+/*////////////////////////  LAPTOP-TABLET  //////////////////////*/
 @media all and (orientation: landscape) and (min-width: 1024px){
     body {
         font-size: 20px;
@@ -1212,17 +1228,6 @@ footer {
         width: 90px;
     }
 
-    #nav-login {
-        height: 90px;
-        width: 90px;
-    }
-
-    #dream {
-        width: 100%;
-    }
-    #dream label {
-        padding: 2%;
-    }
 
     #dreamForm {
         flex-direction: row;
@@ -1230,24 +1235,29 @@ footer {
         justify-content: center;
     }
 
-    #label-title {
-        width: 180px;
-        height: auto;
-        line-height: normal;
-        padding-right: 2%;
+    #dreamWrite::placeholder {
+        font-size: 0.9em;
+    }
+    #label-arrow {
+        display: block;
+        color: #efdf02;
+        font-size: 1.5em;
+        text-align: right;
+    }
+
+    #dream {
+        padding: 2vw 2vw 2vw 0;
+        width: 80%;
+    }
+
+    #dreamForm h1 {
+        padding-top: 100px;
+        width: 20%;
     }
 
     #dreamWrite {
-        width: 100%;
-        margin: 0;
 
     }
-
-    #label-arrow {
-        padding-top: 40px;
-        margin-left: 100px;
-    }
-
 
    #dateTime {
        text-align: center;
@@ -1307,9 +1317,6 @@ footer {
     }
 
     /*>>>>>>>>>>>  HOME <<<<<<<<<<<*/
-    #nav-login .fa {
-        font-size: 1.2em;
-    }
 
     #home-login, #home-createAccount {
         margin-top: -2%;
@@ -1360,6 +1367,18 @@ footer {
 }
 
 @media all and (orientation: landscape) and (min-width: 1280px) {
+    #dreamWrite {
+        height: 250px;
+    }
+
+    #label-arrow {
+        padding-right: 1vw;
+    }
+
+    #dreamForm h1 {
+        padding-top: 125px;
+    }
+
     #resultsSearch li {
         width: 33.33%;
     }
