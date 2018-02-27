@@ -22,6 +22,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* overflow: hidden; */
+    overflow-x: hidden;
 }
 
 #home-register {
@@ -38,7 +40,7 @@ ol {
 }
 
 section {
-    margin: 4% 0;
+    margin: 4vw 0;
 }
 
 h2, h1 {
@@ -97,7 +99,7 @@ input {/* delete the browser design */
 
 
 .btn {
-    padding: 10px;
+
     background-color: #3ae374;
     border : 3px solid #3ae374;
     color: white;
@@ -109,6 +111,14 @@ input {/* delete the browser design */
     cursor: pointer;
 }
 
+.btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
 .btnDelete {
     background-color: #ff3838;
     border : 3px solid #ff3838;
@@ -237,6 +247,9 @@ header {
 
 }
 
+#home-login, #home-createAccount {
+    margin-top: 90px;
+}
 #logo-img {
     height: 90px;
     width: 180px;
@@ -347,7 +360,7 @@ nav a .fa {
 #home-login, #home-createAccount {
     display: none;
     position: absolute;
-    right: 2%;
+    right: 0;
 }
 
 #home-createAccount {
@@ -528,10 +541,11 @@ nav a .fa {
 footer {
     background-color: #7158e2;
     padding: 15px;
+    padding-right: 2vw;
     display: flex;
     justify-content: flex-end;
-
     width: 100vw;
+    /* overflow:  hidden; */
     margin-left: -2vw;
 }
 
@@ -552,9 +566,7 @@ footer {
     text-align: center;
 }
 
-#label-arrow {
-    display: none;
-}
+
 
 #dreamWrite {
     width: 100%;
@@ -579,6 +591,12 @@ footer {
 
 
 /*///////////  INDEXDREAMS  ///////////*/
+
+#indexDreams h1 {
+    width: 33%;
+    text-align: center;
+    margin: 0 33% 4vw 33%;
+}
 #indexDreams-list {
     display: flex;
     flex-wrap: wrap;
@@ -588,26 +606,32 @@ footer {
 
 #indexDreams-list li {
     display: flex;
+    /* border: 2px solid yellow; */
 }
 
-#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list p {
-    margin: auto;
-}
-
-#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list h4, #indexDreams-list li[class^="indexDreams-dateTime"] {
+#indexDreams-list a {
+    height: 100%;
+    width: 100%;
     padding: 15px;
 }
 
-.indexDreams-2title {
-    background-color: #7158e2;
+#indexDreams-list h2, #indexDreams-list h3, #indexDreams-list p {
+    margin: auto;
+}
+
+#indexDreams-list h2, #indexDreams-list h3 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .indexDreams-3title {
-    background-color: #17c0eb;
+    background-color: #7158e2;
 }
 
 .indexDreams-4title {
-    background-color: #67e6dc;
+    background-color: #17c0eb;
 }
 
 #indexDreams-list p {
@@ -641,10 +665,12 @@ footer {
 
 /*////////////  PROFIL  ////////////*/
 #updateAccount h1 {
-    display: inline-block;
+    display: flex;
     width: 33%;
-    text-align: center;
+    /* text-align: center; */
     margin-left: 33%;
+    justify-content: center;
+    align-items: center;
 }
 
 #updateAccount form {
@@ -657,9 +683,8 @@ footer {
     width: 33%;
     display: flex;
     align-items: center;
-    /*text-align: center;*/
+    text-align: center;
     justify-content: center;
-
 }
 
 #updateAccount label {
@@ -690,6 +715,10 @@ footer {
 #updateDream-title {
     display: flex;
     justify-content: space-between;
+}
+
+#updateDream-title h2 {
+    background-color: #17c0eb;
 }
 
 #updateDream-updated {
@@ -906,7 +935,12 @@ footer {
         color:  #3d3d3d;
     }
 
-    #indexDreams-list li[class^="indexDreams-dateTime"]:hover, #resultsSearch li:hover {
+    #indexDreams-list li:hover, #resultsSearch li:hover, #indexDreamsTitle:hover {
+        background-color: #efdf02;
+        cursor: pointer;
+    }
+
+    #indexDreams-list h2:hover, #indexDreams-list h3:hover {
         background-color: #efdf02;
         cursor: pointer;
     }
@@ -1025,6 +1059,10 @@ footer {
         height: 120px;
     }
 
+    #home-login, #home-createAccount {
+        margin-top: 120px;
+    }
+
     #logo-img {
         height: 120px;
         width: auto;
@@ -1126,6 +1164,12 @@ footer {
         font-size: 1em;
     }
 
+    /*>>>>>>>>>>> INDEXDREAMS <<<<<<<<<<<<*/
+    #indexDreams h1 {
+        width: 40%;
+        margin: 0 30% 4vw 30%;
+    }
+
 }
 
 @media all and (orientation: portrait) and (min-height: 600px){
@@ -1205,6 +1249,10 @@ footer {
         margin-bottom: 2%;
     }
 
+    #home-login, #home-createAccount {
+        margin-top: 90px;
+    }
+
     textarea {
         font-size: 0.7em;
         padding: 10px;
@@ -1238,12 +1286,7 @@ footer {
     #dreamWrite::placeholder {
         font-size: 0.9em;
     }
-    #label-arrow {
-        display: block;
-        color: #efdf02;
-        font-size: 1.5em;
-        text-align: right;
-    }
+
 
     #dream {
         padding: 2vw 2vw 2vw 0;
@@ -1251,7 +1294,8 @@ footer {
     }
 
     #dreamForm h1 {
-        padding-top: 100px;
+        padding-top: 2vw;
+        line-height: 200px;
         width: 20%;
     }
 
@@ -1318,9 +1362,7 @@ footer {
 
     /*>>>>>>>>>>>  HOME <<<<<<<<<<<*/
 
-    #home-login, #home-createAccount {
-        margin-top: -2%;
-    }
+
 
     #home-login-form, #home-login-forgetPass-form, #home-createAccount form {
         width: auto;
@@ -1337,7 +1379,7 @@ footer {
         /* justify-content:  center; */
     }
 
-    #home-homeLogged, #home-index {
+    #home-homeLogged, #home-search {
         margin-right: 1%;
     }
 
@@ -1371,12 +1413,10 @@ footer {
         height: 250px;
     }
 
-    #label-arrow {
-        padding-right: 1vw;
-    }
 
     #dreamForm h1 {
-        padding-top: 125px;
+        padding-top: 2vw;
+        line-height: 250px;
     }
 
     #resultsSearch li {
@@ -1393,7 +1433,7 @@ footer {
         height: 90px;
         align-self: center;
         margin-left: 0;
-        line-height: 60px;
+        /* line-height: 60px; */
     }
 }
 
@@ -1437,11 +1477,16 @@ footer {
         align-self: center;
     }
 
+    #indexDreams h1 {
+        width: 300px;
+        margin: auto auto 4vw auto;
+        align-self: center;
+    }
 }
 
-
-
-
+/*#indexDreams-list .indexDreamsHidden {
+   display: none;
+}*/
 
 
 

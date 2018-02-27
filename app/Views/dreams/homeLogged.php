@@ -1,7 +1,7 @@
 <?php include_once($this->viewPath . 'dreams/nav.php'); ?>
 <section id="homeLogged">
     <form action="?p=dreams.created" id="dreamForm" method="post">
-        <h1>Votre rêve <span id="label-arrow">&#x293B;</span></h1>
+        <h1>Votre rêve</h1>
 
         <fieldset id="dream">
 

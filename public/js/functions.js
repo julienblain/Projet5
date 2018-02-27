@@ -102,6 +102,13 @@ $(document).ready(function() {
         });
     }
 
+
+    //indexDreams
+    if (document.getElementById('indexDreams')) {
+        indexDreams.yearClicking();
+        indexDreams.monthClicking();
+        indexDreams.hClicking();
+    }
 });
 
 // convert date in french

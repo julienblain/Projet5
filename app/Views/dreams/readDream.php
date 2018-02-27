@@ -14,7 +14,7 @@
         if ($dream[0]->elaboration !== null) {
             echo '
         <aside id="readDreamElaboration" class="read-aside">
-            <p id="read-aside-elaboration">Élaboration</p>
+            <h2 id="read-aside-elaboration">Élaboration</h2>
             <div>
                 <p id="readDream-elaboration" class="ru-elaboration">' . $dream[0]->elaboration . '</p>
             </div>
@@ -26,7 +26,7 @@
         if ($dream[0]->previousEvents !== null) {
             echo '
         <aside id="readDreamPreviousEvents" class="read-aside">
-            <p id="read-aside-events">Évenements précédents</p>
+            <h2 id="read-aside-events">Évenements précédents</h2>
             <div>
                 <p id="readDream-previousEvents" class="ru-previousEvents">' . $dream[0]->previousEvents . '</p>
             </div>

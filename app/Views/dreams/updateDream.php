@@ -2,7 +2,7 @@
     <section id="updateDream">
         <div id="updateDream-title">
             <h1 class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h1>
-            <h3>Modifier</h3>
+            <h2>Modifier</h2>
         </div>
         <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">
             <fieldset id="updateDream-dream">
