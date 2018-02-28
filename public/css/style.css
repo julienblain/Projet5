@@ -494,6 +494,7 @@ nav a .fa {
 .btn-register {
     width: auto;
     background-color: #ffb8b8;
+    padding: 15px;
 }
 
 #home-homeLogged-right {
@@ -1406,6 +1407,10 @@ footer {
         margin: auto;
     }
 
+    #updateAccount h1 {
+        width: 200px;
+        margin: auto auto 4vw auto;
+    }
 }
 
 @media all and (orientation: landscape) and (min-width: 1280px) {
@@ -1423,32 +1428,23 @@ footer {
         width: 33.33%;
     }
 
-    #updateAccount {
-        display: flex;
-        flex-direction: column;
-    }
 
-    #updateAccount h2, #updateAccount h1 {
-        width: 270px;
-        height: 90px;
-        align-self: center;
-        margin-left: 0;
-        /* line-height: 60px; */
-    }
 }
 
 @media all and (orientation: landscape) and (min-width: 1440px) {
+    #updateAccount {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     #updateAccount form {
         margin: 1vw 0;
         width: 100%;
-
+        flex-wrap: nowrap;
     }
 
-    #updateAccount h2, #updateAccount h1 {
-        margin-bottom: 1%;
-    }
-
-    #updateAccount h3 {
+    #updateAccount h2 {
         width: 270px;
         height: 90px;
         text-align: center;
@@ -1460,7 +1456,6 @@ footer {
         margin-right: 0;
         height: 90px;
         padding: 0;
-
     }
 
     #updateAccount label:nth-child(3n) {
