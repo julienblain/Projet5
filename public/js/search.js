@@ -12,18 +12,16 @@ var search = {
 
             this.word = $("#search-txt").val();
 
-            if (this.word === '') {
+            if ((this.word === '') || (this.word === ' ')) {
                 alert('Veuillez entrer un mot pour faire une recherche.');
                 return false;
             }
             else {
-
                 //reset values
                 this.nbPage = 0;
                 this.nbTotalPage = 0;
                 this.from = 0;
                 this.totalResult =0;
-
                 this.ajaxCountResult();
             }
         }
@@ -147,27 +145,19 @@ var search = {
 
         if((this.nbPage > 1) && (this.nbPage <= this.nbTotalPage)) {
 
-            $("#arrowLeftSearch").css({"opacity" : "1"});
-
+            $("#arrowLeftSearch").css({"opacity": "1", "cursor": "pointer"});
         }
         else {
-            $("#arrowLeftSearch").css({"opacity" : "0.5"});
-
-            $("#arrowLeftSearch").on('mouseover', function() {
-                $("#arrowLeftSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
-                $("#arrowLeftSearch .fa").removeClass("icon-arrow-left").addClass("icon-arrow-left-opacity");
-            });
-
+            $("#arrowLeftSearch").css({"opacity": "0.5", "background-color": "#4b4b4b", "cursor": "default"});
+            $("#arrowLeftSearch .fa").addClass("icon-arrow-left-opacity");
         }
 
         if((this.nbPage < this.nbTotalPage) && (this.nbPage > 0)) {
-
-            $("#arrowRightSearch").css({"opacity" : "1"});
+            $("#arrowRightSearch").css({"opacity": "1", "cursor": "pointer"});
         }
         else {
-            $("#arrowRightSearch").css({"opacity" : "0.5"});
-            $("#arrowRightSearch").css({"background-color": "#4b4b4b", "cursor" : "default"});
-            $("#arrowRightSearch .fa").removeClass("icon-arrow-right").addClass("icon-arrow-right-opacity");
+            $("#arrowRightSearch").css({"opacity": "0.5", "background-color": "#4b4b4b", "cursor": "default"});
+            $("#arrowRightSearch .fa").addClass("icon-arrow-right-opacity");
         }
     },
 

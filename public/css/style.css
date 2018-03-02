@@ -9,10 +9,11 @@
     border-radius: 0;
 }
 
-
-
+html {
+    font-size: 20px;
+}
 body {
-    font-size: 27px;
+    font-size: 1rem;
     margin: 2vw 2vw 0 2vw;
     font-family: 'Francois One', sans-serif;
     color: white;
@@ -44,25 +45,31 @@ section {
 }
 
 h2, h1 {
-    font-size: 1.3em;
     padding: 15px;
     background-color: #7158e2;
-
 }
 
-header h1 {
+h1 {
+    font-size: 1.4rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+}
+
+header h1 { /*logo home page*/
     padding: 0;
     background-color: transparent;
 }
 h3 {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding: 15px;
     background-color: #17c0eb;
 
 }
 
 h4 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     padding: 15px;
     background-color: #67e6dc;
 }
@@ -84,16 +91,15 @@ textarea { /* delete the browser design */
 
     /* custome */
     color: black;
-
     padding: 5px;
+    font-size: 0.7rem;
 
-    font-size: 12px;
 }
 
 input {/* delete the browser design */
     border: none;
     padding: 4px;
-    font-size: 1em;
+    font-size: 1rem;
     background-color: white;
 }
 
@@ -103,7 +109,7 @@ input {/* delete the browser design */
     background-color: #3ae374;
     border : 3px solid #3ae374;
     color: white;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     height: 70px;
     width: 70px;
     line-height: 0;
@@ -137,12 +143,14 @@ input {/* delete the browser design */
 .btnPreviousNext {
     background-color: #4b4b4b;
     border: 3px solid #4b4b4b;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #btnAction {
     display: flex;
-    margin : 4% 0;
+    margin: 4vh 0;
     justify-content: space-between;
 }
 
@@ -179,9 +187,10 @@ input {/* delete the browser design */
 }
 .icon-calendar::before, .icon-clock2::before {
     position: relative;
-    font-size: 1.4em;
-    top: 7px;
-    right: 10px;
+    font-size: 1.7rem;
+    top: 9px;
+    right: 5px;
+    /* margin-left: 10px; */
 }
 
 
@@ -196,7 +205,7 @@ input {/* delete the browser design */
     display: inline-block;
     width: 50%;
     margin-top: 0;
-
+    font-size: 1.3rem;
     text-align: center;
     height: 70px;
     line-height: 70px;
@@ -256,7 +265,8 @@ header {
 }
 
 header .fa {
-    font-size: 2.5em;
+    font-size: 1.7rem;
+    color: white;
 }
 
 header h1 {
@@ -290,14 +300,6 @@ nav button, nav a {
 
 #nav-btn-box {
     display: flex; /*else space between btn*/
-}
-
-header .fa {
-    color : white;
-}
-
-nav a .fa {
-    font-size: 1.7em;
 }
 
 #nav-btn-box a {
@@ -341,11 +343,12 @@ nav a .fa {
     height: 70px;
     line-height: 70px;
     text-align: center;
+    padding: 0 5px;
 }
 
 #dateTime-dreamDate {
-    background-color: #17c0eb ;
-    width: 58%;
+    background-color: #17c0eb;
+    width: 53%;
     margin-right: 1%;
 }
 
@@ -353,7 +356,7 @@ nav a .fa {
 
 #dateTime-dreamHour {
     background-color: #ffb8b8;
-    width: 40%;
+    width: 45%;
 }
 
 /*////////////  HOME  ///////////*/
@@ -427,7 +430,7 @@ nav a .fa {
     cursor: pointer;
     opacity: 0.7;
     text-decoration: underline;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     align-self: right;
     text-align: right;
 }
@@ -440,7 +443,7 @@ nav a .fa {
 
 .opacity {
     opacity: 0.8;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 #home div {
@@ -481,12 +484,12 @@ nav a .fa {
 #slogan em {
     color: #fff200;
     font-style: normal;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 #slogan {
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin-right: 15px;
     /* margin-top: 20%; */
 }
@@ -526,7 +529,7 @@ nav a .fa {
 #home-question .box {
     flex-direction: column;
     background-color: #c56cf0;
-    font-size: 0.6em;
+    font-size: 0.6rem;
     justify-content: center;
 }
 
@@ -546,7 +549,6 @@ footer {
     display: flex;
     justify-content: flex-end;
     width: 100vw;
-    /* overflow:  hidden; */
     margin-left: -2vw;
 }
 
@@ -575,7 +577,7 @@ footer {
 }
 
 #dreamWrite::placeholder {
-    font-size: 1.2em;
+    font-size: 1rem;
 }
 /*ajout ap*/
 #dreamForm {
@@ -607,13 +609,13 @@ footer {
 
 #indexDreams-list li {
     display: flex;
-    /* border: 2px solid yellow; */
 }
 
 #indexDreams-list a {
     height: 100%;
     width: 100%;
     padding: 15px;
+    font-size: 1.2rem;
 }
 
 #indexDreams-list h2, #indexDreams-list h3, #indexDreams-list p {
@@ -678,6 +680,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     margin: 4vw 0;
+    /* justify-content:  space-between; */
 }
 
 #updateAccount h2 {
@@ -709,6 +712,7 @@ footer {
 
 #updateAccount .btn {
     align-self: flex-end;
+    margin: auto;
 }
 
 
@@ -725,20 +729,27 @@ footer {
 #updateDream-updated {
     display: flex;
     flex-wrap: wrap;
-
-    /*ajout ap*/
     justify-content: center;
 }
 
-.ru-dream {
-    width: 96vw;
+#dreamUpdated {
+    width: 100%;
     height: 250px;
 }
 
+#updateDream-dream {
+    width: 100%;
+}
+
+
+
+
+
 
 /*////////////  READDREAM  /////////////*/
+
 #readDream-date {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding: 15px;
     background-color: #17c0eb;
 }
@@ -748,8 +759,9 @@ footer {
     justify-content: space-between;
 }
 /* ajout ap */
-#readTitlteBox h2, #readTitlteBox p {
+#readTitlteBox h2, #readTitlteBox p, .read-aside h2 {
     text-align: center;
+    display: inline-block;
 }
 
 #readDream-dream {
@@ -757,10 +769,11 @@ footer {
     background-color: #7158e2;
 }
 
-#readDream-dream .ru-dream, .ru-elaboration, .ru-previousEvents {
+#readDream p:not(#readDream-date) {
+    display: block; /*for the same font-size*/
+    font-size: 0.7rem;
     height: auto;
     width: 100%;
-
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
@@ -772,9 +785,8 @@ footer {
 
 
 .read-aside {
-    margin-top: 4%;
-    display: flex;
-    flex-direction: column;
+    margin-top: 4vh;
+
 }
 
 #read-aside-elaboration, #readDreamElaboration div  {
@@ -783,7 +795,6 @@ footer {
 
 #read-aside-elaboration, #read-aside-events {
     align-self: flex-start;
-    padding: 15px;
 }
 
 #readDreamElaboration div {
@@ -800,7 +811,6 @@ footer {
 /*/////////////  SEARCH  //////////*/
 #searchForm {
     display: flex;
-
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
@@ -808,7 +818,7 @@ footer {
 }
 
 #search {
-    margin: 6% 0 0 0;
+    margin: -3vw 0 3vw 0;
 }
 #searchForm input {
     margin-left: 15px;
@@ -841,8 +851,7 @@ footer {
 
 #resultsSearch li {
     width: 50%;
-    font-size: 0.9em;
-    padding: 15px;
+
     display: flex;
     justify-content: center;
 
@@ -851,8 +860,12 @@ footer {
     align-items: center;
 }
 
+#resultsSearch a {
+    padding: 15px;
+}
+
 #boxArrowSearch {
-    margin-top: 2%;
+    margin: 3vw 0;
     display: flex;
     justify-content: center;
 }
@@ -862,17 +875,42 @@ footer {
 }
 
 
+
 /*////////////  RESPONSIVE  /////////////*/
 /* smartphone and tablet */
 @media all and (min-width: 568px) {
-    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+
     textarea {
-        font-size: 0.6em;
+        /* font-size: 0.6rem; */
     }
+
 }
 
+@media all and (min-device-width: 800px) and (orientation: landscape) {
+
+    #dreamWrite::placeholder {
+        font-size: 0.8rem;
+    }
+
+    textarea {
+        font-size: 0.8rem;
+    }
+
+    #readDream p:not(#readDream-date) {
+        font-size: 0.8rem;
+    }
+
+}
 
 @media all and (min-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+
+    #dreamWrite::placeholder {
+        font-size: 0.5rem;
+    }
+
     /*events hover*/
     .btn:hover {
         background-color: white;
@@ -912,6 +950,10 @@ footer {
         content: "\ea34";
     }
 
+    .btn:hover .icon-arrow-left-opacity::before, .btn:hover .icon-arrow-right-opacity::before {
+        color: white;
+    }
+
     #nav-home:hover, #nav-book:hover, #nav-profil:hover, #nav-logout:hover, #nav-login:hover, #nav-register:hover {
         background-color: white;
     }
@@ -924,9 +966,6 @@ footer {
         color :  #c56cf0;
     }
 
-    .icon-book::before {
-        font-size: 0.9em;
-    }
 
     #nav-profil:hover .icon-user::before {
         color :  #17c0eb;
@@ -950,300 +989,13 @@ footer {
         color: #ffb8b8;
     }
 
-    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
-    textarea {
-        font-size: 1em;
-    }
-
     /*>>>>>>>>>>>  READ <<<<<<<<<<<<*/
-    #readDream-dream .ru-dream, .ru-elaboration, .ru-previousEvents {
-        font-size: 1.1em;
-    }
-
-    /*>>>>>>>>>>>>  SEARCH  >>>>>>>>>>>*/
-    #resultsSearch li {
-        font-size: 1em;
+    #readDream p:not(#readDream-date) {
+        font-size: 0.9rem;
     }
 
 }
-
-@media all and (min-width: 1280px) {
-    #home img {
-        height: auto;
-        max-height: 100%;
-    }
-
-    #home-question .box {
-        font-size: 0.7em;
-    }
-
-
-
-}
-
-@media all and (min-width: 1440px) {
-
-    body {
-        margin: 4vw 10vw 0 10vw;
-    }
-
-    footer {
-        margin-left: -10vw;
-    }
-
-    /*
-       #home div {
-           width: 24%;
-           margin: 0;
-
-       }
-
-        #home .box {
-            height: auto;
-            flex-direction: column;
-        }
-
-        #home .txt {
-            min-width: 100%;
-        }
-
-
-
-        #home img {
-            width: 100%;
-            margin-top: 5vh;
-        }
-
-        #home-homeLogged-right {
-            order: 4;
-        }
-
-
-
-        #slogan {
-            order: 1;
-        }
-
-        #home-homeLogged-register {
-            order: 3;
-        } */
-
-}
-
-
-
-
-/*////////////////////////  PORTRAIT  //////////////////////*/
-
-@media all and (orientation: portrait){
-    body {
-        font-size: 37px;
-        margin-top: 4vh;
-    }
-
-    textarea {
-        font-size: 0.4em;
-    }
-
-    input {
-        font-size: 35px;
-    }
-
-    .btn {
-        font-size: 1.2em;
-        height: 90px;
-        width: 90px;
-    }
-
-    /*>>>>>>>>>>>  NAV  <<<<<<<<<<<<*/
-    header {
-        height: 120px;
-    }
-
-    #home-login, #home-createAccount {
-        margin-top: 120px;
-    }
-
-    #logo-img {
-        height: 120px;
-        width: auto;
-    }
-
-    nav button, #nav-btn-box a {
-        height: 120px;
-        width: 120px;
-    }
-
-    header .fa {
-        font-size: 3.5em;
-    }
-
-    /*>>>>>>>>>>>  HOME  <<<<<<<<<<<<*/
-    .btn-register {
-        width: auto;
-    }
-
-    #home-question .box {
-        font-size: 0.4em;
-    }
-
-    #dreamWrite {
-        height: 250px;
-    }
-
-
-    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
-    #dateTime, #moreElements {
-        margin-top: 4vh;
-    }
-
-    #submitDream {
-        margin-top: 5vh;
-    }
-    #elaborationTxt, #previousEventsTxt {
-        height: 100px;
-        line-height: 100px;
-    }
-
-   #dateTime label {
-       height: 100px;
-       line-height: 100px;
-   }
-
-    .icon-calendar::before {
-        font-size: 50px;
-        top: 12px;
-    }
-
-    .icon-clock2 {
-        font-size: 50px; /* ie bug */
-    }
-
-    .icon-clock2::before {
-        font-size: 50px;
-    }
-
-
-    /*>>>>>>>>>>>  SEARCH  <<<<<<<<<<<<*/
-
-    #search {
-        margin: 6% 0;
-    }
-    #resultsSearch li {
-        text-align: center;
-        align-items: center;
-    }
-
-
-    /*>>>>>>>>>>> UPDATEACCOUNT  <<<<<<<<<<<<*/
-    #updateAccount form {
-        flex-direction: column;
-    }
-
-    #updateAccount h3 {
-        width: auto;
-        align-self: flex-start;
-    }
-
-    #updateAccount label {
-        width: auto;
-        margin-right: 0;
-    }
-
-    #updateAccount label:nth-child(3n) {
-        margin-left: 0;
-    }
-
-    #updateAccount .btn {
-        align-self: center;
-        margin-top: 4%;
-        margin-bottom: 4%;
-    }
-
-    /* home */
-    .opacity {
-        font-size: 1em;
-    }
-
-    /*>>>>>>>>>>> INDEXDREAMS <<<<<<<<<<<<*/
-    #indexDreams h1 {
-        width: 40%;
-        margin: 0 30% 4vw 30%;
-    }
-
-}
-
-@media all and (orientation: portrait) and (min-height: 600px){
-    input {
-        font-size: 1em;
-    }
-}
-
-
-@media all and (orientation: portrait) and (min-height: 736px) {
-
-    .ru-dream {
-        height: 500px;
-    }
-
-    #home-question .box {
-        font-size: 0.5em;
-    }
-}
-
-@media all and (orientation: portrait) and (min-height: 900px) {
-    body {
-        font-size: 30px;
-    }
-    input {
-        font-size: 0.9em;
-    }
-
-
-    .opacity {
-        font-size: 0.8em;
-    }
-}
-
-@media all and (orientation: portrait) and (min-height: 1000px) {
-    #home-question .box {
-        font-size: 0.7em;
-    }
-}
-
-@media all and (orientation: portrait) and (max-device-height: 900px) {
-    textarea {
-        font-size: 0.4em;
-    }
-
-    #dreamWrite::placeholder {
-        font-size: 2.5em;
-    }
-
-    .icon-clock2::before {
-        top: 12px;
-    }
-}
-
-@media all and (orientation: portrait) and (min-device-height: 1000px) {
-    body {
-        margin-top: 2vh;
-    }
-
-    .icon-clock2::before {
-        top: 12px;
-    }
-
-    textarea {
-        font-size: 0.5em;
-    }
-}
-
-/*////////////////////////  LAPTOP-TABLET  //////////////////////*/
 @media all and (orientation: landscape) and (min-width: 1024px){
-    body {
-        font-size: 20px;
-    }
 
     header {
         height: 90px;
@@ -1255,12 +1007,11 @@ footer {
     }
 
     textarea {
-        font-size: 0.7em;
         padding: 10px;
     }
 
     input {
-        font-size: 0.7em;
+        font-size: 0.8rem;
         padding: 7px;
     }
 
@@ -1285,7 +1036,7 @@ footer {
     }
 
     #dreamWrite::placeholder {
-        font-size: 0.9em;
+        font-size: 0.9rem;
     }
 
 
@@ -1300,22 +1051,16 @@ footer {
         width: 20%;
     }
 
-    #dreamWrite {
-
+    #dateTime {
+        text-align: center;
     }
-
-   #dateTime {
-       text-align: center;
-   }
     #dateTime-dreamDate {
         width: 270px;
         margin-right: 2%;
     }
 
     #dateTime-dreamHour {
-        width: 180px;
-        max-width: 270px; /*bug ie*/
-
+        width: 270px; /*if smaller bug ie*/
     }
 
     #dateTime label, #elaborationTxt, #previousEventsTxt {
@@ -1348,9 +1093,12 @@ footer {
     }
 
     #updateDream-dream {
-        width: 96vw;
         padding: 2vw;
         background-color: #7158e2;
+    }
+
+    #dreamUpdated {
+        height: 200px;
     }
 
     .ru-dream {
@@ -1395,7 +1143,7 @@ footer {
     }
 
     #home-homeLogged-right {
-        font-size: 1.9em;
+        font-size: 1.9rem;
     }
 
     #home-homeLogged-register {
@@ -1410,6 +1158,21 @@ footer {
     #updateAccount h1 {
         width: 200px;
         margin: auto auto 4vw auto;
+    }
+}
+
+@media all and (min-width: 1280px) {
+    #home img {
+        height: auto;
+        max-height: 100%;
+    }
+
+    #home-question .box {
+        font-size: 0.7rem;
+    }
+
+    #readDream p:not(#readDream-date) {
+        font-size: 1rem;
     }
 }
 
@@ -1428,8 +1191,23 @@ footer {
         width: 33.33%;
     }
 
+    #updateDream textarea {
+        font-size: 0.8rem;
+    }
 
 }
+
+@media all and (min-width: 1440px) {
+
+    body {
+        margin: 4vw 10vw 0 10vw;
+    }
+
+    footer {
+        margin-left: -10vw;
+    }
+}
+
 
 @media all and (orientation: landscape) and (min-width: 1440px) {
     #updateAccount {
@@ -1479,9 +1257,190 @@ footer {
     }
 }
 
-/*#indexDreams-list .indexDreamsHidden {
-   display: none;
-}*/
+/*////////////////////////  PORTRAIT  //////////////////////*/
+
+@media all and (orientation: portrait) {
+    html {
+        font-size: 30px;
+    }
+
+    body {
+        margin-top: 4vh;
+    }
+
+    textarea {
+        font-size: 0.4rem;
+    }
+
+    input {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1.2rem;
+        height: 90px;
+        width: 90px;
+    }
+
+    /*>>>>>>>>>>>  NAV  <<<<<<<<<<<<*/
+    header {
+        height: 120px;
+    }
+
+    #home-login, #home-createAccount {
+        margin-top: 120px;
+    }
+
+    #logo-img {
+        height: 120px;
+        width: auto;
+    }
+
+    nav button, #nav-btn-box a {
+        height: 120px;
+        width: 120px;
+    }
+
+    /*>>>>>>>>>>>  HOME  <<<<<<<<<<<<*/
+    .btn-register {
+        width: auto;
+    }
+
+    #home-question .box {
+        font-size: 0.4rem;
+    }
+
+    /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
+    #dreamWrite {
+        height: 250px;
+    }
+
+    #dreamWrite::placeholder {
+        font-size: 1rem;
+    }
+
+    #submitDream {
+        margin-top: 5vh;
+    }
+
+    #elaborationTxt, #previousEventsTxt {
+        height: 100px;
+        line-height: 100px;
+    }
+
+    #dateTime label {
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .icon-clock2::before, .icon-calendar::before {
+        top: 11px;
+    }
+
+    /*>>>>>>>>>>>  READDREAM  <<<<<<<<<<<<*/
+    #readDream p:not(#readDream-date) {
+        font-size: 0.5rem;
+    }
+
+    /*>>>>>>>>>>>  SEARCH  <<<<<<<<<<<<*/
+    #search {
+        /* margin: 6% 0; */
+    }
+
+    #resultsSearch li {
+        text-align: center;
+        align-items: center;
+    }
+
+    /*>>>>>>>>>>> UPDATEACCOUNT  <<<<<<<<<<<<*/
+    #updateAccount form {
+        flex-direction: column;
+    }
+
+    #updateAccount h3 {
+        width: auto;
+        align-self: flex-start;
+    }
+
+    #updateAccount label {
+        width: auto;
+        margin-right: 0;
+    }
+
+    #updateAccount label:nth-child(3n) {
+        margin-left: 0;
+    }
+
+    #updateAccount .btn {
+        align-self: center;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+    }
+
+    /* home */
+    .opacity {
+        font-size: 1rem;
+    }
+
+    /*>>>>>>>>>>> INDEXDREAMS <<<<<<<<<<<<*/
+    #indexDreams h1 {
+        width: 40%;
+        margin: 0 30% 4vw 30%;
+    }
+
+}
+
+@media all and (orientation: portrait) and (min-height: 600px) {
+
+}
+
+@media all and (orientation: portrait) and (min-height: 736px) {
+
+    #home-question .box {
+        font-size: 0.5rem;
+    }
+}
+
+@media all and (orientation: portrait) and (min-height: 900px) {
+
+    .opacity {
+        font-size: 0.8rem;
+    }
+
+}
+
+@media all and (orientation: portrait) and (min-device-height: 900px) {
+    #readDream p:not(#readDream-date) {
+        font-size: 0.7rem;
+    }
+
+    textarea {
+        font-size: 0.7rem;
+    }
+}
+
+@media all and (orientation: portrait) and (min-height: 1000px) {
+
+    #home-question .box {
+        font-size: 0.7rem;
+    }
+
+}
+
+@media all and (orientation: portrait) and (min-device-height: 1000px) {
+    body {
+        margin-top: 2vh;
+    }
+
+    .icon-clock2::before {
+        top: 12px;
+    }
+
+    textarea {
+        font-size: 0.5rem;
+    }
+
+}
 
 
 

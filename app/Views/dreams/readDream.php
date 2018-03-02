@@ -2,13 +2,13 @@
     <section id="readDream">
 
         <div id="readTitlteBox">
-            <h1 id="readDream-title" class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h1>
+            <h1 id="readDream-title" class="ru-title"><?= ucfirst($dream[0]->dateDreamsFr) ?></h1>
             <p id="readDream-date"><?= $dream[0]->hourDreamsFr ?></p>
         </div>
 
-        <div id="readDream-dream">
+        <article id="readDream-dream">
             <p class="ru-dream"><?= $dream[0]->content ?></p>
-        </div>
+        </article>
 
         <?php
         if ($dream[0]->elaboration !== null) {
