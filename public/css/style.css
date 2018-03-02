@@ -237,7 +237,7 @@ input {/* delete the browser design */
 .notification {
     position: absolute;
     padding: 15px;
-    margin: 2%;
+    margin: 1vw;
     /*border-radius: 10px; */
     background-color: #3ae374;
     z-index: 2;
@@ -309,7 +309,7 @@ nav button, nav a {
 }
 
 .icon-lock {
-    margin-left: 20px;
+    margin-left: 14px;
 }
 
 #nav-home {
@@ -394,7 +394,8 @@ nav button, nav a {
 }
 
 #home-login-form label, #home-login-form button, #home-login-forgetPass-form label, #home-createAccount label {
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
+    align-self: center;
 }
 
 #home-login-form button, #home-login-forgetPass-form button, #home-createAccount button {
@@ -414,7 +415,7 @@ nav button, nav a {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 48vw;
+
 }
 
 #home-createAccount form {
@@ -441,15 +442,17 @@ nav button, nav a {
     justify-content: space-between;
 }
 
+#home > div {
+    margin-bottom: 4vw;
+    width: 100%;
+}
+
 .opacity {
     opacity: 0.8;
     font-size: 0.8rem;
 }
 
-#home div {
-    width: 100%;
-    margin-bottom: 2%;
-}
+
 
 #home h2 {
     display: inline-block;
@@ -458,52 +461,60 @@ nav button, nav a {
 #home .box {
     padding: 15px;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#home .txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 #home-homeLogged-box {
     background-color: #17c0eb;
 }
 
 #home img {
-    width: 60%;
-    height: 50%;
-}
-
-.spe-arrow {
-    color: #fff200;
-    font-size: 50px;
-}
-
-#home-homeLogged-txt, #home-index-txt, #home-search-txt {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 300px;
+    height: 300px;
 }
 
 #slogan em {
     color: #fff200;
     font-style: normal;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+#slogan {
+    width: 100%;
+}
+
+#home-homeLogged-txt {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    align-content: space-around;
+    justify-content: center;
 }
 
 #slogan {
     text-align: center;
-    font-size: 1.1rem;
-    margin-right: 15px;
-    /* margin-top: 20%; */
+    font-size: 1.5rem;
+    margin: 15px 50px 0 50px;
 }
 
-.btn-register {
+#home-register {
     width: auto;
-    background-color: #ffb8b8;
     padding: 15px;
+    font-size: 1.6rem;
+    margin-top: 2vw;
+
 }
 
 #home-homeLogged-right {
-    margin-right: 15px;
-    font-size: 60px;
-    align-self: flex-end;
+    display: none; /* bug on firefox os browser*/
+    color: #fff200;
 }
 
 #home-homeLogged-register {
@@ -523,7 +534,9 @@ nav button, nav a {
 
 .txt p {
     text-align: center;
-    margin-right: 15px;
+    /* margin-right: 15px; */
+    font-size: 1.4rem;
+    margin: 15px 50px;
 }
 
 #home-question .box {
@@ -535,6 +548,19 @@ nav button, nav a {
 
 #home-question .question {
     font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+#home-question p {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+    text-align: justify;
+    max-width: 100%; /* bug ie */
 }
 
 #legalNotice h1 {
@@ -878,10 +904,10 @@ footer {
 
 /*////////////  RESPONSIVE  /////////////*/
 /* smartphone and tablet */
-@media all and (min-width: 568px) {
+@media all and (min-device-width: 568px) and (orientation: landscape) {
 
-    textarea {
-        /* font-size: 0.6rem; */
+    #home-question .box {
+        font-size: 0.7rem;
     }
 
 }
@@ -899,6 +925,11 @@ footer {
     #readDream p:not(#readDream-date) {
         font-size: 0.8rem;
     }
+
+    #home-question .box {
+        font-size: 0.9rem;
+    }
+
 
 }
 
@@ -992,6 +1023,31 @@ footer {
     /*>>>>>>>>>>>  READ <<<<<<<<<<<<*/
     #readDream p:not(#readDream-date) {
         font-size: 0.9rem;
+    }
+
+    /*>>>>>>>>>>  HOME <<<<<<<<<<<*/
+    #slogan {
+        margin: auto 15px auto auto;
+        font-size: 1.2rem;
+    }
+
+    #home-register {
+        font-size: 1.3rem;
+        margin-right: 15px;
+    }
+
+    .txt p {
+        font-size: 1.1rem;
+        margin: 0 30px;
+    }
+
+    #home-question .box {
+        font-size: 0.7rem;
+    }
+
+    #home img {
+        width: 250px;
+        height: 250px;
     }
 
 }
@@ -1119,27 +1175,18 @@ footer {
 
     #home div {
         width: 49%;
+        height: auto;
     }
 
     #home .box {
         width: 100%;
-        align-items: center;
+        /* align-items: center; */
         height: 82%;
         /* justify-content:  center; */
     }
 
     #home-homeLogged, #home-search {
         margin-right: 1%;
-    }
-
-
-
-    #home img {
-        width: 50%;
-    }
-
-    #slogan {
-        margin-top: 2%;
     }
 
     #home-homeLogged-right {
@@ -1151,10 +1198,6 @@ footer {
     }
 
 
-    #home-homeLogged-img {
-        margin: auto;
-    }
-
     #updateAccount h1 {
         width: 200px;
         margin: auto auto 4vw auto;
@@ -1162,13 +1205,10 @@ footer {
 }
 
 @media all and (min-width: 1280px) {
-    #home img {
-        height: auto;
-        max-height: 100%;
-    }
 
-    #home-question .box {
-        font-size: 0.7rem;
+    #home img {
+        width: 300px;
+        height: 300px;
     }
 
     #readDream p:not(#readDream-date) {
@@ -1210,6 +1250,22 @@ footer {
 
 
 @media all and (orientation: landscape) and (min-width: 1440px) {
+    #home-homeLogged, #home-search {
+        margin-right: 2%;
+    }
+
+    #home {
+        justify-content: space-around;
+    }
+
+    #home > div {
+        max-width: 620px;
+        margin: 2vw auto;
+    }
+
+    #home-register {
+        /* margin-top: 1vw; */
+    }
     #updateAccount {
         display: flex;
         flex-direction: column;
@@ -1302,12 +1358,31 @@ footer {
     }
 
     /*>>>>>>>>>>>  HOME  <<<<<<<<<<<<*/
-    .btn-register {
-        width: auto;
+    .g-recaptcha {
+        margin: 2vh 0;
+        font-size: 1.1rem;
+    }
+
+    #home-createAccount label, #home-login label {
+        font-size: 1.2rem;
+
+    }
+
+    #home-login .opacity, #home-createAccount .opacity, #home-login-forgetPass {
+        font-size: 1.1rem;
+    }
+
+    #slogan {
+        font-size: 1.4rem;
+    }
+
+    #home-register {
+        font-size: 1.5rem;
+        /* line-height:  1.5rem; */
     }
 
     #home-question .box {
-        font-size: 0.4rem;
+        font-size: 0.5rem;
     }
 
     /*>>>>>>>>>>>  HOMELOGGED <<<<<<<<<<<<*/
@@ -1377,10 +1452,6 @@ footer {
         margin-bottom: 4vh;
     }
 
-    /* home */
-    .opacity {
-        font-size: 1rem;
-    }
 
     /*>>>>>>>>>>> INDEXDREAMS <<<<<<<<<<<<*/
     #indexDreams h1 {
@@ -1390,26 +1461,42 @@ footer {
 
 }
 
-@media all and (orientation: portrait) and (min-height: 600px) {
-
-}
-
-@media all and (orientation: portrait) and (min-height: 736px) {
-
-    #home-question .box {
-        font-size: 0.5rem;
+@media all and (orientation: portrait) and (min-device-height: 736px) {
+    #home-login .opacity, #home-createAccount .opacity, #home-login-forgetPass {
+        font-size: 0.9rem;
     }
+
+    #slogan {
+        font-size: 1.2rem;
+    }
+
+    .txt p {
+        font-size: 1.1rem;
+    }
+
+    #home-register, #slogan em {
+        font-size: 1.3rem;
+    }
+
 }
 
 @media all and (orientation: portrait) and (min-height: 900px) {
 
-    .opacity {
-        font-size: 0.8rem;
-    }
-
 }
 
 @media all and (orientation: portrait) and (min-device-height: 900px) {
+    #slogan {
+        font-size: 1.1rem;
+    }
+
+    #home-register, #slogan em {
+        font-size: 1.2rem;
+    }
+
+    #home-question .box {
+        font-size: 0.8rem;
+    }
+
     #readDream p:not(#readDream-date) {
         font-size: 0.7rem;
     }
@@ -1420,10 +1507,6 @@ footer {
 }
 
 @media all and (orientation: portrait) and (min-height: 1000px) {
-
-    #home-question .box {
-        font-size: 0.7rem;
-    }
 
 }
 
@@ -1440,6 +1523,43 @@ footer {
         font-size: 0.5rem;
     }
 
+}
+
+@media all and (orientation: portrait) and (min-device-height: 1024px) {
+    #home-createAccount label, #home-login label {
+        font-size: 0.8rem;
+    }
+
+    #home-login .opacity, #home-createAccount .opacity, #home-login-forgetPass {
+        font-size: 0.7rem;
+    }
+
+    #slogan {
+        font-size: 1rem;
+    }
+
+    #home-register, #slogan em {
+        font-size: 1.1rem;
+    }
+
+    .txt p {
+        font-size: 1rem;
+    }
+
+    #home-question .box {
+        font-size: 0.7rem;
+    }
+}
+
+@media all and (orientation: portrait) and (min-device-height: 1366px) {
+    #home img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .txt p {
+        margin: 50px;
+    }
 }
 
 

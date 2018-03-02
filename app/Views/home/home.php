@@ -86,7 +86,7 @@
                 </button>
 
             </div>
-            <img id="home-homeLogged-img" src="img/home/homelogged.png"
+            <img id="home-homeLogged-img" src="img/home/homeLogged.png"
                  alt="Accueil une fois connecté d'enregistrement du rêve.">
         </div>
     </div>
@@ -105,7 +105,7 @@
         <h2>Recherche</h2>
         <div class="box">
             <div id="home-search-txt" class="txt">
-                <p>Et trouver des mots qui se répètent.</p>
+                <p>Et trouver des mots qui se répètent dans vos rêves indexés.</p>
             </div>
             <img src="img/home/search.png" alt="Capture d'écran des résultats de recherche.">
         </div>
@@ -116,7 +116,7 @@
         <div class="box">
             <p class="question">Pourquoi noter ses rêves ?</p>
             <p class="answer">Si vous croyez que vos rêves peuvent avoir du sens, et une valeur introspective,
-                alors les noter permet de ne pas les oublier.</p>
+                alors les noter permet de ne pas les oublier (de même que noter ses rêveries diurnes, fantasmes...).</p>
             <br>
             <p class="question">Qu'est-ce que l'élaboration ?</p>
             <p class="answer">C'est le processus psychique ici qui consiste à associer librement des idées, à faire des
@@ -130,13 +130,13 @@
             <br>
             <p class="question">Pourquoi rechercher des mots ?</p>
             <p class="answer">La fonction de recherche peut-être intéressante car certains mots, et plus justement
-                certains sons
+                certaines sonorités, et images
                 ont une valeur de symbole singulier, et se répètent dans notre vie psychique. Ils sont un agrégat de
                 sens sur notre rapport au monde.
             </p>
             <br>
             <p class="question">Comment sont hiérarchisés les résultats d'une recherche ?</p>
-            <p class="answer">La recherche se base sur un découpage du mot en 3, 4 et 5 lettres.
+            <p class="answer">La recherche se base sur un découpage du mot en 4, 5 et 6 lettres.
                 Plus ce segment de mot (son) se répète dans votre indexation, plus le résultat sera placé en tête.
             </p>
 
