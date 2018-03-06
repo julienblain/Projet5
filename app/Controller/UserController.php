@@ -1,44 +1,45 @@
 <?php
+
 namespace App\Controller;
 
 use \App;
 use App\AppException;
 use App\Controller\Elasticsearch\DreamsController;
+
+// use only for localhost else if use mail() function
 //use PHPMailer\PHPMailer\PHPMailer;
 //use PHPMailer\PHPMailer\Exception;
-
 //require(ROOT. '/vendor/PHPMailer/src/Exception.php');
 //require(ROOT. '/vendor/PHPMailer/src/PHPMailer.php');
 //require(ROOT. '/vendor/PHPMailer/src/SMTP.php');
 
 
-class UserController extends AppController {
+class UserController extends AppController
+{
     private $_table;
     private $_tableTmp;
     private $_subject = "Votre journal de rêve.";
     //private $_settingsMailer;
 
-    public function __construct() {
-        parent::__construct();
 
-        //parent gives viewPath and loadModel
+    public function __construct()
+    {
+        parent::__construct();
         $this->_table = $this->loadModel('User');
-        $this->_tableTmp =$this->loadModel('Tmp');
+        $this->_tableTmp = $this->loadModel('Tmp');
     }
 
-
-    public function control() {
-
+    public function control()
+    {
         $this->recaptcha();
 
-        if(isset($_POST['mail']) && isset($_POST['password'])) {
+        if (isset($_POST['mail']) && isset($_POST['password'])) {
             $mail = htmlspecialchars($_POST['mail']);
             $mailSha1 = sha1($mail);
             $password = htmlspecialchars($_POST['password']);
-
-            // User is the loaded UserTable, created by loadModel in the constructor
             $user = $this->_table->login($mailSha1);
-            if ((!empty($user)) && ($user[0]->passwordUsers === sha1($password)) ) {
+
+            if ((!empty($user)) && ($user[0]->passwordUsers === sha1($password))) {
                 $_SESSION['idUser'] = $user[0]->idUsers;
                 $_SESSION['mailUser'] = $mail;
                 $this->homeLogged();
@@ -55,25 +56,24 @@ class UserController extends AppController {
         }
     }
 
-    public function createAccount() {
-
+    public function createAccount()
+    {
         $this->recaptcha();
 
-        if(isset($_POST['mail']) && isset($_POST['password'])) {
+        if (isset($_POST['mail']) && isset($_POST['password'])) {
             $mailUser = htmlspecialchars($_POST['mail']);
             $password = htmlspecialchars($_POST['password']);
             $passwordSha1 = sha1($password);
             $mailSha1 = sha1($mailUser);
             $validationKey = random_int(0, 10000);
 
-
-            // verification if a account with its mail already existing by a count req
+            // verification if a account with its mail already existing
             $alreadyExisting = $this->_table->alreadyExistingAccount($mailSha1);
             $alreadyExistingTmp = $this->_tableTmp->alreadyExistingAccount($mailSha1);
 
-            // this mail is already a actif account
-            if(($alreadyExisting[0]->countMail) != '0') {
-                include_once($this->viewPath. 'notification/error/accountExistingAlready.php');
+            // this mail is already a active account
+            if (($alreadyExisting[0]->countMail) != '0') {
+                include_once($this->viewPath . 'notification/error/accountExistingAlready.php');
                 $this->home();
             }
             //this mail already exist but it is not actif
@@ -86,20 +86,17 @@ class UserController extends AppController {
 
                 http://www.julienblain.com/Projet5/public/index.php?p=user.createdAccount.' . $validationKey . '.(' . $mailUser . ')';
 
-
                 //$this->_phpMailer($body,  $mailUser);
-
                 mail($mailUser, $this->_subject, $body);
                 $this->_tableTmp->updateAccount($mailSha1, $passwordSha1, $validationKey);
-                include_once($this->viewPath. 'notification/error/accountExistingAlreadyTmp.php');
+                include_once($this->viewPath . 'notification/error/accountExistingAlreadyTmp.php');
                 $this->home();
             }
             //this mail already exist and there was too much attempt
             elseif ((!empty($alreadyExistingTmp)) && ((intVal($alreadyExistingTmp[0]->tryValidationTmp)) > 3)) {
-                include_once($this->viewPath. 'notification/error/createTooMuch.php');
+                include_once($this->viewPath . 'notification/error/createTooMuch.php');
                 $this->home();
             }
-
             else {
                 $body =
                     'Bienvenu !
@@ -111,32 +108,30 @@ class UserController extends AppController {
 
                 //$this->_phpMailer($body, $mailUser);
                 mail($mailUser, $this->_subject, $body);
-
                 $this->_tableTmp->createAccount($mailSha1, $passwordSha1, $validationKey);
-                include_once($this->viewPath. 'home/notification/mailSent.php');
+                include_once($this->viewPath . 'home/notification/mailSent.php');
                 $this->home();
             }
         }
         else {
-            // login or password error
             include_once($this->viewPath . 'notification/error/createAccount.php');
             $this->home();
         }
     }
 
-    public function createdAccount() {
+    public function createdAccount()
+    {
         $get = \explode('.', $_GET['p']);
         $key = $get[2];
 
-        //cleaning $_Get
+        //cleaning $_GEt
         $mail = strpbrk($_GET['p'], '(');
         $mail = str_replace('(', '', $mail);
         $mail = str_replace(')', '', $mail);
 
         $datasTmp = $this->_tableTmp->verifCreatingAccount(sha1($mail));
 
-        if((!empty($datasTmp)) && ($datasTmp[0]->keyTmp == $key)) {
-
+        if ((!empty($datasTmp)) && ($datasTmp[0]->keyTmp == $key)) {
             // create account on the active user table
             $this->_table->createdAccount($datasTmp[0]->mailTmp, $datasTmp[0]->passwordTmp);
             $idUser = $this->_table->getIdUser($datasTmp[0]->mailTmp);
@@ -145,37 +140,35 @@ class UserController extends AppController {
 
             //delete on the table not active account
             $this->_tableTmp->deleteByIdTmp($datasTmp[0]->idTmp);
-
-
             include_once($this->viewPath . 'notification/createdAccount.php');
             $this->homeLogged();
         }
         elseif ((!empty($datasTmp)) && ($datasTmp[0]->keyTmp != $key)) {
-            include_once($this->viewPath. 'notification/error/errorKey.php');
+            include_once($this->viewPath . 'notification/error/errorKey.php');
             $this->home();
         }
         else {
-            include_once($this->viewPath. 'notification/error/accountAlreadyActive.php');
+            include_once($this->viewPath . 'notification/error/accountAlreadyActive.php');
             $this->home();
         }
     }
 
-    public function forgetPass() {
-
+    public function forgetPass()
+    {
         $this->recaptcha();
 
         $mailUser = htmlspecialchars($_POST['mail']);
         $account = $this->_table->alreadyExistingAccount(sha1($mailUser));
 
-        //if account not found
-        if($account[0]->countMail === '0') {
-            include_once($this->viewPath. 'notification/error/accountNotFound.php');
+        //if account not founds
+        if ($account[0]->countMail === '0') {
+            include_once($this->viewPath . 'notification/error/accountNotFound.php');
             $this->home();
         }
         else {
             $idUser = $this->_table->getIdUser(sha1($mailUser));
             $idUser = $idUser->idUsers;
-            $password = random_int(0,10000);
+            $password = random_int(0, 10000);
             $passwordSha1 = sha1($password);
 
             // we change the password of the account
@@ -186,32 +179,33 @@ class UserController extends AppController {
                 Bonjour,
 
                 Voici le nouveau mot de passe associé à votre compte. Il est vivement conseillé de le changer dès votre prochaine connexion dans votre espace utilisateur.
-                Nouveau mot de pass : ' .$password.
+                Nouveau mot de pass : ' . $password .
                 '
-                Tcho ! :)' ;
+                Tcho ! :)';
 
             //$this->_phpMailer($body, $mailUser);
             mail($mailUser, $this->_subject, $body);
-            include_once($this->viewPath. 'notification/mailSentPassword.php');
+            include_once($this->viewPath . 'notification/mailSentPassword.php');
             $this->home();
-
         }
     }
 
-    public  function updateAccount() {
+    public function updateAccount()
+    {
         $this->render('dreams.updateAccount');
     }
 
-    public function updatedAccountMail() {
-
-        if($_SESSION['mailUser'] === htmlspecialchars($_POST['mail'])) {
+    public function updatedAccountMail()
+    {
+        if ($_SESSION['mailUser'] === htmlspecialchars($_POST['mail'])) {
             $this->homeLogged();
         }
         else {
             // verification if a account with its mail already existing by a count req
             $alreadyExisting = $this->_table->alreadyExistingAccount(sha1(htmlspecialchars($_POST['mail'])));
-            if(($alreadyExisting[0]->countMail) != '0') {
-                include_once($this->viewPath. 'notification/error/accountAlreadyActive.php');
+
+            if (($alreadyExisting[0]->countMail) != '0') {
+                include_once($this->viewPath . 'notification/error/accountAlreadyActive.php');
                 $this->homeLogged();
             }
             else {
@@ -223,19 +217,19 @@ class UserController extends AppController {
                     //updated mail
                     $_SESSION['mailUser'] = htmlspecialchars($_POST['mail']);
                     $this->_table->updatedMail($idUser, sha1(htmlspecialchars($_POST['mail'])));
-                    include_once($this->viewPath. 'notification/updatedMail.php');
+                    include_once($this->viewPath . 'notification/updatedMail.php');
                     $this->homeLogged();
                 }
                 else {
-                    include_once($this->viewPath. 'notification/error/badPassword.php');
+                    include_once($this->viewPath . 'notification/error/badPassword.php');
                     $this->updateAccount();
-
                 }
             }
         }
     }
 
-    public function updatedAccountPassword() {
+    public function updatedAccountPassword()
+    {
         $idUser = $_SESSION['idUser'];
         $password = htmlspecialchars($_POST['oldPassword']);
         $user = $this->_table->getPassword($idUser);
@@ -244,16 +238,17 @@ class UserController extends AppController {
             // changing password
             $password = sha1(htmlspecialchars($_POST['newPassword']));
             $this->_table->updatePassword($idUser, $password);
-            include_once($this->viewPath. 'notification/updatedPassword.php');
+            include_once($this->viewPath . 'notification/updatedPassword.php');
             $this->homeLogged();
         }
         else {
-            include_once($this->viewPath. 'notification/error/badPassword.php');
+            include_once($this->viewPath . 'notification/error/badPassword.php');
             $this->updateAccount();
         }
     }
 
-    public function deletedAccount() {
+    public function deletedAccount()
+    {
         $pass = $this->_table->getPassword($_SESSION['idUser']);
         $passPost = htmlspecialchars($_POST['password']);
 
@@ -264,7 +259,7 @@ class UserController extends AppController {
             $this->home();
         }
         else {
-            include_once($this->viewPath. 'notification/error/badPassword.php');
+            include_once($this->viewPath . 'notification/error/badPassword.php');
             $this->updateAccount();
         }
 

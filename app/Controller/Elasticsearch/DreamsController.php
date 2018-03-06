@@ -10,40 +10,40 @@ class DreamsController extends AppController
 {
     private $_index;
 
+
     public function __construct()
     {
         parent::__construct();
         $this->_index = new DreamsEntity();
     }
 
-    private function _checkUser() {
+    // check if the requested dream belongs to the user
+    private function _checkUser()
+    {
         $params = $_GET['p'];
         $params = \explode('.', $params);
         $idDream = $params[2];
 
-        if(in_array($idDream, $_SESSION['listDreams'], true)){
+        if (in_array($idDream, $_SESSION['listDreams'], true)) {
             return true;
-        }
-        else {
-            include_once ($this->viewPath . 'notification/error/forbiddenPage.php');
+        } else {
+            include_once($this->viewPath . 'notification/error/forbiddenPage.php');
             $this->indexDreams();
             die();
         }
     }
 
-    private function _dateTimeFr($dateTime) {
-
-        if(gettype($dateTime) == 'object' ) {
-            $datas[0] = (object) $dateTime->_source;
+    //time converter
+    private function _dateTimeFr($dateTime)
+    {
+        if (gettype($dateTime) == 'object') {
+            $datas[0] = (object)$dateTime->_source;
             $datas[0]->id = $dateTime->_id;
-        }
-        else {
+        } else {
             $datas = $dateTime;
         }
 
-
-        for($i = 0 ; $i < count($datas); $i++) {
-
+        for ($i = 0; $i < count($datas); $i++) {
             $date = new \DateTime($datas[$i]->date);
             $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
             $datas[$i]->dateDreamsFr = $dateFr->format($date);
@@ -52,14 +52,13 @@ class DreamsController extends AppController
             $hour = $time[0] . $time[1];
             $min = $time[3] . $time[4];
 
-            if(($hour === "00") || ($hour === '01')) {
+            if (($hour === "00") || ($hour === '01')) {
                 $time = $time[0] . $time[1] . ' heure ' . $time[3] . $time[4] . ' minutes ';
-            }
-            else {
-                $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4]. ' minutes ';
+            } else {
+                $time = $time[0] . $time[1] . ' heures ' . $time[3] . $time[4] . ' minutes ';
             }
 
-            if(($min === '00') || ($min === '01')) {
+            if (($min === '00') || ($min === '01')) {
                 $time = str_replace('minutes', 'minute', $time);
             }
 
@@ -69,7 +68,9 @@ class DreamsController extends AppController
         return $datas;
     }
 
-    private function _dayHourFr($dateTime) {
+    //date converter
+    private function _dayHourFr($dateTime)
+    {
         $listMonth = array(
             '01' => 'janvier',
             '02' => 'février',
@@ -85,15 +86,14 @@ class DreamsController extends AppController
             '12' => 'décembre'
         );
 
-        if(gettype($dateTime) == 'object' ) {
-            $datas[0] = (object) $dateTime->_source;
+        if (gettype($dateTime) == 'object') {
+            $datas[0] = (object)$dateTime->_source;
             $datas[0]->id = $dateTime->_id;
-        }
-        else {
+        } else {
             $datas = $dateTime;
         }
 
-        for($i = 0 ; $i < count($datas); $i++) {
+        for ($i = 0; $i < count($datas); $i++) {
 
             $date = new \DateTime($datas[$i]->date);
             $dateFr = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
@@ -105,11 +105,11 @@ class DreamsController extends AppController
             $day = $dateFr->format($date);
             $deleteYear = substr($day, -4);
             $day = str_replace((' ' . $deleteYear), '', $day);
-            $deleteMonth =$datas[$i]->monthFr;
-            $datas[$i]->dayFr = str_replace((' '. $deleteMonth), '', $day);
+            $deleteMonth = $datas[$i]->monthFr;
+            $datas[$i]->dayFr = str_replace((' ' . $deleteMonth), '', $day);
 
             $time = $datas[$i]->hour;
-            $hour = $time[0] . $time[1] .'h';
+            $hour = $time[0] . $time[1] . 'h';
             $min = $time[3] . $time[4] . 'm';
             $time = $hour . $min;
 
@@ -120,41 +120,41 @@ class DreamsController extends AppController
 
     }
 
-    // insert in $_Session the dream list for this user
-    private function _dreamListSession($dreamList) {
+    // insert in session the dream list for this user
+    private function _dreamListSession($dreamList)
+    {
 
-        if(!empty($_SESSION['listDreams'])) {
+        if (!empty($_SESSION['listDreams'])) {
             unset($_SESSION['listDreams']);
         }
 
         $_SESSION['listDreams'] = [];
-        for($i = 0; $i < count($dreamList); $i++) {
+        for ($i = 0; $i < count($dreamList); $i++) {
             $_SESSION['listDreams'][$i] = $dreamList[$i]->id;
         }
     }
 
-    private function _previousAndNextDreams($dream) {
-        // we recover the previous dream id and the next dream id for the buttons in view
+    // we recover the previous dream id and the next dream id for the buttons view
+    private function _previousAndNextDreams($dream)
+    {
         $idDream = $dream[0]->id;
         $listDreams = $_SESSION['listDreams'];
-        $countListDreams = count($listDreams) -1;
+        $countListDreams = count($listDreams) - 1;
 
-        if($idDream !== $listDreams[0]) {
+        if ($idDream !== $listDreams[0]) {
             $key = array_keys($listDreams, $idDream);
 
-            $keyPrevious = $key[0] -1;
+            $keyPrevious = $key[0] - 1;
             $dream[0]->previousDream = $listDreams[$keyPrevious];
-        }
-        else {
+        } else {
             $dream[0]->previousDream = 'notExist';
         }
 
-        if($idDream != $listDreams[$countListDreams]) {
+        if ($idDream != $listDreams[$countListDreams]) {
             $key = array_keys($listDreams, $idDream);
             $keyNext = $key[0] + 1;
             $dream[0]->nextDream = $listDreams[$keyNext];
-        }
-        else {
+        } else {
             $dream[0]->nextDream = 'notExist';
         }
 
@@ -162,108 +162,99 @@ class DreamsController extends AppController
     }
 
 
-    public function indexDreams() {
+    public function indexDreams()
+    {
         $dreams = $this->_index->searchList();
         $dreams = $this->_dayHourFr($dreams);
         $this->_dreamListSession($dreams);
 
-        if(empty($dreams)) {
+        if (empty($dreams)) {
 
-            include_once ($this->viewPath . '/notification/emptyIndex.php');
-             return $this->homeLogged();
-        }
-        else {
+            include_once($this->viewPath . '/notification/emptyIndex.php');
+            return $this->homeLogged();
+        } else {
             $this->render('dreams.indexDreams', compact('dreams'));
         }
     }
 
-    public function read() {
+    public function read()
+    {
         $this->_checkUser();
-
         $dreamDatas = $this->_index->searchByIdDream();
         $dream = $this->_dateTimeFr($dreamDatas);
         $dream = $this->_previousAndNextDreams($dream);
-
         $this->render('dreams.readDream', compact('dream'));
     }
 
-    public function update() {
+    public function update()
+    {
         $this->_checkUser();
         $dreamDatas = $this->_index->searchByIdDream();
         $dream = $this->_dateTimeFr($dreamDatas);
         $dream = $this->_previousAndNextDreams($dream);
-
         $this->render('dreams.updateDream', compact('dream'));
 
     }
 
-    public function updated() {
+    public function updated()
+    {
         $this->_checkUser();
 
-        if(empty($_POST['dream'])) {
-            include_once ($this->viewPath . 'notification/error/emptyTextarea.php');
+        if (empty($_POST['dream'])) {
+            include_once($this->viewPath . 'notification/error/emptyTextarea.php');
             $this->indexDreams();
-        }
-        else {
+        } else {
             $this->_index->updating();
-            include_once ($this->viewPath . 'notification/updatedDream.php');
+            include_once($this->viewPath . 'notification/updatedDream.php');
             $this->indexDreams();
         }
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->_checkUser();
         $this->_index->deleting();
-
-        include_once ($this->viewPath . 'notification/deletedDream.php');
+        include_once($this->viewPath . 'notification/deletedDream.php');
         $this->homeLogged();
     }
 
-    public function created() {
-      //$this->_index->dede();
-        //$this->_index->mapping();
-
-        if(empty($_POST['dream'])) {
-            include_once ($this->viewPath . 'notification/error/emptyTextarea.php');
+    public function created()
+    {
+        if (empty($_POST['dream'])) {
+            include_once($this->viewPath . 'notification/error/emptyTextarea.php');
             $this->homeLogged();
         } else {
             $this->_index->indexing();
-            include_once ($this->viewPath . 'notification/dreamCreated.php');
+            include_once($this->viewPath . 'notification/dreamCreated.php');
             $this->homeLogged();
         }
     }
 
-
-    //call by ajaxSearch.php
-    public function search() {
-
-        if(!empty($_POST['search-txt'])) {
-
-           $datas =  $this->_index->searchWord();
+    // ajax call by search.js
+    public function search()
+    {
+        if (!empty($_POST['search-txt'])) {
+            $datas = $this->_index->searchWord();
             $datas = json_encode($datas);// js object build
             echo $datas;
+        } else {
+            include_once($this->viewPath . 'notification/error/notWordSearch.php');
+            return false;
         }
-        else {
-           include_once ($this->viewPath . 'notification/error/notWordSearch.php');
-           return false;
-        }
-
     }
 
-    // necessary for the result pagination
-    public function countSearch() {
+    // ajax call by search.js for the pagination of results
+    public function countSearch()
+    {
         $datas = $this->_index->countSearch();
         $datas = json_encode($datas);
         echo $datas;
     }
 
-
-    //call by UserController
-    public function deleteAccount() {
+    public function deleteAccount()
+    {
         return $this->_index->deleteAccount();
     }
-
-
 
 
 }

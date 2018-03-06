@@ -136,7 +136,8 @@
             </p>
             <br>
             <p class="question">Comment sont hiérarchisés les résultats d'une recherche ?</p>
-            <p class="answer">La recherche se base sur un découpage du mot en 4, 5 et 6 lettres.
+            <p class="answer">La recherche se base sur un découpage du mot en 4 lettres minimum, et jusqu'à sept
+                lettres.
                 Plus ce segment de mot (son) se répète dans votre indexation, plus le résultat sera placé en tête.
             </p>
 
