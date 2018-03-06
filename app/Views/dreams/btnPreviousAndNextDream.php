@@ -10,4 +10,3 @@ if ($dream[0]->nextDream !== 'notExist') { ?>
         <i class="fa icon-arrow-right"></i>
     </a>
 <?php } ?>
-

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Core\Controller;
 
 
@@ -9,9 +8,9 @@ class Controller
     protected $viewPath;
     protected $template;
 
-    //appelé par les controleurs enfants pour generer la page
-    protected function render(string $view, array $variables = []) {
-
+    // generate page
+    protected function render(string $view, array $variables = [])
+    {
         ob_start();
 
         if (!empty($variables)) {

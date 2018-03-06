@@ -2,15 +2,14 @@
 
 use App\Router;
 
-//TODO question class Final ?
+
 final class App
 {
-    private static $_instance;  // (App) content App
+    private static $_instance;
 
     //singleton
     public static function getInstance()
     {
-
         if (self::$_instance === null) {
             self::$_instance = new App();
 
@@ -25,7 +24,6 @@ final class App
         return self::$_instance;
     }
 
-
     private function _autoload()
     {
         require ROOT . '/app/Autoloader.php';
@@ -35,10 +33,8 @@ final class App
         require ROOT . '/vendor/Composer/vendor/autoload.php';
     }
 
-
     private function _router()
     {
-         new Router();
+        new Router();
     }
-
 }

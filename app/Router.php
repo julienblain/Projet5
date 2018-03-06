@@ -2,9 +2,9 @@
 
 namespace App;
 
+
 final class Router
 {
-
     private $_page;
     private $_action;
     private $_controller;
@@ -21,7 +21,26 @@ final class Router
         $action = $this->getAction();
 
         return $controller->$action();
+    }
 
+    private function _routingValid()
+    {
+        $page = $_GET['p'];
+        $page = \explode('.', $page);
+        $this->_page = $page;
+    }
+
+    private function _routingValidLogged()
+    {
+        isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
+
+    }
+
+    private function _routingHome()
+    {
+        $page = "app.home";
+        $page = \explode('.', $page);
+        $this->_page = $page;
     }
 
     public function getPage(): array
@@ -120,43 +139,20 @@ final class Router
         }
     }
 
-    private function _routingValid()
-    {
-        $page = $_GET['p'];
-        $page = \explode('.', $page);
-        $this->_page = $page;
-    }
-
-    private function _routingValidLogged()
-    {
-        isset($_SESSION['idUser']) ? $this->_routingValid() : $this->_routingHome();
-
-    }
-
-    private function _routingHome()
-    {
-        $page = "app.home";
-        $page = \explode('.', $page);
-        $this->_page = $page;
-    }
-
     public function getAction(): string
     {
         return $this->_action;
     }
-
 
     public function setAction()
     {
         $this->_action = $this->_page[1];
     }
 
-
     public function getController()
     {
         return $this->_controller;
     }
-
 
     public function setController()
     {
@@ -166,5 +162,4 @@ final class Router
             $this->_controller = '\App\Controller\Elasticsearch\\' . ucfirst($this->_page[0]) . 'Controller';
         }
     }
-
 }

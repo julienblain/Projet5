@@ -27,6 +27,7 @@
             Mot de passe : <br>
             <input id="home-login-form-password" type="password" name="password" required>
         </label>
+
         <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
         <button id="home-login-form-btn" class="btn" name="home-login-form-btn" type="submit" title="Se connecter">
             <i class="fa icon-checkmark"></i>
@@ -35,12 +36,12 @@
     </form>
 
     <div id="forgetPassBox">
-
         <form action="?p=user.forgetPass" id="home-login-forgetPass-form" method="post">
             <label for="home-login-forgetPass-mail">
                 Mail : <br>
                 <input id="home-login-forgetPass-mail" type="email" name="mail" required>
             </label>
+
             <div class="g-recaptcha" data-sitekey="6LfLBkEUAAAAAD3qRe3tWGwihN5ItNVk3gCeju7r"></div>
             <button id="home-login-forgetPass-btn" class="btn" type="submit" name="home-login-forgetPass-btn"
                     title="Envoyer">
@@ -50,6 +51,7 @@
         </form>
     </div>
 </div>
+
 <div id="home-createAccount">
     <h2>S'inscrire</h2>
     <form action="?p=user.createAccount" id="home-createAccount-form" method="post" class="box">
@@ -73,6 +75,7 @@
             mail.</p>
     </form>
 </div>
+
 <section id="home">
     <div id="home-homeLogged">
         <h2>Journal</h2>
@@ -84,7 +87,6 @@
                 <button title="Inscription" id="home-register" class="btn btn-register">
                     Inscrivez-vous !
                 </button>
-
             </div>
             <img id="home-homeLogged-img" src="img/home/homeLogged.png"
                  alt="Accueil une fois connecté d'enregistrement du rêve.">
@@ -125,23 +127,21 @@
             </p>
             <br>
             <p class="question">Pourquoi noter les évènements précédents ?</p>
-            <p class="answer">D'après la théorie psychanalytique, qui n'est pas une science rappelons le, les rêves
+            <p class="answer">D'après la théorie psychanalytique, qui n'est pas une science rappelons-le, les rêves
                 sont directement en lien avec nos pensées conscientes ou inconscientes de la veille.</p>
             <br>
             <p class="question">Pourquoi rechercher des mots ?</p>
             <p class="answer">La fonction de recherche peut-être intéressante car certains mots, et plus justement
-                certaines sonorités, et images
-                ont une valeur de symbole singulier, et se répètent dans notre vie psychique. Ils sont un agrégat de
+                certaines sonorités, et images ont une valeur de symbole singulier, et se répètent dans notre vie
+                psychique. Ils sont un agrégat de
                 sens sur notre rapport au monde.
             </p>
             <br>
             <p class="question">Comment sont hiérarchisés les résultats d'une recherche ?</p>
             <p class="answer">La recherche se base sur un découpage du mot en 4 lettres minimum, et jusqu'à sept
-                lettres.
-                Plus ce segment de mot (son) se répète dans votre indexation, plus le résultat sera placé en tête.
+                lettres. Plus ce segment de mot (son) se répète dans votre indexation, plus le résultat sera placé en
+                tête.
             </p>
-
-
         </div>
     </div>
 </section>

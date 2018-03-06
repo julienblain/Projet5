@@ -27,21 +27,27 @@
 .icon-home3:before {
     content: "\e902";
 }
+
 .icon-book:before {
     content: "\e91f";
 }
+
 .icon-file-empty:before {
     content: "\e924";
 }
+
 .icon-clock2:before {
     content: "\e94f";
 }
+
 .icon-calendar:before {
     content: "\e953";
 }
+
 .icon-user:before {
     content: "\e971";
 }
+
 .icon-search:before {
     content: "\e986";
 }
@@ -53,9 +59,11 @@
 .icon-lock:before {
     content: "\e98f";
 }
+
 .icon-wrench:before {
     content: "\e991";
 }
+
 .icon-bin2:before {
     content: "\e9ad";
 }
@@ -63,12 +71,15 @@
 .icon-clipboard:before {
     content: "\e9b8";
 }
+
 .icon-checkmark:before {
     content: "\ea10";
 }
+
 .icon-arrow-right:before {
     content: "\ea34";
 }
+
 .icon-arrow-left:before {
     content: "\ea38";
 }

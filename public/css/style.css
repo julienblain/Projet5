@@ -1,7 +1,5 @@
-/* developed in landscape mobil first*/
-
 /*////////// GENERAL  ////////////*/
-
+/* developed in landscape smartphone first*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,6 +10,7 @@
 html {
     font-size: 20px;
 }
+
 body {
     font-size: 1rem;
     margin: 2vw 2vw 0 2vw;
@@ -23,7 +22,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* overflow: hidden; */
     overflow-x: hidden;
 }
 
@@ -61,11 +59,11 @@ header h1 { /*logo home page*/
     padding: 0;
     background-color: transparent;
 }
+
 h3 {
     font-size: 1.2rem;
     padding: 15px;
     background-color: #17c0eb;
-
 }
 
 h4 {
@@ -80,34 +78,30 @@ fieldset { /* delete the browser design */
     border-style: none;
     border-color: white;
     border-image: none;
-
 }
 
 textarea { /* delete the browser design */
     border-color: white;
     border-width: 0;
     border-style: none;
-    border-image : none;
+    border-image: none;
 
-    /* custome */
+    /* custom */
     color: black;
     padding: 5px;
     font-size: 0.7rem;
-
 }
 
-input {/* delete the browser design */
+input { /* delete the browser design */
     border: none;
     padding: 4px;
     font-size: 1rem;
     background-color: white;
 }
 
-
 .btn {
-
     background-color: #3ae374;
-    border : 3px solid #3ae374;
+    border: 3px solid #3ae374;
     color: white;
     font-size: 1.1rem;
     height: 70px;
@@ -127,7 +121,7 @@ input {/* delete the browser design */
 
 .btnDelete {
     background-color: #ff3838;
-    border : 3px solid #ff3838;
+    border: 3px solid #ff3838;
     line-height: 0;
     order: 3;
 }
@@ -191,15 +185,13 @@ input {/* delete the browser design */
     right: 5px;
 }
 
-
 #moreElements {
     display: flex;
-    /*2%*/
     margin-top: 2vw;
     width: 100%;
 }
 
-#elaborationTxt, #previousEventsTxt   {
+#elaborationTxt, #previousEventsTxt {
     display: inline-block;
     width: 50%;
     margin-top: 0;
@@ -216,8 +208,7 @@ input {/* delete the browser design */
 }
 
 #elaborationTxt {
-    background-color: #c56cf0 ;
-
+    background-color: #c56cf0;
 }
 
 #previousEventsTxt {
@@ -226,17 +217,13 @@ input {/* delete the browser design */
 }
 
 #submitDream {
-    /*3%*/
     margin-top: 3vw;
-
 }
-
 
 .notification {
     position: absolute;
     padding: 15px;
     margin: 1vw;
-    /*border-radius: 10px; */
     background-color: #3ae374;
     z-index: 2;
 }
@@ -246,17 +233,16 @@ input {/* delete the browser design */
 }
 
 
-
 /*//////////  HEADER  ////////////*/
 header {
     height: 90px;
     width: 100%;
-
 }
 
 #home-login, #home-createAccount {
     margin-top: 90px;
 }
+
 #logo-img {
     height: 90px;
     width: 180px;
@@ -316,22 +302,21 @@ nav button, nav a {
 }
 
 #nav-book {
-    border: 3px solid #c56cf0 ;
+    border: 3px solid #c56cf0;
     background-color: #c56cf0;
 }
 
 #nav-profil {
-    border: 3px solid #17c0eb ;
+    border: 3px solid #17c0eb;
     background-color: #17c0eb;
 }
 
 #nav-logout, #nav-login {
-    border: 3px solid #3d3d3d ;
+    border: 3px solid #3d3d3d;
     background-color: #3d3d3d;
 }
 
 #dateTime {
-    /*2% margin*/
     margin-top: 2vw;
     width: 100%;
 }
@@ -350,12 +335,11 @@ nav button, nav a {
     margin-right: 1%;
 }
 
-
-
 #dateTime-dreamHour {
     background-color: #ffb8b8;
     width: 45%;
 }
+
 
 /*////////////  HOME  ///////////*/
 #home-login, #home-createAccount {
@@ -386,6 +370,7 @@ nav button, nav a {
     display: flex;
     justify-content: center;
 }
+
 #home-login-forgetPass-form {
     padding: 15px;
     background-color: #17c0eb;
@@ -413,7 +398,6 @@ nav button, nav a {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
 }
 
 #home-createAccount form {
@@ -450,8 +434,6 @@ nav button, nav a {
     font-size: 0.8rem;
 }
 
-
-
 #home h2 {
     display: inline-block;
 }
@@ -469,6 +451,7 @@ nav button, nav a {
     align-items: center;
     width: 100%;
 }
+
 #home-homeLogged-box {
     background-color: #17c0eb;
 }
@@ -521,7 +504,6 @@ nav button, nav a {
     margin-right: 0;
 }
 
-
 #home-index .box {
     background-color: #ffb8b8;
 }
@@ -532,7 +514,6 @@ nav button, nav a {
 
 .txt p {
     text-align: center;
-    /* margin-right: 15px; */
     font-size: 1.4rem;
     margin: 15px 50px;
 }
@@ -561,11 +542,13 @@ nav button, nav a {
     max-width: 100%; /* bug ie */
 }
 
+
 /*/////////// LEGAL NOTICE  //////////*/
 #legalNotice h1 {
     display: inline-block;
     margin-bottom: 2%;
 }
+
 
 /*/////////// FOOTER  //////////*/
 footer {
@@ -577,6 +560,7 @@ footer {
     width: 100vw;
     margin-left: -2vw;
 }
+
 
 /*////////////  HOMELOGGED  ///////////*/
 #dream {
@@ -591,8 +575,6 @@ footer {
     text-align: center;
 }
 
-
-
 #dreamWrite {
     width: 100%;
     height: 200px;
@@ -601,11 +583,10 @@ footer {
 #dreamWrite::placeholder {
     font-size: 1rem;
 }
-/*ajout ap*/
+
 #dreamForm {
     display: flex;
     flex-direction: column;
-
 }
 
 #dreamForm .btn {
@@ -613,15 +594,13 @@ footer {
 }
 
 
-
-
 /*///////////  INDEXDREAMS  ///////////*/
-
 #indexDreams h1 {
     width: 33%;
     text-align: center;
     margin: 0 33% 4vw 33%;
 }
+
 #indexDreams-list {
     display: flex;
     flex-wrap: wrap;
@@ -685,14 +664,14 @@ footer {
 }
 
 #indexDreams-list li[class$='5'], #resultsSearch li[id$='5'] {
-    background-color: #3ae374 ;
+    background-color: #3ae374;
 }
+
 
 /*////////////  PROFIL  ////////////*/
 #updateAccount h1 {
     display: flex;
     width: 33%;
-    /* text-align: center; */
     margin-left: 33%;
     justify-content: center;
     align-items: center;
@@ -702,7 +681,6 @@ footer {
     display: flex;
     flex-wrap: wrap;
     margin: 4vw 0;
-    /* justify-content:  space-between; */
 }
 
 #updateAccount h2 {
@@ -764,12 +742,7 @@ footer {
 }
 
 
-
-
-
-
 /*////////////  READDREAM  /////////////*/
-
 #readDream-date {
     font-size: 1.2rem;
     padding: 15px;
@@ -780,7 +753,7 @@ footer {
     display: flex;
     justify-content: space-between;
 }
-/* ajout ap */
+
 #readTitlteBox h2, #readTitlteBox p, .read-aside h2 {
     text-align: center;
     display: inline-block;
@@ -805,13 +778,11 @@ footer {
     text-align: justify;
 }
 
-
 .read-aside {
     margin-top: 4vh;
-
 }
 
-#read-aside-elaboration, #readDreamElaboration div  {
+#read-aside-elaboration, #readDreamElaboration div {
     background-color: #c56cf0;
 }
 
@@ -822,7 +793,6 @@ footer {
 #readDreamElaboration div {
     padding: 15px;
 }
-
 
 #read-aside-events, #readDreamPreviousEvents div {
     background-color: #ffaf40;
@@ -836,12 +806,12 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-
 }
 
 #search {
     margin: -3vw 0 3vw 0;
 }
+
 #searchForm input {
     margin-left: 15px;
 }
@@ -860,6 +830,7 @@ footer {
 #partResultsSearch {
     margin-top: 2%;
 }
+
 #titleBox {
     display: flex;
     justify-content: space-between;
@@ -873,11 +844,8 @@ footer {
 
 #resultsSearch li {
     width: 50%;
-
     display: flex;
     justify-content: center;
-
-    /*ajout ap */
     text-align: center;
     align-items: center;
 }
@@ -897,19 +865,14 @@ footer {
 }
 
 
-
 /*////////////  RESPONSIVE  /////////////*/
-/* smartphone and tablet */
 @media all and (min-device-width: 568px) and (orientation: landscape) {
-
     #home-question .box {
         font-size: 0.8rem;
     }
-
 }
 
 @media all and (min-device-width: 800px) and (orientation: landscape) {
-
     #dreamWrite::placeholder {
         font-size: 0.8rem;
     }
@@ -925,8 +888,6 @@ footer {
     #home-question .box {
         font-size: 0.9rem;
     }
-
-
 }
 
 @media all and (min-width: 1024px) {
@@ -938,10 +899,8 @@ footer {
         font-size: 0.5rem;
     }
 
-    /*events hover*/
     .btn:hover {
         background-color: white;
-
     }
 
     .btn:hover #home-homeLogged-register, .btn-register:hover {
@@ -961,11 +920,11 @@ footer {
     }
 
     .btn:hover .icon-arrow-left::before, .btn:hover .icon-arrow-right::before {
-        color :#4b4b4b;
+        color: #4b4b4b;
     }
 
     .btnSearch:hover .icon-search::before {
-        color :  #7158e2;
+        color: #7158e2;
     }
 
     /*use in event js search when the btn is not clickable*/
@@ -986,20 +945,19 @@ footer {
     }
 
     #nav-home:hover .icon-home3::before {
-        color : #ff9f1a;
+        color: #ff9f1a;
     }
 
     #nav-book:hover .icon-book::before {
-        color :  #c56cf0;
+        color: #c56cf0;
     }
 
-
     #nav-profil:hover .icon-user::before {
-        color :  #17c0eb;
+        color: #17c0eb;
     }
 
     #nav-logout:hover .icon-lock::before, #nav-login:hover .icon-key::before {
-        color:  #3d3d3d;
+        color: #3d3d3d;
     }
 
     #indexDreams-list li:hover, #resultsSearch li:hover, #indexDreamsTitle:hover {
@@ -1045,10 +1003,9 @@ footer {
         width: 250px;
         height: 250px;
     }
-
 }
-@media all and (orientation: landscape) and (min-width: 1024px){
 
+@media all and (orientation: landscape) and (min-width: 1024px) {
     header {
         height: 90px;
         margin-bottom: 2%;
@@ -1067,9 +1024,6 @@ footer {
         padding: 7px;
     }
 
-    #logo {
-        /* width: 180px; */
-    }
     #logo-img {
         height: 90px;
         width: 145px;
@@ -1080,7 +1034,6 @@ footer {
         width: 90px;
     }
 
-
     #dreamForm {
         flex-direction: row;
         flex-wrap: wrap;
@@ -1090,7 +1043,6 @@ footer {
     #dreamWrite::placeholder {
         font-size: 0.9rem;
     }
-
 
     #dream {
         padding: 2vw 2vw 2vw 0;
@@ -1106,6 +1058,7 @@ footer {
     #dateTime {
         text-align: center;
     }
+
     #dateTime-dreamDate {
         width: 270px;
         margin-right: 2%;
@@ -1123,14 +1076,11 @@ footer {
     #elaboration textarea, #previousEvents textarea {
         display: block;
         width: 100%;
-
-
     }
 
     #elaboration {
         width: 49%;
         margin-right: 2%;
-        /*2%*/
         padding: 0 2vw 2vw 2vw;
         background-color: #c56cf0;
     }
@@ -1140,6 +1090,7 @@ footer {
         padding: 0 2vw 2vw 2vw;
         background-color: #ffaf40;
     }
+
     #elaborationTxt, #previousEventsTxt {
         pointer-events: none;
     }
@@ -1156,15 +1107,13 @@ footer {
     .ru-dream {
         width: 100%;
     }
+
     #searchForm label {
         max-height: 90px;
         padding: 1vw;
     }
 
     /*>>>>>>>>>>>  HOME <<<<<<<<<<<*/
-
-
-
     #home-login-form, #home-login-forgetPass-form, #home-createAccount form {
         width: auto;
     }
@@ -1198,7 +1147,6 @@ footer {
         padding: 0;
     }
 
-
     #updateAccount h1 {
         width: 200px;
         margin: auto auto 4vw auto;
@@ -1206,7 +1154,6 @@ footer {
 }
 
 @media all and (min-width: 1280px) {
-
     #home img {
         width: 300px;
         height: 300px;
@@ -1222,7 +1169,6 @@ footer {
         height: 250px;
     }
 
-
     #dreamForm h1 {
         padding-top: 2vw;
         line-height: 250px;
@@ -1235,11 +1181,9 @@ footer {
     #updateDream textarea {
         font-size: 0.8rem;
     }
-
 }
 
 @media all and (min-width: 1440px) {
-
     body {
         margin: 4vw 10vw 0 10vw;
     }
@@ -1248,7 +1192,6 @@ footer {
         margin-left: -10vw;
     }
 }
-
 
 @media all and (orientation: landscape) and (min-width: 1440px) {
     #home-homeLogged, #home-search {
@@ -1266,7 +1209,6 @@ footer {
 
     #home div:nth-last-child(1) {
         max-width: 1240px;
-
     }
 
     #updateAccount {
@@ -1317,7 +1259,6 @@ footer {
 }
 
 /*////////////////////////  PORTRAIT  //////////////////////*/
-
 @media all and (orientation: portrait) {
     html {
         font-size: 30px;
@@ -1368,7 +1309,6 @@ footer {
 
     #home-createAccount label, #home-login label {
         font-size: 1.2rem;
-
     }
 
     #home-login .opacity, #home-createAccount .opacity, #home-login-forgetPass {
@@ -1381,7 +1321,6 @@ footer {
 
     #home-register {
         font-size: 1.5rem;
-        /* line-height:  1.5rem; */
     }
 
     #home-question .box {
@@ -1421,10 +1360,6 @@ footer {
     }
 
     /*>>>>>>>>>>>  SEARCH  <<<<<<<<<<<<*/
-    #search {
-        /* margin: 6% 0; */
-    }
-
     #resultsSearch li {
         text-align: center;
         align-items: center;
@@ -1455,13 +1390,11 @@ footer {
         margin-bottom: 4vh;
     }
 
-
     /*>>>>>>>>>>> INDEXDREAMS <<<<<<<<<<<<*/
     #indexDreams h1 {
         width: 40%;
         margin: 0 30% 4vw 30%;
     }
-
 }
 
 @media all and (orientation: portrait) and (min-device-height: 736px) {
@@ -1480,11 +1413,6 @@ footer {
     #home-register, #slogan em {
         font-size: 1.3rem;
     }
-
-}
-
-@media all and (orientation: portrait) and (min-height: 900px) {
-
 }
 
 @media all and (orientation: portrait) and (min-device-height: 900px) {
@@ -1509,10 +1437,6 @@ footer {
     }
 }
 
-@media all and (orientation: portrait) and (min-height: 1000px) {
-
-}
-
 @media all and (orientation: portrait) and (min-device-height: 1000px) {
     body {
         margin-top: 2vh;
@@ -1525,7 +1449,6 @@ footer {
     textarea {
         font-size: 0.5rem;
     }
-
 }
 
 @media all and (orientation: portrait) and (min-device-height: 1024px) {
@@ -1564,10 +1487,3 @@ footer {
         margin: 50px;
     }
 }
-
-
-
-
-
-
-

@@ -15,7 +15,6 @@ class Elasticsearch
 
     public function __construct()
     {
-
         if ($this->_client === null) {
             //settings
             $config = new ConfigElasticsearch();
@@ -26,7 +25,6 @@ class Elasticsearch
             //signature aws with wizacha/aws-signature-middleware library
             $credentials = new Credentials($keyId, $keySecret);
             $signature = new SignatureV4('es', 'eu-west-3');
-
             $middleware = new AwsSignatureMiddleware($credentials, $signature);
             $defaultHandler = ClientBuilder::defaultHandler();
             $awsHandler = $middleware($defaultHandler);
@@ -35,8 +33,7 @@ class Elasticsearch
 
             $clientBuilder
                 ->setHandler($awsHandler)
-                ->setHosts($hosts)
-            ;
+                ->setHosts($hosts);
 
             $this->_client = $clientBuilder->build();
         }
@@ -49,27 +46,24 @@ class Elasticsearch
 
         } catch (\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
             $ex = new AppException();
-           return  $ex->elasticDatabase();
+            return $ex->elasticDatabase();
         }
     }
 
     public function indexing($params)
     {
-
         return $this->_req('index', $params);
 
     }
 
     public function deleting($params)
     {
-
         return $this->_req('delete', $params);
     }
 
     public function updating($params)
     {
         return $this->_req('update', $params);
-
     }
 
     public function search($params)
@@ -79,7 +73,6 @@ class Elasticsearch
 
     public function get($params)
     {
-
         return $this->_req('get', $params);
     }
 
@@ -88,7 +81,7 @@ class Elasticsearch
         return $this->_req('deleteByQuery', $params);
     }
 
-    //delete all bdd
+    //delete all index in elastic cluster
     public function dede($params)
     {
         return $this->_client->indices()->delete($params);

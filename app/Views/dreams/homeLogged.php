@@ -2,16 +2,9 @@
 <section id="homeLogged">
     <form action="?p=dreams.created" id="dreamForm" method="post">
         <h1>Votre rêve</h1>
-
         <fieldset id="dream">
-
-
             <label for="dreamWrite" aria-label="Écrire votre rêve">
-
-                <!--<span id="label-title"><h1>Votre rêve</h1></span> -->
-
                 <textarea name="dream" id="dreamWrite" required placeholder="Requis"></textarea> <br>
-                <!--verifier si le required fonctionne sur safari -->
             </label>
         </fieldset>
 
@@ -42,7 +35,8 @@
         <fieldset id="previousEvents">
             <label for="previousEventsWrite" aria-label="Écrire des évnements précédents">
                 <textarea name="previousEvents" id="previousEventsWrite"
-                          title="Écrire des évnements précédents"> </textarea>
+                          title="Écrire des évnements précédents">
+                </textarea>
             </label>
         </fieldset>
 

@@ -1,11 +1,12 @@
-<?php include_once ($this->viewPath .'dreams/nav.php');?>
+<?php include_once($this->viewPath . 'dreams/nav.php'); ?>
 <section id="updateAccount">
     <h1>Votre profil</h1>
     <form action="?p=user.updatedAccountMail" method="post">
         <h2>Changer d'adresse mail</h2>
         <label for="updateAccountMail-mail">
             Mail :
-            <input type="email" id="updateAccountMail-mail" name="mail" placeholder="<?= $_SESSION['mailUser']?>" required>
+            <input type="email" id="updateAccountMail-mail" name="mail" placeholder="<?= $_SESSION['mailUser'] ?>"
+                   required>
         </label>
         <label for="updateAccountMail-password">
             Mot de passe :

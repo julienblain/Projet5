@@ -1,20 +1,17 @@
 <?php
 
-
 namespace App\Entity;
+
 use Core\Entity\Entity;
 
-//TODO quesiton heritage multiple pour Table
+
 class UserEntity extends Entity
 {
     private $_table = 'users';
 
-    private $_userId;
-    private $_userMail;
-    private $_userPassword;
 
-
-    public function login($mail) {
+    public function login($mail)
+    {
         $table = $this->_table;
         $user = $this->prepare(
             "SELECT idUsers, passwordUsers FROM $table
@@ -22,10 +19,10 @@ class UserEntity extends Entity
         );
 
         return $user;
-
     }
 
-    public function createdAccount($mail, $password) {
+    public function createdAccount($mail, $password)
+    {
         $table = $this->_table;
         return $this->insertInto(
             ("INSERT INTO $table(mailUsers, passwordUsers)
@@ -38,15 +35,14 @@ class UserEntity extends Entity
         );
     }
 
-    public function alreadyExistingAccount($mail) {
+    public function alreadyExistingAccount($mail)
+    {
         $table = $this->_table;
-        return $this->prepare("SELECT COUNT(*) AS countMail FROM $table WHERE mailUsers =  '{$mail}'");
+        return $this->prepare("SELECT COUNT(*) AS countMail FROM $table WHERE mailUsers = '{$mail}'");
     }
 
-
-
-
-    public function forgetPassword($idUser, $password) {
+    public function forgetPassword($idUser, $password)
+    {
         $table = $this->_table;
         return $this->update(
             ("UPDATE $table
@@ -59,7 +55,8 @@ class UserEntity extends Entity
         );
     }
 
-    public function forgetActivate($idUser, $keyValidation) {
+    public function forgetActivate($idUser, $keyValidation)
+    {
         $table = $this->_table;
         return $this->update(
             ("UPDATE $table
@@ -72,29 +69,30 @@ class UserEntity extends Entity
         );
     }
 
-    public function getPassword($idUser, $one = true) {
+    public function getPassword($idUser, $one = true)
+    {
         $table = $this->_table;
         $user = $this->prepare((
-            "SELECT passwordUsers FROM $table
+        "SELECT passwordUsers FROM $table
          WHERE idUsers = '{$idUser}' "
         ), $one);
 
         return $user;
-
     }
 
-
-    public function getIdUser($mail, $one = true) {
+    public function getIdUser($mail, $one = true)
+    {
         $table = $this->_table;
         $userId = $this->prepare((
         "SELECT idUsers FROM $table
-         WHERE mailUsers = '{$mail}' "
+             WHERE mailUsers = '{$mail}' "
         ), $one);
 
         return $userId;
     }
 
-    public function updatedMail($idUser, $mail) {
+    public function updatedMail($idUser, $mail)
+    {
         $table = $this->_table;
         return $this->update(
             ("UPDATE $table
@@ -107,7 +105,8 @@ class UserEntity extends Entity
         );
     }
 
-    public function updatePassword($idUser, $password) {
+    public function updatePassword($idUser, $password)
+    {
         $table = $this->_table;
         return $this->update(
             ("UPDATE $table
@@ -120,7 +119,8 @@ class UserEntity extends Entity
         );
     }
 
-    public function deleteAccount() {
+    public function deleteAccount()
+    {
         $table = $this->_table;
         $idUser = $_SESSION['idUser'];
         return $this->delete(

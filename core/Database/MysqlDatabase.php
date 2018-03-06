@@ -5,7 +5,8 @@ namespace Core\Database;
 use App\AppException;
 use Core\Config;
 
-class MysqlDatabase {
+class MysqlDatabase
+{
 
     private $_dbName;
     private $_dbUser;
@@ -13,9 +14,9 @@ class MysqlDatabase {
     private $_dbHost;
     private $_pdo;
 
-    public function __construct() {
-
-        if($this->_pdo === null) {
+    public function __construct()
+    {
+        if ($this->_pdo === null) {
             $config = new Config();
             $this->_dbName = $config->getSettings('db_name');
             $this->_dbUser = $config->getSettings('db_user');
@@ -30,29 +31,28 @@ class MysqlDatabase {
                     $this->_dbPassword,
                     array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION)
                 );
-            }
-            catch (\PDOException $e){
-
-                // in app folder
+            } catch (\PDOException $e) {
                 $ex = new AppException();
                 $ex->mysqlDatabase();
             }
 
             $this->_pdo = $pdo;
-            }
+        }
 
-       $this->getPdo();
+        $this->getPdo();
     }
 
-    public function getPdo() {
+    public function getPdo()
+    {
         return $this->_pdo;
     }
 
-    public function query($statement, $one = false) {
+    public function query($statement, $one = false)
+    {
         $req = $this->getPdo()->query($statement);
-        $req->setFetchMode(\PDO::FETCH_OBJ); //return object
+        $req->setFetchMode(\PDO::FETCH_OBJ); // return an object
 
-        if($one) {
+        if ($one) {
             $datas = $req->fetch();
         }
         else {
@@ -64,12 +64,13 @@ class MysqlDatabase {
     }
 
 
-    public function prepare($statement, $one = false) {
+    public function prepare($statement, $one = false)
+    {
         $req = $this->getPdo()->prepare($statement);
         $req->execute();
         $req->setFetchMode(\PDO::FETCH_OBJ); //retrun object
 
-        if($one) {
+        if ($one) {
             $datas = $req->fetch();
         }
         else {
@@ -80,29 +81,35 @@ class MysqlDatabase {
         return $datas;
     }
 
-    public function delete($statement) {
+    public function delete($statement)
+    {
         $req = $this->getPdo()->prepare($statement);
         $req->execute();
         $req->closeCursor();
         return true;
     }
 
-    public function updateOne($statement) {
+    public function updateOne($statement)
+    {
         $req = $this->getPdo()->prepare($statement);
         $req->execute();
         $req->closeCursor();
+        return true;
     }
 
-    public function update($statement, $array) {
+    public function update($statement, $array)
+    {
         $req = $this->getPdo()->prepare($statement);
         $req->execute($array);
         $req->closeCursor();
+        return true;
     }
 
-    public function insertInto($statement, $array) {
+    public function insertInto($statement, $array)
+    {
         $req = $this->getPdo()->prepare($statement);
         $req->execute($array);
         $req->closeCursor();
+        return true;
     }
-
 }

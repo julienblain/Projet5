@@ -1,8 +1,9 @@
 <?php
+
 namespace App;
 
-
 use App\Controller\AppController;
+
 
 class AppException extends \Exception
 {
@@ -11,29 +12,33 @@ class AppException extends \Exception
         parent::__construct($message, $code, $previous);
     }
 
-    public function router() {
+    public function router()
+    {
         echo "<p class='notification notifError'>Erreur la page demandée n'existe pas.</p>";
     }
 
-    public function mysqlDatabase() {
+    public function mysqlDatabase()
+    {
         echo "<p class='notification notifError'>Erreur de connexion avec la base de données utilisateur.</p>";
         $redirect = new AppController();
         $redirect->home();
         die();
     }
 
-    public function elasticDatabase() {
+    public function elasticDatabase()
+    {
         echo "<p class='notification notifError'>Erreur de connexion avec la base de données.</p>";
         $redirect = new AppController();
         $redirect->homeLogged();
         die();
     }
 
-    public function phpMailer() {
-        echo "<p class='notification notifError'>Erreur, le mail n'a pas pu être envoyé.</p>";
-    }
-
-    public function recaptcha() {
+    public function recaptcha()
+    {
         echo "<p class='notification notifError'>Erreur de connexion avec le recaptcha.</p>";
     }
+
+    /*public function phpMailer() {
+      echo "<p class='notification notifError'>Erreur, le mail n'a pas pu être envoyé.</p>";
+    }*/
 }

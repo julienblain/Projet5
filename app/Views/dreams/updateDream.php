@@ -4,12 +4,13 @@
             <h1 class="ru-title">Rêve du <?= $dream[0]->dateDreamsFr ?></h1>
             <h2>Modifier</h2>
         </div>
+
         <form action="?p=dreams.updated.<?= $dream[0]->id ?>" id="updateDream-updated" method="post">
             <fieldset id="updateDream-dream">
                 <label for="dreamUpdated" aria-label="Modifier votre rêve">
-                <textarea name="dream" id="dreamUpdated" class="ru-dream"
-                          required><?= $dream[0]->content ?></textarea>
-                    <!--verifier si le required fonctionne sur safari -->
+                <textarea name="dream" id="dreamUpdated" class="ru-dream" required>
+                    <?= $dream[0]->content ?>
+                </textarea>
                 </label>
             </fieldset>
 
@@ -19,6 +20,7 @@
                     <input type="date" name="dreamDate" id="dreamDate" value="<?php echo $dream[0]->date; ?>"
                            title="Modifier la date">
                 </label>
+
                 <label for="dreamHour" id="dateTime-dreamHour" aria-label="Modifier l'heure">
                     <i class="fa icon-clock2" aria-hidden="true"></i>
                     <input type="time" id="dreamHour" name="dreamHour" value="<?php echo $dream[0]->hour; ?>"
@@ -33,13 +35,17 @@
 
             <fieldset id="elaboration">
                 <label for="elaborationTextarea" aria-label="Modifier l'élaboration">
-                    <textarea name="elaboration" id="elaborationTextarea"><?= $dream[0]->elaboration ?></textarea>
+                <textarea name="elaboration" id="elaborationTextarea">
+                    <?= $dream[0]->elaboration ?>
+                </textarea>
                 </label>
             </fieldset>
 
             <fieldset id="previousEvents">
                 <label for="previousEventsWrite" aria-label="Modifier les évnements précédents">
-                    <textarea name="previousEvents" id="previousEventsWrite"><?= $dream[0]->previousEvents ?></textarea>
+                <textarea name="previousEvents" id="previousEventsWrite">
+                    <?= $dream[0]->previousEvents ?>
+                </textarea>
                 </label>
             </fieldset>
 
@@ -56,9 +62,7 @@
                title="Supprimer">
                 <i class="fa icon-bin2"></i>
             </a>
-
             <?php include_once($this->viewPath . 'dreams/btnPreviousAndNextDream.php'); ?>
         </div>
     </section>
-
 <?php include_once($this->viewPath . 'dreams/search.php'); ?>
