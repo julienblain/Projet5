@@ -1,9 +1,7 @@
 <header>
     <nav>
         <a href="http://localhost/Projet5/public/index.php?p=user.homeLogged" id="logo" title="Retourner à l'accueil">
-            <h1>
                 <img id="logo-img" src="http://localhost/Projet5/public/img/logo1.png" alt="logo du site BLA-BLA">
-            </h1>
         </a>
         <div id="nav-btn-box">
             <a id="nav-home" href="http://localhost/Projet5/public/index.php?p=user.homeLogged"

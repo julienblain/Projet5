@@ -163,7 +163,6 @@ class DreamsController extends AppController
 
 
     public function indexDreams() {
-
         $dreams = $this->_index->searchList();
         $dreams = $this->_dayHourFr($dreams);
         $this->_dreamListSession($dreams);

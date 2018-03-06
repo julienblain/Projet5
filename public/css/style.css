@@ -123,14 +123,12 @@ input {/* delete the browser design */
     align-items: center;
     height: 100%;
     width: 100%;
-
 }
+
 .btnDelete {
     background-color: #ff3838;
     border : 3px solid #ff3838;
-
     line-height: 0;
-
     order: 3;
 }
 
@@ -185,12 +183,12 @@ input {/* delete the browser design */
     background-color: #ffb8b8;
     border: 3px solid #ffb8b8;
 }
+
 .icon-calendar::before, .icon-clock2::before {
     position: relative;
     font-size: 1.7rem;
     top: 9px;
     right: 5px;
-    /* margin-left: 10px; */
 }
 
 
@@ -542,7 +540,7 @@ nav button, nav a {
 #home-question .box {
     flex-direction: column;
     background-color: #c56cf0;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     justify-content: center;
 }
 
@@ -563,8 +561,10 @@ nav button, nav a {
     max-width: 100%; /* bug ie */
 }
 
+/*/////////// LEGAL NOTICE  //////////*/
 #legalNotice h1 {
     display: inline-block;
+    margin-bottom: 2%;
 }
 
 /*/////////// FOOTER  //////////*/
@@ -576,10 +576,6 @@ footer {
     justify-content: flex-end;
     width: 100vw;
     margin-left: -2vw;
-}
-
-#legalNotice h1 {
-    display: inline-block;
 }
 
 /*////////////  HOMELOGGED  ///////////*/
@@ -907,7 +903,7 @@ footer {
 @media all and (min-device-width: 568px) and (orientation: landscape) {
 
     #home-question .box {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
 }
@@ -1042,7 +1038,7 @@ footer {
     }
 
     #home-question .box {
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 
     #home img {
@@ -1173,6 +1169,10 @@ footer {
         width: auto;
     }
 
+    #home {
+        justify-content: center;
+    }
+
     #home div {
         width: 49%;
         height: auto;
@@ -1180,13 +1180,14 @@ footer {
 
     #home .box {
         width: 100%;
-        /* align-items: center; */
-        height: 82%;
-        /* justify-content:  center; */
     }
 
-    #home-homeLogged, #home-search {
-        margin-right: 1%;
+    #home div:nth-last-child(1) {
+        width: 100%;
+    }
+
+    #home-homeLogged {
+        margin-right: 2%;
     }
 
     #home-homeLogged-right {
@@ -1263,9 +1264,11 @@ footer {
         margin: 2vw auto;
     }
 
-    #home-register {
-        /* margin-top: 1vw; */
+    #home div:nth-last-child(1) {
+        max-width: 1240px;
+
     }
+
     #updateAccount {
         display: flex;
         flex-direction: column;

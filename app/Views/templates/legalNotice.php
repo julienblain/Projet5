@@ -1,18 +1,8 @@
 <header>
     <nav>
         <a href="http://localhost/Projet5/public/index.php?p=user.homeLogged" id="logo" title="Retourner à l'accueil">
-            <h1>
-                <img id="logo-img" src="http://localhost/Projet5/public/img/logo1.png" alt="logo du site BLA-BLA">
-            </h1>
+            <img id="logo-img" src="http://localhost/Projet5/public/img/logo1.png" alt="logo du site BLA-BLA">
         </a>
-        <div id="nav-btn-box">
-            <button title="Inscription" id="nav-register">
-                <i class="fa icon-clipboard"></i>
-            </button>
-            <button title="Connexion" id="nav-login">
-                <i class="fa icon-key"></i>
-            </button>
-        </div>
     </nav>
 </header>
 
