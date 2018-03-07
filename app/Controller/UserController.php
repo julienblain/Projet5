@@ -76,7 +76,7 @@ class UserController extends AppController
                 include_once($this->viewPath . 'notification/error/accountExistingAlready.php');
                 $this->home();
             }
-            //this mail already exist but it is not actif
+            //this mail already exist but it is not active
             elseif ((!empty($alreadyExistingTmp)) && ((intVal($alreadyExistingTmp[0]->tryValidationTmp)) <= 3)) {
                 $body =
                     'Bienvenu !
@@ -256,6 +256,8 @@ class UserController extends AppController
             $this->_table->deleteAccount();
             $dreamsElastic = new DreamsController();
             $dreamsElastic->deleteAccount();
+            session_destroy();
+            include_once($this->viewPath . 'notification/deleteAccount.php');
             $this->home();
         }
         else {

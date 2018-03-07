@@ -7,6 +7,21 @@ final class App
 {
     private static $_instance;
 
+
+    private function _autoload()
+    {
+        require ROOT . '/app/Autoloader.php';
+        App\Autoloader::register();
+        require ROOT . '/core/Autoloader.php';
+        Core\Autoloader::register();
+        require ROOT . '/vendor/Composer/vendor/autoload.php';
+    }
+
+    private function _router()
+    {
+        new Router();
+    }
+
     //singleton
     public static function getInstance()
     {
@@ -22,19 +37,5 @@ final class App
             self::$_instance->_router();
         }
         return self::$_instance;
-    }
-
-    private function _autoload()
-    {
-        require ROOT . '/app/Autoloader.php';
-        App\Autoloader::register();
-        require ROOT . '/core/Autoloader.php';
-        Core\Autoloader::register();
-        require ROOT . '/vendor/Composer/vendor/autoload.php';
-    }
-
-    private function _router()
-    {
-        new Router();
     }
 }

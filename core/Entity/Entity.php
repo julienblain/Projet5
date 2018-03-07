@@ -10,6 +10,7 @@ class Entity
     protected $table;
     protected $db;
 
+
     public function __construct()
     {
         $this->db = new MysqlDatabase();

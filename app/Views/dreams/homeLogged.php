@@ -28,15 +28,14 @@
 
         <fieldset id="elaboration">
             <label for="elaborationTextarea" aria-label="Écrire une élaboration">
-                <textarea name="elaboration" id="elaborationTextarea" title="Écrire une élaboration"> </textarea>
+                <textarea name="elaboration" id="elaborationTextarea" title="Écrire une élaboration"></textarea>
             </label>
         </fieldset>
 
         <fieldset id="previousEvents">
             <label for="previousEventsWrite" aria-label="Écrire des évnements précédents">
                 <textarea name="previousEvents" id="previousEventsWrite"
-                          title="Écrire des évnements précédents">
-                </textarea>
+                          title="Écrire des évnements précédents"></textarea>
             </label>
         </fieldset>
 

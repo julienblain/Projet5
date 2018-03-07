@@ -262,7 +262,7 @@ class DreamsEntity extends AppController
                                 'article_case' => true,
                                 'articles' => ['l', 'm', 't', 'qu', 'n', 's', 'j', 'd', 'c', 'jusqu', 'quoiqu', 'lorsqu', 'puisqu']
                             ],
-                            'french_stemmer' => [ //
+                            'french_stemmer' => [
                                 'type' => 'stemmer',
                                 'language' => 'french'
                             ],

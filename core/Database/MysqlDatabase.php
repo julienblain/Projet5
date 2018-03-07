@@ -7,7 +7,6 @@ use Core\Config;
 
 class MysqlDatabase
 {
-
     private $_dbName;
     private $_dbUser;
     private $_dbPassword;

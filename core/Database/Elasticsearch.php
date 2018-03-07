@@ -13,6 +13,7 @@ class Elasticsearch
 {
     private $_client;
 
+
     public function __construct()
     {
         if ($this->_client === null) {
@@ -44,7 +45,7 @@ class Elasticsearch
         try {
             return $this->_client->$reqType($params);
 
-        } catch (\Exception $e) { // only \Exception or Elasticsearch exceptions can be catched
+        } catch (\Exception $e) { // only \Exception or Elasticsearch's exceptions can be catched
             $ex = new AppException();
             return $ex->elasticDatabase();
         }
